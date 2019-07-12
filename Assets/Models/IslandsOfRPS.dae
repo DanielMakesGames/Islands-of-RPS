@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <authoring_tool>Minddesk Qubicle 3</authoring_tool>
+      <comments>Get Qubicle at www.getqubicle.com</comments>
+    </contributor>
+    <created>2019-07-123:08 PM15:08:50:101</created>
+    <modified>2019-07-123:08 PM15:08:50:101</modified>
+    <unit meter="1.0" />
+  </asset>
+  <library_images>
+    <image id="IslandsOfRPS-image" name="IslandsOfRPS-image">
+      <init_from>file:///materials/IslandsOfRPS.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="IslandsOfRPS-material" name="IslandsOfRPS-material">
+      <instance_effect url="#IslandsOfRPS-shader-fx" />
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="IslandsOfRPS-shader-fx" name="IslandsOfRPS-shader-fx">
+      <profile_COMMON>
+        <newparam sid="IslandsOfRPS-image-surface">
+          <surface type="2D">
+            <init_from>IslandsOfRPS-image</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="IslandsOfRPS-image-sampler">
+          <sampler2D>
+            <source>IslandsOfRPS-image-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NEAREST</minfilter>
+            <magfilter>NEAREST</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="standard">
+          <lambert>
+            <ambient>
+              <color sid="ambient">0.0 0.0 0.0 1.0</color>
+            </ambient>
+            <diffuse>
+              <texture texcoord="CHANNEL0" texture="IslandsOfRPS-image-sampler" />
+            </diffuse>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry name="GrassTile" id="GrassTile-lib">
+      <mesh>
+        <source id="GrassTile-position">
+          <float_array id="GrassTile-position-array" count="24">5.0 5.0 -5.0 5.0 -5.0 -5.0 -5.0 -5.0 -5.0 -5.0 5.0 -5.0 -5.0 5.0 5.0 -5.0 -5.0 5.0 5.0 -5.0 5.0 5.0 5.0 5.0 </float_array>
+          <technique_common>
+            <accessor source="#GrassTile-position-array" stride="3" count="8">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GrassTile-normal">
+          <float_array id="GrassTile-normal-array" count="18">0.0 0.0 1.0 0.0 0.0 -1.0 -1.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 -1.0 0.0</float_array>
+          <technique_common>
+            <accessor source="#GrassTile-normal-array" stride="3" count="6">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GrassTile-uv">
+          <float_array id="GrassTile-uv-array" count="48">0.015625 0.34375 0.015625 0.03125 0.171875 0.03125 0.171875 0.34375 0.203125 0.34375 0.203125 0.03125 0.359375 0.03125 0.359375 0.34375 0.390625 0.34375 0.390625 0.03125 0.546875 0.03125 0.546875 0.34375 0.578125 0.34375 0.578125 0.03125 0.734375 0.03125 0.734375 0.34375 0.765625 0.34375 0.765625 0.03125 0.921875 0.03125 0.921875 0.34375 0.015625 0.71875 0.015625 0.40625 0.171875 0.40625 0.171875 0.71875 </float_array>
+          <technique_common>
+            <accessor source="#GrassTile-uv-array" stride="2" count="24">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="GrassTile-vertex">
+          <input semantic="POSITION" source="#GrassTile-position" />
+        </vertices>
+        <polylist material="IslandsOfRPS-material" count="12">
+          <input offset="0" semantic="VERTEX" source="#GrassTile-vertex" />
+          <input offset="1" semantic="NORMAL" source="#GrassTile-normal" />
+          <input offset="2" semantic="TEXCOORD" source="#GrassTile-uv" />
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>1 1 9 3 1 11 0 1 8 1 1 9 2 1 10 3 1 11 5 0 5 7 0 7 4 0 4 5 0 5 6 0 6 7 0 7 2 2 1 4 2 3 3 2 0 2 2 1 5 2 2 4 2 3 6 3 21 0 3 23 7 3 20 6 3 21 1 3 22 0 3 23 3 4 16 4 4 17 0 4 19 4 4 17 7 4 18 0 4 19 5 5 12 2 5 13 6 5 15 2 5 13 1 5 14 6 5 15 </p>
+        </polylist>
+      </mesh>
+    </geometry>)
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="IslandsOfRPS-scene" name="IslandsOfRPS-scene">
+      <node sid="GrassTile" id="GrassTile" name="GrassTile">
+        <translate sid="translate">-1.00 6.00 1.00</translate>
+        <instance_geometry url="#GrassTile-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="IslandsOfRPS-material" target="#IslandsOfRPS-material" />
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene name="" sid="" url="#IslandsOfRPS-scene" />
+  </scene>
+</COLLADA>

@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
     void Update()
     {
     #if UNITY_EDITOR
-        //UpdateKeyboardInput();
+        UpdateKeyboardInput();
         UpdateTouchInput();
     #elif UNITY_IPHONE || UNITY_ANDROID
         UpdateTouchInput();

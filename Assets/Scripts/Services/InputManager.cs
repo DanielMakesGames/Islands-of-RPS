@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     public delegate void TouchBeginAction(int fingerId, Vector3 tapPosition, RaycastHit hitInfo);
     public delegate void TouchMoveAction(int fingerId, Vector3 tapPosition, Vector3 touchDelta);
     public delegate void TouchEndAction(int fingerId, Vector3 tapPosition);
+    public delegate void TouchPinchAction(float pinchDistanceDelta, float turnAngleDelta);
 
     public static event TouchBeginAction OnTouchBegin;
     public static event TouchMoveAction OnTouchMove;
@@ -37,8 +38,8 @@ public class InputManager : MonoBehaviour
     void Update()
     {
     #if UNITY_EDITOR
-        UpdateKeyboardInput();
-        //UpdateTouchInput();
+        //UpdateKeyboardInput();
+        UpdateTouchInput();
     #elif UNITY_IPHONE || UNITY_ANDROID
         UpdateTouchInput();
     #else

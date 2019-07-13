@@ -15,9 +15,15 @@ public class Ocean : MonoBehaviour
     private void Awake()
     {
         myMeshFilter = GetComponent<MeshFilter>();
+       
+    }
+
+    void Start()
+    {
         vertices = myMeshFilter.mesh.vertices;
         colors = myMeshFilter.mesh.colors;
         ignore = new bool[vertices.Length];
+        myBoatColliders = new List<Collider>();
 
         for (int i = 0; i < vertices.Length; ++i)
         {
@@ -30,8 +36,6 @@ public class Ocean : MonoBehaviour
             {
                 ignore[i] = false;
             }
-
-            myBoatColliders = new List<Collider>();
         }
     }
 

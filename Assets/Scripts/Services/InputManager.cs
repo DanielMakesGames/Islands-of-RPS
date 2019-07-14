@@ -94,7 +94,7 @@ public class InputManager : MonoBehaviour
     {
         myRay = mainCamera.ScreenPointToRay(tapPosition);
 
-        if (Physics.Raycast(myRay, out hitInfo, raycastLength, uiLayer))
+        if (Physics.Raycast(myRay, out hitInfo, raycastLength, uiLayer, QueryTriggerInteraction.Collide))
         {
             uiScreenPressed = true;
             OnUITouchBegin?.Invoke(fingerId, tapPosition, hitInfo);
@@ -102,7 +102,8 @@ public class InputManager : MonoBehaviour
         else
         {
             myRay = mainCamera.ScreenPointToRay(tapPosition);
-            if (Physics.Raycast(myRay, out hitInfo, raycastLength))
+            if (Physics.Raycast(myRay, out hitInfo, raycastLength,
+                Camera.main.cullingMask, QueryTriggerInteraction.Collide))
             {
                 OnTouchBegin?.Invoke(fingerId, tapPosition, hitInfo);
             }
@@ -116,7 +117,8 @@ public class InputManager : MonoBehaviour
     void OnTapUp(int fingerId, Vector3 tapPosition)
     {
         myRay = mainCamera.ScreenPointToRay(tapPosition);
-        Physics.Raycast(myRay, out hitInfo, raycastLength);
+        Physics.Raycast(myRay, out hitInfo, raycastLength,
+            Camera.main.cullingMask, QueryTriggerInteraction.Collide);
 
         if (uiScreenPressed)
         {
@@ -132,7 +134,8 @@ public class InputManager : MonoBehaviour
     void OnTapMove(int fingerId, Vector3 tapPosition, Vector3 touchDelta)
     {
         myRay = mainCamera.ScreenPointToRay(tapPosition);
-        Physics.Raycast(myRay, out hitInfo, raycastLength);
+        Physics.Raycast(myRay, out hitInfo, raycastLength,
+            Camera.main.cullingMask, QueryTriggerInteraction.Collide);
 
         if (uiScreenPressed)
         {

@@ -35,11 +35,11 @@ public class Node : MonoBehaviour
     List<Node> neighbours = new List<Node>();
 
     const float rayDistance = 1f;
-    LayerMask layerMask;
+    LayerMask nodeLayerMask;
 
     void Awake()
     {
-        layerMask = LayerMask.GetMask("Tile");
+        nodeLayerMask = LayerMask.GetMask("Node");
         SetupNeighbour();
     }
 
@@ -47,7 +47,7 @@ public class Node : MonoBehaviour
     {
         RaycastHit raycastHit;
         if (Physics.Raycast(transform.position, transform.forward, out raycastHit,
-            rayDistance, layerMask, QueryTriggerInteraction.Ignore))
+            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             if (hitNode != null)
@@ -58,7 +58,7 @@ public class Node : MonoBehaviour
         }
 
         if (Physics.Raycast(transform.position, transform.right, out raycastHit,
-            rayDistance, layerMask, QueryTriggerInteraction.Ignore))
+            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             if (hitNode != null)
@@ -69,7 +69,7 @@ public class Node : MonoBehaviour
         }
 
         if (Physics.Raycast(transform.position, -transform.forward, out raycastHit,
-            rayDistance, layerMask, QueryTriggerInteraction.Ignore))
+            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             if (hitNode != null)
@@ -79,7 +79,7 @@ public class Node : MonoBehaviour
             }
         }
         if (Physics.Raycast(transform.position, -transform.right, out raycastHit,
-            rayDistance, layerMask, QueryTriggerInteraction.Ignore))
+            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             if (hitNode != null)

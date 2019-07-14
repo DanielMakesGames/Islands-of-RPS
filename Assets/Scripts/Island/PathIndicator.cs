@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class PathIndicator : MonoBehaviour
 {
+    Squad mySquad;
     LineRenderer myLineRenderer;
-    Pathfinding myPathfinding;
     const float lineOffset = 0.6f;
 
     private void Awake()
     {
+        mySquad = GetComponentInParent<Squad>();
         myLineRenderer = GetComponentInChildren<LineRenderer>();
-        myPathfinding = GetComponentInParent<Pathfinding>();
-
         myLineRenderer.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (myPathfinding.path.Count > 0)
+        if (mySquad.path.Count > 0)
         {
-            Vector3[] pos = new Vector3[myPathfinding.path.Count];
+            Vector3[] pos = new Vector3[mySquad.path.Count];
 
             for (int i = 0; i < pos.Length; ++i)
             {
-                pos[i] = myPathfinding.path[i].transform.position + new Vector3(0, lineOffset, 0);
+                pos[i] = mySquad.path[i].transform.position + new Vector3(0, lineOffset, 0);
             }
 
             myLineRenderer.positionCount = pos.Length;

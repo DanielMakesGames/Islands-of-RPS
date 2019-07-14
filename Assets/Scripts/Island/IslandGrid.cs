@@ -4,138 +4,173 @@ using UnityEngine;
 
 public class IslandGrid : MonoBehaviour
 {
-    public Transform StartPosition;
-    public LayerMask WallMask;
-    public Vector2 GridWorldSize;
-    public float NodeRadius;
-    public float Distance;
-
-    Node[,] grid;
-    public List<Node> FinalPath;
-
-    float nodeDiameter;
-    int gridSizeX, gridSizeY;
-
-    void Start()
+    enum NodeDirection
     {
-        nodeDiameter = NodeRadius * 2f;
-        gridSizeX = Mathf.RoundToInt(GridWorldSize.x / nodeDiameter);
-        gridSizeY = Mathf.RoundToInt(GridWorldSize.y / nodeDiameter);
-        CreateGrid();
+        North,
+        East,
+        South,
+        West
     }
 
-    void CreateGrid()
+    Node[] islandNodes;
+    List<Node> path = new List<Node>();
+
+    void Awake()
     {
-        grid = new Node[gridSizeX, gridSizeY];
-        Vector3 bottomLeft = transform.position - Vector3.right * GridWorldSize.x / 2 -
-            Vector3.forward * GridWorldSize.y / 2;
-
-        for  (int y = 0; y < gridSizeY; ++y)
-        {
-            for (int x = 0; x < gridSizeX; ++x)
-            {
-                Vector3 worldPoint = bottomLeft + Vector3.right *
-                    (x * nodeDiameter + NodeRadius) +
-                    Vector3.forward * (y * nodeDiameter + NodeRadius);
-
-                grid[x, y] = new Node(true, worldPoint, x, y);
-            }
-        }
+        islandNodes = GetComponentsInChildren<Node>();
     }
 
-    public Node NodeFromWorldPosition(Vector3 worldPosition)
+    public void SetNodeDistances(Node startingNode)
     {
-        float xPoint = (worldPosition.x + GridWorldSize.x / 2) / GridWorldSize.x;
-        float yPoint = (worldPosition.z + GridWorldSize.y / 2) / GridWorldSize.y;
+        ResetNodeValues();
+        startingNode.visited = 0;
+        int[] testArray = new int[islandNodes.Length];
 
-        xPoint = Mathf.Clamp01(xPoint);
-        yPoint = Mathf.Clamp01(yPoint);
-
-        int x = Mathf.RoundToInt((gridSizeX - 1) * xPoint);
-        int y = Mathf.RoundToInt((gridSizeY - 1) * yPoint);
-
-        return grid[x, y];
-    }
-
-    public List<Node> GetNeighborNodes(Node node)
-    {
-        List<Node> neighboringNodes = new List<Node>();
-        int xCheck;
-        int yCheck;
-
-        //Right
-        xCheck = node.GridX + 1;
-        yCheck = node.GridY;
-        if (xCheck >= 0 && xCheck < gridSizeX)
+        for (int step = 1; step < testArray.Length; ++step)
         {
-            if (yCheck >= 0 && yCheck < gridSizeY)
+            for (int i = 0; i < islandNodes.Length; ++i)
             {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        //Left
-        xCheck = node.GridX - 1;
-        yCheck = node.GridY;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        //Up
-        xCheck = node.GridX;
-        yCheck = node.GridY + 1;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-
-        //Down
-        xCheck = node.GridX;
-        yCheck = node.GridY - 1;
-        if (xCheck >= 0 && xCheck < gridSizeX)
-        {
-            if (yCheck >= 0 && yCheck < gridSizeY)
-            {
-                neighboringNodes.Add(grid[xCheck, yCheck]);
-            }
-        }
-        return neighboringNodes;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position, new Vector3(GridWorldSize.x, 1, GridWorldSize.y));
-
-        if (grid != null)
-        {
-            foreach(Node node in grid)
-            {
-                if (node.IsWalkable)
+                if (islandNodes[i].visited == step - 1)
                 {
-                    Gizmos.color = Color.white;
+                    TestFourDirections(islandNodes[i], step);
+                }
+            }
+        }
+    }
+
+    void GetPath(Node targetNode)
+    {
+        int step;
+        List<Node> tempList = new List<Node>();
+        path.Clear();
+
+        if (targetNode.visited != -1)
+        {
+            path.Add(targetNode);
+            step = targetNode.visited - 1;
+        }
+        else
+        {
+            Debug.Log("Path not available.");
+            return;
+        }
+
+        for (int i = step; step > -1; --step)
+        {
+            if (TestDirection(targetNode, step, NodeDirection.North))
+            {
+                tempList.Add(targetNode.NorthNode);
+            }
+            if (TestDirection(targetNode, step, NodeDirection.East))
+            {
+                tempList.Add(targetNode.EastNode);
+            }
+            if (TestDirection(targetNode, step, NodeDirection.South))
+            {
+                tempList.Add(targetNode.SouthNode);
+            }
+            if (TestDirection(targetNode, step, NodeDirection.West))
+            {
+                tempList.Add(targetNode.WestNode);
+            }
+
+            Node closestNode = FindClosest(targetNode.transform, tempList);
+            path.Add(closestNode);
+            targetNode = closestNode;
+            tempList.Clear();
+        }
+    }
+
+    void TestFourDirections(Node tNode, int step)
+    {
+        if (TestDirection(tNode, -1, NodeDirection.North))
+        {
+            SetVisited(tNode.NorthNode, step);
+        }
+        if (TestDirection(tNode, -1, NodeDirection.East))
+        {
+            SetVisited(tNode.EastNode, step);
+        }
+        if (TestDirection(tNode, -1, NodeDirection.South))
+        {
+            SetVisited(tNode.SouthNode, step);
+        }
+        if (TestDirection(tNode, -1, NodeDirection.West))
+        {
+            SetVisited(tNode.WestNode, step);
+        }
+    }
+
+    bool TestDirection(Node tNode, int step, NodeDirection direction)
+    {
+        switch (direction)
+        {
+            case NodeDirection.North:
+                if (tNode.NorthNode != null && tNode.NorthNode.visited == step)
+                {
+                    return true;
                 }
                 else
                 {
-                    Gizmos.color = Color.yellow;
+                    return false;
                 }
-
-                if (FinalPath != null)
+            case NodeDirection.East:
+                if (tNode.EastNode != null && tNode.EastNode.visited == step)
                 {
-                    if (FinalPath.Contains(node))
-                    {
-                        Gizmos.color = Color.red;
-                    }
+                    return true;
                 }
+                else
+                {
+                    return false;
+                }
+            case NodeDirection.South:
+                if (tNode.SouthNode != null && tNode.SouthNode.visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case NodeDirection.West:
+                if (tNode.WestNode != null && tNode.WestNode.visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+        return false;
+    }
 
-                Gizmos.DrawCube(node.Position, Vector3.one * (nodeDiameter - Distance));
+    void SetVisited(Node tNode, int step)
+    {
+        tNode.visited = step;
+    }
+
+    Node FindClosest(Transform targetLocation, List<Node> tNodes)
+    {
+        float currentDistance = islandNodes.Length * 100f;
+        int indexNumber = 0;
+        for (int i = 0; i < tNodes.Count; ++i)
+        {
+            float distance = Vector3.Distance(targetLocation.position, tNodes[i].transform.position);
+            if (distance < currentDistance)
+            {
+                currentDistance = distance;
+                indexNumber = i;
             }
+        }
+        return tNodes[indexNumber];
+    }
+
+    public void ResetNodeValues()
+    {
+        for (int i = 0; i < islandNodes.Length; ++i)
+        {
+            islandNodes[i].visited = -1;
         }
     }
 }

@@ -2,54 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node
+public class Node : MonoBehaviour
 {
-    public int GridX;
-    public int GridY;
+    public int visited = -1;
 
-    public bool IsWalkable;
-    public Vector3 Position;
-
-    public Node Parent;
-
-    public int GCost;
-    public int HCost;
-    public int FCost
+    Node northNode;
+    public Node NorthNode
     {
-        get { return GCost + HCost; }
+        get { return northNode; }
     }
 
-    public Node(bool isWalkable, Vector3 position, int gridX, int gridY)
+    Node eastNode;
+    public Node EastNode
     {
-        this.IsWalkable = isWalkable;
-        this.Position = position;
-        this.GridX = gridX;
-        this.GridY = gridY;
+        get { return eastNode; }
     }
 
-    /*public Node northNode;
-    public Node eastNode;
-    public Node southNode;
-    public Node westNode;
-
-    bool isEmpty = false;
-    public bool IsEmpty
+    Node southNode;
+    public Node SouthNode
     {
-        get { return isEmpty; }
+        get { return southNode; }
     }
+
+    Node westNode;
+    public Node WestNode
+    {
+        get { return westNode;  }
+    }
+
+    public bool IsWalkable = true;
 
     List<Node> neighbours = new List<Node>();
 
     const float rayDistance = 1f;
     LayerMask layerMask;
 
-    private void Awake()
+    void Awake()
     {
         layerMask = LayerMask.GetMask("Tile");
         SetupNeighbour();
     }
 
-    public void SetupNeighbour()
+    void SetupNeighbour()
     {
         RaycastHit raycastHit;
         if (Physics.Raycast(transform.position, transform.forward, out raycastHit,
@@ -94,5 +88,5 @@ public class Node
                 neighbours.Add(westNode);
             }
         }
-    }*/
+    }
 }

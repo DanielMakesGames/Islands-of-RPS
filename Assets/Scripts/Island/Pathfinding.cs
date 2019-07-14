@@ -5,93 +5,45 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     IslandGrid islandGrid;
-    public Transform StartPosition;
-    public Transform TargetPosition;
+    public Node StartNode;
+    public Node TargetNode;
+
+    int myFingerId = InputManager.InactiveTouch;
+    List<Node> path = new List<Node>();
 
     private void Awake()
     {
         islandGrid = GetComponent<IslandGrid>();
     }
 
-    void Update()
+    void OnEnable()
     {
-        FindPath(StartPosition.position, TargetPosition.position);
+        InputManager.OnTouchBegin += OnTouchBegin;
     }
 
-    void FindPath(Vector3 startPosition, Vector3 targetPosition)
+    void OnDisable()
     {
-        Node StartNode = islandGrid.NodeFromWorldPosition(startPosition);
-        Node TargetNode = islandGrid.NodeFromWorldPosition(targetPosition);
+        InputManager.OnTouchBegin -= OnTouchBegin;
+    }
 
-        List<Node> OpenList = new List<Node>();
-        HashSet<Node> ClosedList = new HashSet<Node>();
+    void Start()
+    {
+        islandGrid.ResetNodeValues();
+    }
 
-        OpenList.Add(StartNode);
-
-        while (OpenList.Count > 0)
+    void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
+    {
+        if (myFingerId == InputManager.InactiveTouch)
         {
-            Node CurrentNode = OpenList[0];
-            for (int i = 1; i < OpenList.Count; ++i)
+            if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Tile"))
             {
-                if (OpenList[i].FCost < CurrentNode.FCost ||
-                    OpenList[i].FCost == CurrentNode.FCost &&
-                    OpenList[i].HCost < CurrentNode.HCost)
-                {
-                    CurrentNode = OpenList[i];
-                }
-            }
-            OpenList.Remove(CurrentNode);
-            ClosedList.Add(CurrentNode);
+                myFingerId = fingerId;
 
-            if (CurrentNode == TargetNode)
-            {
-                GetFinalPath(StartNode, TargetNode);
-            }
-
-            foreach (Node NeighborNode in islandGrid.GetNeighborNodes(CurrentNode))
-            {
-                if (!NeighborNode.IsWalkable || ClosedList.Contains(NeighborNode))
-                {
-                    continue;
-                }
-                int MoveCost = CurrentNode.GCost + GetManhattenDistance(CurrentNode, NeighborNode);
-
-                if (MoveCost < NeighborNode.GCost || !OpenList.Contains(NeighborNode))
-                {
-                    NeighborNode.GCost = MoveCost;
-                    NeighborNode.HCost = GetManhattenDistance(NeighborNode, TargetNode);
-                    NeighborNode.Parent = CurrentNode;
-
-                    if (!OpenList.Contains(NeighborNode))
-                    {
-                        OpenList.Add(NeighborNode);
-                    }
-                }
+                islandGrid.ResetNodeValues();
+                StartNode = hitInfo.transform.GetComponent<Node>();
+                StartNode.visited = 0;
+                islandGrid.SetNodeDistances(StartNode);
             }
         }
-    }
-
-    int GetManhattenDistance(Node nodeA, Node nodeB)
-    {
-        int ix = Mathf.Abs(nodeA.GridX - nodeB.GridX);
-        int iy = Mathf.Abs(nodeA.GridY - nodeB.GridY);
-
-        return ix + iy;
-    }
-
-    void GetFinalPath(Node startingNode, Node endNode)
-    {
-        List<Node> FinalPath = new List<Node>();
-        Node CurrentNode = endNode;
-
-        while (CurrentNode != startingNode)
-        {
-            FinalPath.Add(CurrentNode);
-            CurrentNode = CurrentNode.Parent;
-        }
-
-        FinalPath.Reverse();
-
-        islandGrid.FinalPath = FinalPath;
     }
 }

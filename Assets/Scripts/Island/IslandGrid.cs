@@ -78,6 +78,8 @@ public class IslandGrid : MonoBehaviour
             targetNode = closestNode;
             tempList.Clear();
         }
+
+        path.Reverse();
         return path;
     }
 

@@ -8,6 +8,9 @@ public class Squad : MonoBehaviour
     public static event SquadSelectedAction OnSquadSelected;
     public static event SquadSelectedAction OnSquadDeselected;
 
+    public delegate void SquadAnimationAction();
+    public event SquadAnimationAction OnAniamteSquadPath;
+
     public enum SquadState
     {
         Ready,
@@ -21,6 +24,7 @@ public class Squad : MonoBehaviour
     int myFingerId = InputManager.InactiveTouch;
     const float rayDistance = 1f;
     const float rayOffset = 0.5f;
+    const float movementSpeed = 2f;
     LayerMask nodeLayerMask;
 
     Node currentNode;
@@ -130,6 +134,7 @@ public class Squad : MonoBehaviour
                     {
                         path.Clear();
                     }
+                    OnAniamteSquadPath?.Invoke();
                     break;
                 case SquadState.Moving:
                     break;
@@ -187,6 +192,7 @@ public class Squad : MonoBehaviour
                 case SquadState.Moving:
                     break;
             }
+            OnAniamteSquadPath?.Invoke();
         }
     }
 
@@ -202,18 +208,32 @@ public class Squad : MonoBehaviour
 
     IEnumerator MoveToTarget()
     {
-        float timer = 0f;
-        Vector3 destination = targetNode.transform.position + Vector3.up * 0.5f;
+        Vector3 offSet = Vector3.up * 0.5f;
 
-        while (timer < 1f)
+        for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, destination, timer);
-            yield return null;
+            Vector3 startPosition = transform.position;
+            Vector3 destination = path[nodeIndex].transform.position + offSet;
+            float timer = 0f;
+
+            while (timer < 1f)
+            {
+                timer += Time.deltaTime * movementSpeed;
+                transform.position = Vector3.Lerp(startPosition, destination, timer);
+                OnAniamteSquadPath?.Invoke();
+                yield return null;
+            }
+
+            path.RemoveAt(nodeIndex - 1);
+            --nodeIndex;
         }
 
         mySquadState = SquadState.Ready;
         path.Clear();
+
+        SetCurrentNode();
         targetNode = null;
+
+        OnAniamteSquadPath?.Invoke();
     }
 }

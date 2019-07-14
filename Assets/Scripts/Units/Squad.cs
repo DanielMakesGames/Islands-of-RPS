@@ -170,13 +170,6 @@ public class Squad : MonoBehaviour
                         StartCoroutine(MoveToTarget());
                         OnSquadDeselected?.Invoke(this);
                     }
-                    else
-                    {
-                        path.Clear();
-                        targetNode = null;
-
-                        OnSquadDeselected?.Invoke(this);
-                    }
                     break;
                 case SquadState.OnTappedSelected:
                     if (hitInfo.transform != null)

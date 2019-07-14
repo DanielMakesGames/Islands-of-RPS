@@ -13,7 +13,6 @@ public class IslandGrid : MonoBehaviour
     }
 
     Node[] islandNodes;
-    List<Node> path = new List<Node>();
 
     void Awake()
     {
@@ -38,11 +37,11 @@ public class IslandGrid : MonoBehaviour
         }
     }
 
-    void GetPath(Node targetNode)
+    public List<Node> GetPath(Node targetNode)
     {
         int step;
+        List<Node> path = new List<Node>();
         List<Node> tempList = new List<Node>();
-        path.Clear();
 
         if (targetNode.visited != -1)
         {
@@ -52,7 +51,7 @@ public class IslandGrid : MonoBehaviour
         else
         {
             Debug.Log("Path not available.");
-            return;
+            return path;
         }
 
         for (int i = step; step > -1; --step)
@@ -79,6 +78,7 @@ public class IslandGrid : MonoBehaviour
             targetNode = closestNode;
             tempList.Clear();
         }
+        return path;
     }
 
     void TestFourDirections(Node tNode, int step)

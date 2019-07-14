@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public delegate void TouchBeginAction(int fingerId, Vector3 tapPosition, RaycastHit hitInfo);
-    public delegate void TouchMoveAction(int fingerId, Vector3 tapPosition, Vector3 touchDelta);
-    public delegate void TouchEndAction(int fingerId, Vector3 tapPosition);
-    public delegate void TouchPinchAction(float pinchDistanceDelta, float turnAngleDelta);
+    public delegate void TouchRaycastAction(int fingerId, Vector3 tapPosition, RaycastHit hitInfo);
+    public delegate void TouchMoveAction(int fingerId, Vector3 tapPosition, Vector3 touchDelta, RaycastHit hitInfo);
 
-    public static event TouchBeginAction OnTouchBegin;
+    public static event TouchRaycastAction OnTouchBegin;
     public static event TouchMoveAction OnTouchMove;
-    public static event TouchEndAction OnTouchEnd;
+    public static event TouchRaycastAction OnTouchEnd;
 
-    public static event TouchBeginAction OnUITouchBegin;
+    public static event TouchRaycastAction OnUITouchBegin;
     public static event TouchMoveAction OnUITouchMove;
-    public static event TouchEndAction OnUITouchEnd;
+    public static event TouchRaycastAction OnUITouchEnd;
 
     public const int InactiveTouch = -1;
     const float raycastLength = 100f;
@@ -117,26 +115,32 @@ public class InputManager : MonoBehaviour
 
     void OnTapUp(int fingerId, Vector3 tapPosition)
     {
+        myRay = mainCamera.ScreenPointToRay(tapPosition);
+        Physics.Raycast(myRay, out hitInfo, raycastLength);
+
         if (uiScreenPressed)
         {
-            OnUITouchEnd?.Invoke(fingerId, tapPosition);
+            OnUITouchEnd?.Invoke(fingerId, tapPosition, hitInfo);
             uiScreenPressed = false;
         }
         else
         {
-            OnTouchEnd?.Invoke(fingerId, tapPosition);
+            OnTouchEnd?.Invoke(fingerId, tapPosition, hitInfo);
         }
     }
 
     void OnTapMove(int fingerId, Vector3 tapPosition, Vector3 touchDelta)
     {
+        myRay = mainCamera.ScreenPointToRay(tapPosition);
+        Physics.Raycast(myRay, out hitInfo, raycastLength);
+
         if (uiScreenPressed)
         {
-            OnUITouchMove?.Invoke(fingerId, tapPosition, touchDelta);
+            OnUITouchMove?.Invoke(fingerId, tapPosition, touchDelta, hitInfo);
         }
         else
         {
-            OnTouchMove?.Invoke(fingerId, tapPosition, touchDelta);
+            OnTouchMove?.Invoke(fingerId, tapPosition, touchDelta, hitInfo);
         }
     }
 

@@ -55,7 +55,7 @@ public class FreeLookCamera : MonoBehaviour
         }
     }
 
-    void OnTouchMove(int fingerId, Vector3 tapPosition, Vector3 touchDelta)
+    void OnTouchMove(int fingerId, Vector3 tapPosition, Vector3 touchDelta, RaycastHit hitInfo)
     {
         if (myFingerId0 == fingerId && myFingerId1 == InputManager.InactiveTouch)
         {
@@ -89,7 +89,7 @@ public class FreeLookCamera : MonoBehaviour
         }
     }
 
-    void OnTouchEnd(int fingerId, Vector3 tapPosition)
+    void OnTouchEnd(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
     {
         if (myFingerId0 == fingerId)
         {

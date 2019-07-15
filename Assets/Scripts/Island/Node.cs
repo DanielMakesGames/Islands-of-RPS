@@ -34,7 +34,7 @@ public class Node : MonoBehaviour
 
     List<Node> neighbours = new List<Node>();
 
-    const float rayDistance = 1f;
+    const float rayDistance = 10f;
     LayerMask nodeLayerMask;
 
     void Awake()

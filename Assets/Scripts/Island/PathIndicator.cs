@@ -14,7 +14,7 @@ public class PathIndicator : MonoBehaviour
         myLineRenderer = GetComponentInChildren<LineRenderer>();
         myLineRenderer.gameObject.SetActive(false);
 
-        lineOffset = new Vector3(0, 0.6f, 0);
+        lineOffset = new Vector3(0, 6f, 0);
     }
 
     private void OnEnable()

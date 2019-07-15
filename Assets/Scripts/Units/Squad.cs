@@ -208,7 +208,7 @@ public class Squad : MonoBehaviour
 
     IEnumerator MoveToTarget()
     {
-        Vector3 offSet = Vector3.up * 0.5f;
+        Vector3 offSet = Vector3.up * 5f;
 
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {

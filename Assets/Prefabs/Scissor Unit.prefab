@@ -101,6 +101,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2230019601939922815}
+  - component: {fileID: 548685777}
+  - component: {fileID: 548685780}
+  - component: {fileID: 4817120188071716422}
   m_Layer: 0
   m_Name: Scissor Unit
   m_TagString: Untagged
@@ -123,3 +126,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &548685777
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582344058372878384}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 20
+  m_Acceleration: 40
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
+--- !u!114 &548685780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582344058372878384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a480a04b2e34432a52fefb05fa9a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMoveMethod: 2
+  myAnimationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4817120188071716422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582344058372878384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7f537284f64485d8dda8f30a13207e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

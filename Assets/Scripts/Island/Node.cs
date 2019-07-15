@@ -12,28 +12,28 @@ public class Node : MonoBehaviour
     {
         get { return northNode; }
     }
-    [SerializeField] NavMeshLink northNavMeshLink = null;
+    [SerializeField] NavMeshLink[] northNavMeshLinks = null;
 
     Node eastNode;
     public Node EastNode
     {
         get { return eastNode; }
     }
-    [SerializeField] NavMeshLink eastNavMeshLink = null;
+    [SerializeField] NavMeshLink[] eastNavMeshLinks = null;
 
     Node southNode;
     public Node SouthNode
     {
         get { return southNode; }
     }
-    [SerializeField] NavMeshLink southNavMeshLink = null;
+    [SerializeField] NavMeshLink[] southNavMeshLinks = null;
 
     Node westNode;
     public Node WestNode
     {
         get { return westNode;  }
     }
-    [SerializeField] NavMeshLink westNavMeshLink = null;
+    [SerializeField] NavMeshLink[] westNavMeshLinks = null;
 
     public bool IsWalkable = true;
 
@@ -41,6 +41,7 @@ public class Node : MonoBehaviour
     const float rayDistance = 10f;
     LayerMask nodeLayerMask;
     Vector3 nodeSurfaceOffset;
+    const float meshLinkSize = 2f;
 
     void Awake()
     {
@@ -59,12 +60,11 @@ public class Node : MonoBehaviour
             northNode = hitNode;
             neighbours.Add(northNode);
 
-            Vector3 endPoint = new Vector3(0f, hitNode.transform.position.y - transform.position.y, 1f);
-            northNavMeshLink.endPoint = endPoint;
+            SetUpNavMeshLinks(northNavMeshLinks, hitNode);
         }
         else
         {
-            northNavMeshLink.enabled = false;
+            DisableNavMeshLinks(northNavMeshLinks);
         }
 
         if (Physics.Raycast(transform.position, transform.right, out raycastHit,
@@ -74,12 +74,11 @@ public class Node : MonoBehaviour
             eastNode = hitNode;
             neighbours.Add(eastNode);
 
-            Vector3 endPoint = new Vector3(0f, hitNode.transform.position.y - transform.position.y, 1f);
-            eastNavMeshLink.endPoint = endPoint;
+            SetUpNavMeshLinks(eastNavMeshLinks, hitNode);
         }
         else
         {
-            eastNavMeshLink.enabled = false;
+            DisableNavMeshLinks(eastNavMeshLinks);
         }
 
         if (Physics.Raycast(transform.position, -transform.forward, out raycastHit,
@@ -89,12 +88,11 @@ public class Node : MonoBehaviour
             southNode = hitNode;
             neighbours.Add(southNode);
 
-            Vector3 endPoint = new Vector3(0f, hitNode.transform.position.y - transform.position.y, 1f);
-            southNavMeshLink.endPoint = endPoint;
+            SetUpNavMeshLinks(southNavMeshLinks, hitNode);
         }
         else
         {
-            southNavMeshLink.enabled = false;
+            DisableNavMeshLinks(southNavMeshLinks);
         }
 
         if (Physics.Raycast(transform.position, -transform.right, out raycastHit,
@@ -104,12 +102,36 @@ public class Node : MonoBehaviour
             westNode = hitNode;
             neighbours.Add(westNode);
 
-            Vector3 endPoint = new Vector3(0f, hitNode.transform.position.y - transform.position.y, 1f);
-            westNavMeshLink.endPoint = endPoint;
+            SetUpNavMeshLinks(westNavMeshLinks, hitNode);
         }
         else
         {
-            westNavMeshLink.enabled = false;
+            DisableNavMeshLinks(westNavMeshLinks);
+        }
+    }
+
+    void SetUpNavMeshLinks(NavMeshLink[] navMeshLinks, Node linkNode)
+    {
+        float heightDifference = linkNode.transform.position.y - transform.position.y;
+        if (Mathf.Abs(heightDifference) < Mathf.Epsilon)
+        {
+            DisableNavMeshLinks(navMeshLinks);
+        }
+        else
+        {
+            for (int i = 0; i < navMeshLinks.Length; ++i)
+            {
+                Vector3 endPoint = new Vector3(navMeshLinks[i].endPoint.x, heightDifference, meshLinkSize);
+                navMeshLinks[i].endPoint = endPoint;
+            }
+        }
+    }
+
+    void DisableNavMeshLinks(NavMeshLink[] navMeshLinks)
+    {
+        for (int i = 0; i < navMeshLinks.Length; ++i)
+        {
+            navMeshLinks[i].enabled = false;
         }
     }
 }

@@ -10,6 +10,7 @@ public class Squad : MonoBehaviour
 
     public delegate void SquadAnimationAction();
     public event SquadAnimationAction OnAniamteSquadPath;
+    public event SquadAnimationAction OnUpdateNavMeshAgents;
 
     public enum SquadState
     {
@@ -44,6 +45,9 @@ public class Squad : MonoBehaviour
     IslandGrid islandGrid;
     public List<Node> path = new List<Node>();
 
+    [SerializeField] GameObject SquadUnitGameObject = null;
+    [SerializeField] Transform[] SquadPositions = null;
+
     private void Awake()
     {
         islandGrid = FindObjectOfType<IslandGrid>();
@@ -67,6 +71,14 @@ public class Squad : MonoBehaviour
     private void Start()
     {
         SetCurrentNode();
+
+        for (int i = 0; i < SquadPositions.Length; ++i)
+        {
+            GameObject clone = Instantiate(SquadUnitGameObject);
+            clone.transform.position = SquadPositions[i].position;
+            clone.transform.rotation = SquadPositions[i].rotation;
+            clone.GetComponent<SquadUnit>().InitializeSquadUnit(this, SquadPositions[i]);
+        }
     }
 
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
@@ -224,6 +236,7 @@ public class Squad : MonoBehaviour
                 yield return null;
             }
 
+            OnUpdateNavMeshAgents?.Invoke();
             path.RemoveAt(nodeIndex - 1);
             --nodeIndex;
         }

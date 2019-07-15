@@ -16,6 +16,9 @@ public class AgentLinkMover : MonoBehaviour
     public OffMeshLinkMoveMethod myMoveMethod = OffMeshLinkMoveMethod.Parabola;
     public AnimationCurve myAnimationCurve = new AnimationCurve();
 
+    const float parabolaHeight = 6f;
+    const float parabolaTime = 0.3f;
+
     IEnumerator Start()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
@@ -26,7 +29,7 @@ public class AgentLinkMover : MonoBehaviour
             {
                 if (Mathf.Abs(agent.currentOffMeshLinkData.endPos.y - transform.position.y) > 1f)
                 {
-                    yield return StartCoroutine(Parabola(agent, 4.0f, 0.5f));
+                    yield return StartCoroutine(Parabola(agent, parabolaHeight, parabolaTime));
                 }
                 else
                 {
@@ -36,14 +39,13 @@ public class AgentLinkMover : MonoBehaviour
                             yield return StartCoroutine(NormalSpeed(agent));
                             break;
                         case OffMeshLinkMoveMethod.Parabola:
-                            yield return StartCoroutine(Parabola(agent, 4.0f, 0.5f));
+                            yield return StartCoroutine(Parabola(agent, parabolaHeight, parabolaTime));
                             break;
                         case OffMeshLinkMoveMethod.Curve:
                             yield return StartCoroutine(Curve(agent, 0.5f));
                             break;
                     }
                 }
-
                 agent.CompleteOffMeshLink();
             }
             yield return null;

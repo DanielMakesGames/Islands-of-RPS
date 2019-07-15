@@ -10,15 +10,17 @@ public class FreeLookCamera : MonoBehaviour
     int myFingerId1 = InputManager.InactiveTouch;
 
     const float yAxisSpeed = 0.002f;
-    const float xAxisSpeed = 0.8f;
+    const float xAxisSpeed = 0.4f;
 
     Vector3 tapPosition0;
     Vector3 tapPosition1;
     Vector3 touchDelta0;
     Vector3 touchDelta1;
 
-    [SerializeField] readonly float MinOrthoSize = 10f;
-    [SerializeField] readonly float MaxOrthoSize = 30f;
+    [SerializeField] readonly float MinOrthoSize = 80f;
+    [SerializeField] readonly float MaxOrthoSize = 120f;
+
+    const float ZoomAnimationSpeed = 2f;
 
     private void Awake()
     {
@@ -30,6 +32,9 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchBegin += OnTouchBegin;
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
+
+        Squad.OnSquadSelected += OnSquadSelected;
+        Squad.OnSquadDeselected += OnSquadDeselected;
     }
 
     private void OnDisable()
@@ -37,6 +42,9 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchBegin -= OnTouchBegin;
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;
+
+        Squad.OnSquadSelected -= OnSquadSelected;
+        Squad.OnSquadDeselected -= OnSquadSelected;
     }
 
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
@@ -101,4 +109,31 @@ public class FreeLookCamera : MonoBehaviour
         }
     }
 
+    void OnSquadSelected(Squad squad)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize - 10f));
+    }
+
+    void OnSquadDeselected(Squad squad)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize + 10f));
+    }
+
+    IEnumerator ZoomLensAnimation(float destinationOrthoSize)
+    {
+        float timer = 0f;
+        destinationOrthoSize = Mathf.Clamp(destinationOrthoSize,
+            MinOrthoSize, MaxOrthoSize);
+
+        while (timer < 1f)
+        {
+            timer += Time.unscaledDeltaTime * ZoomAnimationSpeed;
+            myCinemachineFreeLook.m_Lens.OrthographicSize =
+                Mathf.Lerp(myCinemachineFreeLook.m_Lens.OrthographicSize, destinationOrthoSize, timer);
+
+            yield return null;
+        }
+    }
 }

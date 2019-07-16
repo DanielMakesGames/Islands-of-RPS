@@ -13,22 +13,22 @@ public class NodeIndicator : MonoBehaviour
 
     private void OnEnable()
     {
-        Squad.OnSquadSelected += OnSquadSelected;
-        Squad.OnSquadDeselected += OnSquadDeselected;
+        SquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
+        SquadManager.OnExitStrategyMode += OnExitStrategyMode;
     }
 
     private void OnDisable()
     {
-        Squad.OnSquadSelected -= OnSquadSelected;
-        Squad.OnSquadDeselected -= OnSquadDeselected;
+        SquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
+        SquadManager.OnExitStrategyMode -= OnExitStrategyMode;
     }
 
-    void OnSquadSelected(Squad squad)
+    void OnEnterStrategyMode()
     {
         mySpriteRenderer.enabled = true;
     }
 
-    void OnSquadDeselected(Squad squad)
+    void OnExitStrategyMode()
     {
         mySpriteRenderer.enabled = false;
     }

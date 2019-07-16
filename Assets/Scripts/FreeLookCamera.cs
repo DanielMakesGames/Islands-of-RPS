@@ -33,8 +33,8 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
 
-        Squad.OnSquadSelected += OnSquadSelected;
-        Squad.OnSquadDeselected += OnSquadDeselected;
+        SquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
+        SquadManager.OnExitStrategyMode += OnExitStrategyMode;
     }
 
     private void OnDisable()
@@ -43,8 +43,8 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;
 
-        Squad.OnSquadSelected -= OnSquadSelected;
-        Squad.OnSquadDeselected -= OnSquadSelected;
+        SquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
+        SquadManager.OnExitStrategyMode -= OnExitStrategyMode;
     }
 
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
@@ -109,13 +109,14 @@ public class FreeLookCamera : MonoBehaviour
         }
     }
 
-    void OnSquadSelected(Squad squad)
+    void OnEnterStrategyMode()
     {
         StopAllCoroutines();
         StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize - 10f));
+       
     }
 
-    void OnSquadDeselected(Squad squad)
+    void OnExitStrategyMode()
     {
         StopAllCoroutines();
         StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize + 10f));

@@ -51,6 +51,7 @@ public class Squad : MonoBehaviour
     [SerializeField] Transform[] SquadPositions = null;
 
     List<SquadUnit> squadUnits;
+    bool isAnotherSquadSelected = false;
 
     private void Awake()
     {
@@ -64,6 +65,9 @@ public class Squad : MonoBehaviour
         InputManager.OnTouchBegin += OnTouchBegin;
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
+
+        Squad.OnSquadSelected += Squad_OnSquadSelected;
+        Squad.OnSquadDeselected += Squad_OnSquadDeselected;
     }
 
     void OnDisable()
@@ -71,6 +75,9 @@ public class Squad : MonoBehaviour
         InputManager.OnTouchBegin -= OnTouchBegin;
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;
+
+        Squad.OnSquadSelected -= Squad_OnSquadSelected;
+        Squad.OnSquadDeselected -= Squad_OnSquadDeselected;
     }
 
     private void Start()
@@ -217,6 +224,33 @@ public class Squad : MonoBehaviour
             }
             OnAnimateSquadPath?.Invoke();
         }
+    }
+
+    void Squad_OnSquadSelected(Squad squad)
+    {
+        if (squad != this)
+        {
+            switch (mySquadState)
+            {
+                case SquadState.Ready:
+                    break;
+                case SquadState.OnTapped:
+                    mySquadState = SquadState.Ready;
+                    break;
+                case SquadState.Selected:
+                case SquadState.OnTappedSelected:
+                    mySquadState = SquadState.Ready;
+                    OnAnimateSquadDeselected.Invoke();
+                    OnSquadDeselected?.Invoke(this);
+                    break;
+                case SquadState.Moving:
+                    break;
+            }
+        }
+    }
+
+    void Squad_OnSquadDeselected(Squad squad)
+    {
     }
 
     void SetCurrentNode()

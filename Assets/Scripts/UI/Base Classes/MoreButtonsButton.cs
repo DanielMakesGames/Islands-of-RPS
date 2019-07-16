@@ -6,15 +6,15 @@ public class MoreButtonsButton : Button
 {
     bool isShowingMoreButtons = false;
 
-    [SerializeField] GameObject[] MoreButtons;
+    [SerializeField] GameObject[] MoreButtons = null;
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         EnableButton();
         ResetButton();
     }
 
-    void OnDisable()
+    protected virtual void OnDisable()
     {
     }
 
@@ -38,7 +38,7 @@ public class MoreButtonsButton : Button
         DisableMoreButtons();
     }
 
-    void EnableMoreButtons()
+    protected void EnableMoreButtons()
     {
         isShowingMoreButtons = true;
         for (int i = 0; i < MoreButtons.Length; ++i)
@@ -47,7 +47,7 @@ public class MoreButtonsButton : Button
         }
     }
 
-    void DisableMoreButtons()
+    protected void DisableMoreButtons()
     {
         isShowingMoreButtons = false;
         for (int i = 0; i < MoreButtons.Length; ++i)

@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 2074787953}
   - component: {fileID: 2074787952}
   - component: {fileID: 8329347059540662578}
+  - component: {fileID: 2074787955}
   m_Layer: 5
   m_Name: Town Center Button
   m_TagString: Untagged
@@ -836,6 +837,19 @@ MonoBehaviour:
   - {fileID: 9073964890913162774}
   - {fileID: 5011795087536968998}
   - {fileID: 8135194936801753895}
+--- !u!65 &2074787955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074787949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 200, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2492703952802947794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1333,8 @@ GameObject:
   - component: {fileID: 6075619955164612321}
   - component: {fileID: 9102414532354346833}
   - component: {fileID: 889431392760992198}
+  - component: {fileID: 231990540}
+  - component: {fileID: 231990539}
   m_Layer: 5
   m_Name: Paper Button
   m_TagString: Untagged
@@ -1425,9 +1441,45 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9102414532354346833}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 231990539}
+        m_MethodName: ButtonPressAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!65 &231990540
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011795087536968998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 150, y: 150, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &231990539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011795087536968998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089bfe2f52a984fa395acf0e04e01385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5130734712787539554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2102,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734713914320941}
-  m_LocalRotation: {x: 0.25212702, y: -0.000000023547381, z: 0.000000006135133, w: 0.96769416}
+  m_LocalRotation: {x: 0.25212702, y: 0.000000023547384, z: -0.0000000061351315, w: 0.96769416}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2159,7 +2211,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714031664403}
-  m_LocalRotation: {x: 0.31689528, y: -0.000000032639146, z: 0.000000010905241, w: 0.9484606}
+  m_LocalRotation: {x: 0.31689528, y: 0.000000032639146, z: -0.000000010905241, w: 0.9484606}
   m_LocalPosition: {x: 0, y: 50, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2495,7 +2547,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714436828330}
-  m_LocalRotation: {x: 0.31689525, y: -0.000000016319577, z: 0.0000000054526343, w: 0.9484606}
+  m_LocalRotation: {x: 0.31689525, y: 0.00000001631957, z: -0.000000005452606, w: 0.9484606}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2625,6 +2677,8 @@ GameObject:
   - component: {fileID: 5364869637603873832}
   - component: {fileID: 4277890019443032282}
   - component: {fileID: 7022283017811408928}
+  - component: {fileID: 843600334}
+  - component: {fileID: 843600333}
   m_Layer: 5
   m_Name: Scissors Button
   m_TagString: Untagged
@@ -2731,9 +2785,45 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4277890019443032282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 843600333}
+        m_MethodName: ButtonPressAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!65 &843600334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135194936801753895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 150, y: 150, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &843600333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135194936801753895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae49d9cb8e64d4aaba7b7ae7c9f8bfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9073964890913162774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,6 +2836,8 @@ GameObject:
   - component: {fileID: 8821399165064483040}
   - component: {fileID: 2715681398116635402}
   - component: {fileID: 4940472381464150678}
+  - component: {fileID: 1819153202}
+  - component: {fileID: 1819153201}
   m_Layer: 5
   m_Name: Rock Button
   m_TagString: Untagged
@@ -2852,9 +2944,45 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2715681398116635402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1819153201}
+        m_MethodName: ButtonPressAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!65 &1819153202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073964890913162774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 150, y: 150, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1819153201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073964890913162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2e4488808114220bb2200174c22523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1788317044001199305
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -199,7 +199,7 @@ public class Squad : MonoBehaviour
                         mySquadState = SquadState.Moving;
                         targetNode = PathfindingNode;
 
-                        StartCoroutine(MoveToTarget());
+                        StartCoroutine(MoveToTargetCoroutine());
                         OnSquadDeselected?.Invoke(this);
                         OnAnimateSquadDeselected?.Invoke();
                     }
@@ -262,7 +262,17 @@ public class Squad : MonoBehaviour
         }
     }
 
-    IEnumerator MoveToTarget()
+    public void MoveToTarget(Node destinationNode)
+    {
+        islandGrid.ResetNodeValues();
+        currentNode.visited = 0;
+        islandGrid.SetNodeDistances(currentNode);
+        targetNode = destinationNode;
+        path = islandGrid.GetPath(destinationNode);
+        StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    IEnumerator MoveToTargetCoroutine()
     {
         Vector3 offSet = Vector3.up * 5f;
 

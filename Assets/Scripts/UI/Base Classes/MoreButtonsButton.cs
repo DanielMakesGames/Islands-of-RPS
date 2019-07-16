@@ -4,15 +4,55 @@ using UnityEngine;
 
 public class MoreButtonsButton : Button
 {
-    // Start is called before the first frame update
-    void Start()
+    bool isShowingMoreButtons = false;
+
+    [SerializeField] GameObject[] MoreButtons;
+
+    void OnEnable()
     {
-        
+        EnableButton();
+        ResetButton();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+    }
+
+    public override void ButtonPressAction()
+    {
+        if (!isShowingMoreButtons)
+        {
+            base.ButtonPress();
+            EnableMoreButtons();
+        }
+        else
+        {
+
+            base.ButtonRelease();
+            DisableMoreButtons();
+        }
+    }
+
+    void ResetButton()
+    {
+        DisableMoreButtons();
+    }
+
+    void EnableMoreButtons()
+    {
+        isShowingMoreButtons = true;
+        for (int i = 0; i < MoreButtons.Length; ++i)
+        {
+            MoreButtons[i].SetActive(true);
+        }
+    }
+
+    void DisableMoreButtons()
+    {
+        isShowingMoreButtons = false;
+        for (int i = 0; i < MoreButtons.Length; ++i)
+        {
+            MoreButtons[i].SetActive(false);
+        }
     }
 }

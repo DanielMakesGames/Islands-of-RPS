@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownCenterButton : Button
+public class TownCenterButton : MoreButtonsButton
 {
     public static event ButtonAction OnPressed;
 
@@ -12,4 +12,5 @@ public class TownCenterButton : Button
 
         OnPressed?.Invoke();
     }
+
 }

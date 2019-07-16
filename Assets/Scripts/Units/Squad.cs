@@ -9,7 +9,9 @@ public class Squad : MonoBehaviour
     public static event SquadSelectedAction OnSquadDeselected;
 
     public delegate void SquadAnimationAction();
-    public event SquadAnimationAction OnAniamteSquadPath;
+    public event SquadAnimationAction OnAnimateSquadPath;
+    public event SquadAnimationAction OnAnimateSquadSelected;
+    public event SquadAnimationAction OnAnimateSquadDeselected;
     public event SquadAnimationAction OnUpdateNavMeshAgents;
 
     public enum SquadState
@@ -48,10 +50,13 @@ public class Squad : MonoBehaviour
     [SerializeField] GameObject SquadUnitGameObject = null;
     [SerializeField] Transform[] SquadPositions = null;
 
+    List<SquadUnit> squadUnits;
+
     private void Awake()
     {
         islandGrid = FindObjectOfType<IslandGrid>();
         nodeLayerMask = LayerMask.GetMask("Node");
+        squadUnits = new List<SquadUnit>();
     }
 
     void OnEnable()
@@ -77,7 +82,10 @@ public class Squad : MonoBehaviour
             GameObject clone = Instantiate(SquadUnitGameObject);
             clone.transform.position = SquadPositions[i].position;
             clone.transform.rotation = SquadPositions[i].rotation;
-            clone.GetComponent<SquadUnit>().InitializeSquadUnit(this, SquadPositions[i]);
+
+            SquadUnit squadUnit = clone.GetComponent<SquadUnit>();
+            squadUnit.InitializeSquadUnit(this, SquadPositions[i]);
+            squadUnits.Add(squadUnit);
         }
     }
 
@@ -146,7 +154,7 @@ public class Squad : MonoBehaviour
                     {
                         path.Clear();
                     }
-                    OnAniamteSquadPath?.Invoke();
+                    OnAnimateSquadPath?.Invoke();
                     break;
                 case SquadState.Moving:
                     break;
@@ -175,6 +183,7 @@ public class Squad : MonoBehaviour
                             islandGrid.SetNodeDistances(currentNode);
 
                             OnSquadSelected?.Invoke(this);
+                            OnAnimateSquadSelected?.Invoke();
                         }
                     }
                     break;
@@ -186,6 +195,7 @@ public class Squad : MonoBehaviour
 
                         StartCoroutine(MoveToTarget());
                         OnSquadDeselected?.Invoke(this);
+                        OnAnimateSquadDeselected?.Invoke();
                     }
                     break;
                 case SquadState.OnTappedSelected:
@@ -198,13 +208,14 @@ public class Squad : MonoBehaviour
                             targetNode = null;
 
                             OnSquadDeselected?.Invoke(this);
+                            OnAnimateSquadDeselected.Invoke();
                         }
                     }
                     break;
                 case SquadState.Moving:
                     break;
             }
-            OnAniamteSquadPath?.Invoke();
+            OnAnimateSquadPath?.Invoke();
         }
     }
 
@@ -232,7 +243,7 @@ public class Squad : MonoBehaviour
             {
                 timer += Time.deltaTime * movementSpeed;
                 transform.position = Vector3.Lerp(startPosition, destination, timer);
-                OnAniamteSquadPath?.Invoke();
+                OnAnimateSquadPath?.Invoke();
                 yield return null;
             }
 
@@ -247,6 +258,6 @@ public class Squad : MonoBehaviour
         SetCurrentNode();
         targetNode = null;
 
-        OnAniamteSquadPath?.Invoke();
+        OnAnimateSquadPath?.Invoke();
     }
 }

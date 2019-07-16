@@ -19,12 +19,12 @@ public class PathIndicator : MonoBehaviour
 
     private void OnEnable()
     {
-        mySquad.OnAniamteSquadPath += OnAniamteSquadPath;
+        mySquad.OnAnimateSquadPath += OnAniamteSquadPath;
     }
 
     private void OnDisable()
     {
-        mySquad.OnAniamteSquadPath -= OnAniamteSquadPath;
+        mySquad.OnAnimateSquadPath -= OnAniamteSquadPath;
     }
 
     void OnAniamteSquadPath()

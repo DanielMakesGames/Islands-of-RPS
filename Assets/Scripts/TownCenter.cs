@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TownCenter : MonoBehaviour
 {
-    [SerializeField] GameObject ScissorsSquad = null;
+    [SerializeField] GameObject RockSquad = null;
+    [SerializeField] GameObject PaperSquad = null;
+    [SerializeField] GameObject ScissorSquad = null;
 
     Node currentNode;
     Node nextNode;
@@ -20,12 +22,16 @@ public class TownCenter : MonoBehaviour
 
     private void OnEnable()
     {
-        ScissorsSquadButton.OnPressed += ScissorsSquadButton_OnPressed;
+        RockSquadButton.OnPressed += SpawnRockSquad;
+        PaperSquadButton.OnPressed += SpawnPaperSquad;
+        ScissorSquadButton.OnPressed += SpawnScissorSquad;
     }
 
     private void OnDisable()
     {
-        ScissorsSquadButton.OnPressed -= ScissorsSquadButton_OnPressed;
+        RockSquadButton.OnPressed -= SpawnRockSquad;
+        PaperSquadButton.OnPressed -= SpawnPaperSquad;
+        ScissorSquadButton.OnPressed -= SpawnScissorSquad;
     }
 
     private void Start()
@@ -33,9 +39,29 @@ public class TownCenter : MonoBehaviour
         SetCurrentNode();
     }
 
-    void ScissorsSquadButton_OnPressed()
+    void SpawnRockSquad()
     {
-        GameObject clone = Instantiate(ScissorsSquad);
+        GameObject clone = Instantiate(RockSquad);
+        clone.transform.position = transform.position;
+        clone.transform.rotation = transform.rotation;
+
+        Squad squadClone = clone.GetComponent<Squad>();
+        StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+    }
+
+    void SpawnPaperSquad()
+    {
+        GameObject clone = Instantiate(PaperSquad);
+        clone.transform.position = transform.position;
+        clone.transform.rotation = transform.rotation;
+
+        Squad squadClone = clone.GetComponent<Squad>();
+        StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+    }
+
+    void SpawnScissorSquad()
+    {
+        GameObject clone = Instantiate(ScissorSquad);
         clone.transform.position = transform.position;
         clone.transform.rotation = transform.rotation;
 

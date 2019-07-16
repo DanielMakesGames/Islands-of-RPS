@@ -126,6 +126,24 @@ Light:
     type: 3}
   m_PrefabInstance: {fileID: 5130734713919914082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &843600328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8135194936801753895, guid: 3462aed815406411d80b83cbf7db441f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5130734713919914082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &843600333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843600328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0479d0289ec85489a9f775e33916fbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &982734679
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,146 +248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b5a8be638cf4067abd41089f745f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScissorsSquad: {fileID: 22776362259784761, guid: 5288e30a083024f229fe4a34c3b768ff,
+  RockSquad: {fileID: 7004585124197212770, guid: 7d6b870684721493b8d660fdee86295d,
     type: 3}
---- !u!1001 &1271361087
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 22776362259784761, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Scissor Squad (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5288e30a083024f229fe4a34c3b768ff, type: 3}
---- !u!1001 &22776364005488952
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 22776362259784761, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Scissor Squad
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22776362259784762, guid: 5288e30a083024f229fe4a34c3b768ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5288e30a083024f229fe4a34c3b768ff, type: 3}
+  PaperSquad: {fileID: 3566052677869959914, guid: be34cbb4f108442c49fccf2e076788a0,
+    type: 3}
+  ScissorSquad: {fileID: 22776362259784761, guid: 5288e30a083024f229fe4a34c3b768ff,
+    type: 3}
 --- !u!1001 &5130734713919914082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,12 +359,28 @@ PrefabInstance:
     - target: {fileID: 5130734713914320946, guid: 3462aed815406411d80b83cbf7db441f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023547381
+      value: 0.000000023547384
       objectReference: {fileID: 0}
     - target: {fileID: 5130734713914320946, guid: 3462aed815406411d80b83cbf7db441f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000006135133
+      value: -0.0000000061351315
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8135194936801753895, guid: 3462aed815406411d80b83cbf7db441f,
+        type: 3}
+      propertyPath: m_Name
+      value: Scissor Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022283017811408928, guid: 3462aed815406411d80b83cbf7db441f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 843600333}
+    - target: {fileID: 7022283017811408928, guid: 3462aed815406411d80b83cbf7db441f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonPressAction
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 843600333, guid: 3462aed815406411d80b83cbf7db441f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3462aed815406411d80b83cbf7db441f, type: 3}

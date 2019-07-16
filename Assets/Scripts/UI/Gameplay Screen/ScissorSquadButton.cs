@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScissorsSquadButton : Button
+public class ScissorSquadButton : Button
 {
     public static event ButtonAction OnPressed;
 

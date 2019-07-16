@@ -131,7 +131,7 @@ public class Node : MonoBehaviour
     {
         for (int i = 0; i < navMeshLinks.Length; ++i)
         {
-            navMeshLinks[i].enabled = false;
+            navMeshLinks[i].gameObject.SetActive(false);
         }
     }
 }

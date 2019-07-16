@@ -51,7 +51,6 @@ public class Squad : MonoBehaviour
     [SerializeField] Transform[] SquadPositions = null;
 
     List<SquadUnit> squadUnits;
-    bool isAnotherSquadSelected = false;
 
     private void Awake()
     {

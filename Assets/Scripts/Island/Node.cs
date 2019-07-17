@@ -36,8 +36,9 @@ public class Node : MonoBehaviour
     [SerializeField] NavMeshLink[] westNavMeshLinks = null;
 
     public bool IsWalkable = true;
+    public Squad currentSquad;
 
-    List<Node> neighbours = new List<Node>();
+    public List<Node> Neighbours = new List<Node>();
     const float rayDistance = 10f;
     LayerMask nodeLayerMask;
     Vector3 nodeSurfaceOffset;
@@ -58,7 +59,7 @@ public class Node : MonoBehaviour
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             northNode = hitNode;
-            neighbours.Add(northNode);
+            Neighbours.Add(northNode);
 
             SetUpNavMeshLinks(northNavMeshLinks, hitNode);
         }
@@ -72,7 +73,7 @@ public class Node : MonoBehaviour
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             eastNode = hitNode;
-            neighbours.Add(eastNode);
+            Neighbours.Add(eastNode);
 
             SetUpNavMeshLinks(eastNavMeshLinks, hitNode);
         }
@@ -86,7 +87,7 @@ public class Node : MonoBehaviour
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             southNode = hitNode;
-            neighbours.Add(southNode);
+            Neighbours.Add(southNode);
 
             SetUpNavMeshLinks(southNavMeshLinks, hitNode);
         }
@@ -100,7 +101,7 @@ public class Node : MonoBehaviour
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             westNode = hitNode;
-            neighbours.Add(westNode);
+            Neighbours.Add(westNode);
 
             SetUpNavMeshLinks(westNavMeshLinks, hitNode);
         }

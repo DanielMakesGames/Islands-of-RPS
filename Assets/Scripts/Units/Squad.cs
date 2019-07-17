@@ -43,6 +43,7 @@ public class Squad : MonoBehaviour
     }
 
     public Node PathfindingNode;
+    public Node PreviousNode;
 
     IslandGrid islandGrid;
     public List<Node> path = new List<Node>();
@@ -259,6 +260,36 @@ public class Squad : MonoBehaviour
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             currentNode = hitNode;
+
+            if (currentNode.currentSquad != null)
+            {
+                if (currentNode.currentSquad.PreviousNode.currentSquad == null)
+                {
+                    currentNode.currentSquad.MoveToTarget(currentNode.currentSquad.PreviousNode);
+                }
+                else if (PreviousNode != null && PreviousNode.currentSquad == null)
+                {
+                    currentNode.currentSquad.MoveToTarget(PreviousNode);
+                }
+                else
+                {
+                    bool didMove = false;
+                    for (int i = 0; i < currentNode.Neighbours.Count; ++i)
+                    {
+                        if (currentNode.Neighbours[i].currentSquad == null)
+                        {
+                            currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[i]);
+                            didMove = true;
+                            break;
+                        }
+                    }
+                    if (!didMove)
+                    {
+                        currentNode.currentSquad.MoveToTarget(currentNode.currentSquad.PreviousNode);
+                    }
+                }
+            }
+            currentNode.currentSquad = this;
         }
     }
 
@@ -266,6 +297,7 @@ public class Squad : MonoBehaviour
     {
         islandGrid.ResetNodeValues();
         currentNode.visited = 0;
+        currentNode.currentSquad = null;
         islandGrid.SetNodeDistances(currentNode);
         targetNode = destinationNode;
         path = islandGrid.GetPath(destinationNode);
@@ -287,10 +319,13 @@ public class Squad : MonoBehaviour
                 timer += Time.deltaTime * movementSpeed;
                 transform.position = Vector3.Lerp(startPosition, destination, timer);
                 OnAnimateSquadPath?.Invoke();
+
+                OnUpdateNavMeshAgents?.Invoke();
                 yield return null;
             }
 
             OnUpdateNavMeshAgents?.Invoke();
+            PreviousNode = path[nodeIndex - 1];
             path.RemoveAt(nodeIndex - 1);
             --nodeIndex;
         }

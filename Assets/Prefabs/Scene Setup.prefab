@@ -1769,7 +1769,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5130734713125140617}
-  - component: {fileID: 692763690}
   m_Layer: 0
   m_Name: Gameplay
   m_TagString: Untagged
@@ -1793,18 +1792,6 @@ Transform:
   m_Father: {fileID: 5130734714320534638}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &692763690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5130734713125140616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b410beaf71a5b49159ea91b28918ce4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5130734713373498279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,7 +2089,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734713914320941}
-  m_LocalRotation: {x: 0.25212702, y: 0.000000023547384, z: -0.0000000061351315, w: 0.96769416}
+  m_LocalRotation: {x: 0.25212702, y: -0.000000023547381, z: 0.000000006135133, w: 0.96769416}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2211,7 +2198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714031664403}
-  m_LocalRotation: {x: 0.31689528, y: 0.000000032639146, z: -0.000000010905241, w: 0.9484606}
+  m_LocalRotation: {x: 0.31689528, y: -0.000000032639146, z: 0.000000010905241, w: 0.9484606}
   m_LocalPosition: {x: 0, y: 50, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2547,7 +2534,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714436828330}
-  m_LocalRotation: {x: 0.31689525, y: 0.00000001631957, z: -0.000000005452606, w: 0.9484606}
+  m_LocalRotation: {x: 0.31689525, y: -0.000000016319577, z: 0.0000000054526343, w: 0.9484606}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2678,9 +2665,9 @@ GameObject:
   - component: {fileID: 4277890019443032282}
   - component: {fileID: 7022283017811408928}
   - component: {fileID: 843600334}
-  - component: {fileID: 843600333}
+  - component: {fileID: 2865689708424329478}
   m_Layer: 5
-  m_Name: Scissors Button
+  m_Name: Scissor Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2786,7 +2773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 843600333}
+      - m_Target: {fileID: 2865689708424329478}
         m_MethodName: ButtonPressAction
         m_Mode: 1
         m_Arguments:
@@ -2812,7 +2799,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 150, y: 150, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &843600333
+--- !u!114 &2865689708424329478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2821,7 +2808,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8135194936801753895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae49d9cb8e64d4aaba7b7ae7c9f8bfc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0479d0289ec85489a9f775e33916fbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9073964890913162774

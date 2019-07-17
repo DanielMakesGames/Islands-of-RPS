@@ -120,30 +120,98 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &295105407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295105409}
+  - component: {fileID: 295105408}
+  m_Layer: 0
+  m_Name: Squad Manager A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &295105408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295105407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928fd5d98e86f4288bd8a90eceb743d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &295105409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295105407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &398047391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398047392}
+  - component: {fileID: 398047393}
+  m_Layer: 0
+  m_Name: Squad Manager B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398047392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398047391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398047393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398047391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b410beaf71a5b49159ea91b28918ce4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5130734714289353464, guid: 3462aed815406411d80b83cbf7db441f,
     type: 3}
   m_PrefabInstance: {fileID: 5130734713919914082}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &843600328 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8135194936801753895, guid: 3462aed815406411d80b83cbf7db441f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5130734713919914082}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &843600333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843600328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0479d0289ec85489a9f775e33916fbc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &982734679
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,21 +434,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0000000061351315
       objectReference: {fileID: 0}
-    - target: {fileID: 8135194936801753895, guid: 3462aed815406411d80b83cbf7db441f,
-        type: 3}
-      propertyPath: m_Name
-      value: Scissor Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 7022283017811408928, guid: 3462aed815406411d80b83cbf7db441f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 843600333}
-    - target: {fileID: 7022283017811408928, guid: 3462aed815406411d80b83cbf7db441f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonPressAction
-      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 843600333, guid: 3462aed815406411d80b83cbf7db441f, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3462aed815406411d80b83cbf7db441f, type: 3}

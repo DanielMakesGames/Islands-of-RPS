@@ -52,6 +52,7 @@ public class Squad : MonoBehaviour
     [SerializeField] Transform[] SquadPositions = null;
 
     List<SquadUnit> squadUnits;
+    SquadManager mySquadManager;
 
     private void Awake()
     {
@@ -302,6 +303,11 @@ public class Squad : MonoBehaviour
         targetNode = destinationNode;
         path = islandGrid.GetPath(destinationNode);
         StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    public void SetSquadManager(SquadManager squadManager)
+    {
+        mySquadManager = squadManager;
     }
 
     IEnumerator MoveToTargetCoroutine()

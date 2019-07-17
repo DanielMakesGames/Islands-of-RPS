@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TownCenter : MonoBehaviour
 {
+    public delegate void SpawnSquadAction(Squad newSquad);
+    public static event SpawnSquadAction OnSpawnNewSquad;
+
     [SerializeField] GameObject RockSquad = null;
     [SerializeField] GameObject PaperSquad = null;
     [SerializeField] GameObject ScissorSquad = null;
@@ -47,6 +50,8 @@ public class TownCenter : MonoBehaviour
 
         Squad squadClone = clone.GetComponent<Squad>();
         StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+
+        OnSpawnNewSquad?.Invoke(squadClone);
     }
 
     void SpawnPaperSquad()
@@ -57,6 +62,8 @@ public class TownCenter : MonoBehaviour
 
         Squad squadClone = clone.GetComponent<Squad>();
         StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+
+        OnSpawnNewSquad?.Invoke(squadClone);
     }
 
     void SpawnScissorSquad()
@@ -67,6 +74,8 @@ public class TownCenter : MonoBehaviour
 
         Squad squadClone = clone.GetComponent<Squad>();
         StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+
+        OnSpawnNewSquad?.Invoke(squadClone);
     }
 
     void SetCurrentNode()

@@ -8,14 +8,14 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
-        SquadManager.OnExitStrategyMode += OnExitStrategyMode;
+        PlayerSquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
+        PlayerSquadManager.OnExitStrategyMode += OnExitStrategyMode;
     }
 
     private void OnDisable()
     {
-        SquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
-        SquadManager.OnExitStrategyMode -= OnExitStrategyMode;
+        PlayerSquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
+        PlayerSquadManager.OnExitStrategyMode -= OnExitStrategyMode;
     }
 
     void OnEnterStrategyMode()
@@ -50,5 +50,4 @@ public class TimeManager : MonoBehaviour
             yield return null;
         }
     }
-
 }

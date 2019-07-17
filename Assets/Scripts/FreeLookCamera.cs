@@ -33,8 +33,8 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
 
-        SquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
-        SquadManager.OnExitStrategyMode += OnExitStrategyMode;
+        PlayerSquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
+        PlayerSquadManager.OnExitStrategyMode += OnExitStrategyMode;
     }
 
     private void OnDisable()
@@ -43,8 +43,8 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;
 
-        SquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
-        SquadManager.OnExitStrategyMode -= OnExitStrategyMode;
+        PlayerSquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
+        PlayerSquadManager.OnExitStrategyMode -= OnExitStrategyMode;
     }
 
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)

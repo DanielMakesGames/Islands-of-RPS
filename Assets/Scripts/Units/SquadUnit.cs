@@ -8,20 +8,25 @@ public class SquadUnit : MonoBehaviour
     protected Squad mySquad;
     protected Transform myTargetTransform;
     protected NavMeshAgent myNavMeshAgent;
+    protected Collider myCollider;
+    public Collider UnitCollider
+    {
+        get { return myCollider; }
+    }
+
     Renderer[] myRenderers;
 
     [SerializeField] Material HighLightMaterial = null;
     Material[] defaultMaterials = null;
 
     LayerMask unitLayerMask;
-    List<Transform> context = new List<Transform>();
-
-    public float neighborRadius = 1.5f;
+    Vector3 velocity;
 
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         myRenderers = GetComponentsInChildren<Renderer>();
+        myCollider = GetComponentInChildren<Collider>();
         unitLayerMask = LayerMask.GetMask(
             new string[] { "Player Unit", "Enemy Unit" });
 
@@ -68,24 +73,21 @@ public class SquadUnit : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        GetNearbyObjects();
-    }
-
     public void EnableNavMeshAgent()
     {
         myNavMeshAgent.enabled = true;
     }
 
-    void GetNearbyObjects()
+    public void Move(Vector3 velocity)
     {
-        Collider[] contextColliders = Physics.OverlapSphere(
-            transform.position, neighborRadius, unitLayerMask);
+        this.velocity = velocity;
 
-        for (int i = 0; i < contextColliders.Length; ++i)
+        if (velocity.sqrMagnitude > 0f)
         {
-            context.Add(contextColliders[i].transform);
+            transform.forward = velocity;
         }
+
+        velocity.y = 0f;
+        myNavMeshAgent.Move(velocity * Time.deltaTime);
     }
 }

@@ -49,11 +49,31 @@ public class Squad : MonoBehaviour
     protected List<SquadUnit> squadUnits;
     SquadManager mySquadManager;
 
+    public UnitBehaviour CompositeUnitBehaviour;
+    [Range(0f, 100f)]
+    public float DriveFactor = 10f;
+    [Range(1f, 100f)]
+    public float MaxSpeed = 5f;
+    [Range(1f, 20f)]
+    public float NeighborRadius = 1.5f;
+    [Range(0f, 1f)]
+    public float AvoidanceRadiusMultiplier = 0.5f;
+
+    float squareMaxSpeed;
+    float squareNeighborRadius;
+    float avoidanceRadius;
+    float squareAvoidanceRadius;
+
     protected virtual void Awake()
     {
         islandGrid = FindObjectOfType<IslandGrid>();
         squadUnits = new List<SquadUnit>();
         nodeLayerMask = LayerMask.GetMask("Node");
+
+        squareMaxSpeed = MaxSpeed * MaxSpeed;
+        squareNeighborRadius = NeighborRadius * NeighborRadius;
+        avoidanceRadius = NeighborRadius * AvoidanceRadiusMultiplier;
+        squareAvoidanceRadius = squareNeighborRadius * AvoidanceRadiusMultiplier * AvoidanceRadiusMultiplier;
     }
 
     private void Start()
@@ -182,6 +202,48 @@ public class Squad : MonoBehaviour
         targetNode = null;
 
         OnAnimateSquadPath?.Invoke();
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < squadUnits.Count; ++i)
+        {
+            if (squadUnits[i].gameObject.activeInHierarchy)
+            {
+                List<Transform> context = GetNearbyObjects(squadUnits[i]);
+
+                Vector3 move = Vector3.zero;
+                move = CompositeUnitBehaviour.CalculateMove(squadUnits[i], context, this);
+                move *= DriveFactor;
+
+                if (move.sqrMagnitude > squareMaxSpeed)
+                {
+                    move = move.normalized * MaxSpeed;
+                }
+                squadUnits[i].Move(move);
+            }
+            else
+            {
+                squadUnits.Remove(squadUnits[i]);
+            }
+        }
+    }
+
+    List<Transform> GetNearbyObjects(SquadUnit squadUnit)
+    {
+        List<Transform> context = new List<Transform>();
+        Collider[] contextColliders = Physics.OverlapSphere(
+            squadUnit.transform.position, NeighborRadius);
+
+        for (int i = 0; i < contextColliders.Length; ++i)
+        {
+            if (contextColliders[i] != squadUnit.UnitCollider)
+            {
+                context.Add(contextColliders[i].transform);
+            }
+        }
+
+        return context;
     }
 
     protected void AnimateSquadPath()

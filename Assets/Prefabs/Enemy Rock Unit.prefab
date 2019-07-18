@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6782537539147348308}
   - component: {fileID: 8891000515008700753}
   - component: {fileID: 3984505346715769965}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Rock Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4009652934704794021}
   - component: {fileID: 1868713770321341783}
   - component: {fileID: 1688470215419192592}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

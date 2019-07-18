@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2688760010609916120}
   - component: {fileID: 5384117799903453}
   - component: {fileID: 7971480709246896911}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Scissor Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 5536378693156489257}
   - component: {fileID: 7106412252419239131}
   - component: {fileID: 7790853213064766620}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 5050132130880503667}
   - component: {fileID: 2351298127090172418}
   - component: {fileID: 8414355432713130861}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

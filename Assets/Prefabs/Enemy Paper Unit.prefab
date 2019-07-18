@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1221946491655407931}
   - component: {fileID: 4521366087197732297}
   - component: {fileID: 3476419864873805198}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8750624030629329354}
   - component: {fileID: 6643708958641086927}
   - component: {fileID: 1231259183915364046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Paper Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

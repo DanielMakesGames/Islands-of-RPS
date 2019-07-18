@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9043171763963580114}
   - component: {fileID: 4586376942960291648}
   - component: {fileID: 6358107295425877719}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Paper Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 1511664812305415715}
   - component: {fileID: 4229060916872157905}
   - component: {fileID: 3760791070819357334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

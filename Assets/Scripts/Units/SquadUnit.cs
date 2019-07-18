@@ -13,10 +13,17 @@ public class SquadUnit : MonoBehaviour
     [SerializeField] Material HighLightMaterial = null;
     Material[] defaultMaterials = null;
 
+    LayerMask unitLayerMask;
+    List<Transform> context = new List<Transform>();
+
+    public float neighborRadius = 1.5f;
+
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         myRenderers = GetComponentsInChildren<Renderer>();
+        unitLayerMask = LayerMask.GetMask(
+            new string[] { "Player Unit", "Enemy Unit" });
 
         defaultMaterials = new Material[myRenderers.Length];
         for (int i = 0; i < myRenderers.Length; ++i)
@@ -63,10 +70,22 @@ public class SquadUnit : MonoBehaviour
 
     private void Update()
     {
+        GetNearbyObjects();
     }
 
     public void EnableNavMeshAgent()
     {
         myNavMeshAgent.enabled = true;
+    }
+
+    void GetNearbyObjects()
+    {
+        Collider[] contextColliders = Physics.OverlapSphere(
+            transform.position, neighborRadius, unitLayerMask);
+
+        for (int i = 0; i < contextColliders.Length; ++i)
+        {
+            context.Add(contextColliders[i].transform);
+        }
     }
 }

@@ -14,14 +14,14 @@ public class PlayerSquadManager : SquadManager
     {
         TownCenter.OnSpawnNewSquad += OnSpawnNewPlayerSquad;
 
-        Squad.OnSquadSelected += OnSquadSelected;
-        Squad.OnSquadDeselected += OnSquadDeselected;
+        PlayerSquad.OnSquadSelected += OnSquadSelected;
+        PlayerSquad.OnSquadDeselected += OnSquadDeselected;
     }
 
     private void OnDisable()
     {
-        Squad.OnSquadSelected -= OnSquadSelected;
-        Squad.OnSquadDeselected -= OnSquadDeselected;
+        PlayerSquad.OnSquadSelected -= OnSquadSelected;
+        PlayerSquad.OnSquadDeselected -= OnSquadDeselected;
     }
 
     void OnSpawnNewPlayerSquad(Squad newSquad)

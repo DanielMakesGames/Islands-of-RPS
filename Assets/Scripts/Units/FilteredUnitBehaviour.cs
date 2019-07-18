@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FilteredUnitBehaviour : UnitBehaviour
+public abstract class FilteredUnitBehaviour : UnitBehaviour
 {
     public ContextFilter filter;
 }

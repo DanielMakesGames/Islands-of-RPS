@@ -4,15 +4,56 @@ using UnityEngine;
 
 public class EnemyTransport : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void EnemyTransportAction(Node landingNode);
+    public event EnemyTransportAction OnEnemyTransportLanded;
+
+    const float movementSpeed = 5f;
+    const float rayDistance = 100f;
+    const float nodeScale = 10f;
+    LayerMask nodeLayerMask;
+
+    Node landingNode;
+
+    private void Awake()
     {
-        
+        nodeLayerMask = LayerMask.GetMask("Node");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (FindDestinationNode())
+        {
+            StartCoroutine(TravelToLandingNode());
+        }
+    }
+
+    bool FindDestinationNode()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit,
+                rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            landingNode = raycastHit.transform.GetComponent<Node>();
+            return true;
+        }
+        else
+        {
+            Debug.Log("Transport unable to find island");
+            return false;
+        }
+    }
+
+    IEnumerator TravelToLandingNode()
+    {
+        Vector3 destinationPosition = landingNode.transform.position - transform.forward * nodeScale;
+
+        while (transform.position != destinationPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,
+                destinationPosition, Time.deltaTime * movementSpeed);
+
+            yield return null;
+        }
+
+        OnEnemyTransportLanded?.Invoke(landingNode);
     }
 }

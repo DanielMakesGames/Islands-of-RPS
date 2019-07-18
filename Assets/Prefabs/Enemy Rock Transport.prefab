@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &610808227
 GameObject:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &631193433
 GameObject:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &894048074
 GameObject:
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &907867051
 GameObject:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1466817216
 GameObject:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1603814601
 GameObject:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1979579667
 GameObject:
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &2094354281
 GameObject:
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Width: 1
   m_CostModifier: 5
   m_Bidirectional: 0
-  m_AutoUpdatePosition: 0
+  m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &2275702535269224247
 GameObject:

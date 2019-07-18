@@ -174,6 +174,7 @@ public class Squad : MonoBehaviour
             }
         }
 
+        transform.position = path[0].transform.position + offSet;
         mySquadState = SquadState.Ready;
         path.Clear();
 

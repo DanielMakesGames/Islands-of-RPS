@@ -28,7 +28,7 @@ public class SquadUnit : MonoBehaviour
 
     protected virtual void Start()
     {
-        myNavMeshAgent.enabled = true;
+        EnableNavMeshAgent();
     }
 
     public void InitializeSquadUnit(Squad squad, Transform targetTrasnform)
@@ -64,5 +64,10 @@ public class SquadUnit : MonoBehaviour
 
     private void Update()
     {
+    }
+
+    public void EnableNavMeshAgent()
+    {
+        myNavMeshAgent.enabled = true;
     }
 }

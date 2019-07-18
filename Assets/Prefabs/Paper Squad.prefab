@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3566052677869959913}
   - component: {fileID: 3566052677869959912}
-  - component: {fileID: 3566052677869959919}
+  - component: {fileID: 6902898746190432164}
   m_Layer: 0
   m_Name: Paper Squad
   m_TagString: Untagged
@@ -249,7 +249,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &3566052677869959919
+--- !u!114 &6902898746190432164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,10 +258,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3566052677869959914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25572aae6839947fbbbee13e506ae3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f6881718adcf4fb5b12a69419062002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PathfindingNode: {fileID: 0}
+  PreviousNode: {fileID: 0}
   path: []
   SquadUnitGameObject: {fileID: 3460933396807809334, guid: 86d3c7283079b4f4db42f2a254c35914,
     type: 3}

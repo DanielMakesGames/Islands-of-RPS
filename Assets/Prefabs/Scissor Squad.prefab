@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 22776362259784762}
   - component: {fileID: 22776362259784763}
-  - component: {fileID: 22776362259784764}
+  - component: {fileID: 9145021365107632222}
   m_Layer: 0
   m_Name: Scissor Squad
   m_TagString: Untagged
@@ -55,7 +55,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &22776362259784764
+--- !u!114 &9145021365107632222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,10 +64,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 22776362259784761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25572aae6839947fbbbee13e506ae3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f6881718adcf4fb5b12a69419062002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PathfindingNode: {fileID: 0}
+  PreviousNode: {fileID: 0}
   path: []
   SquadUnitGameObject: {fileID: 5582344058372878384, guid: 67303430bdc6d40c1aad8a7f620bb5a0,
     type: 3}

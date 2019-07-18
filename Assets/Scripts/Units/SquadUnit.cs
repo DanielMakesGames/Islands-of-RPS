@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class SquadUnit : MonoBehaviour
 {
-    Squad mySquad;
-    Transform myTargetTransform;
-    NavMeshAgent myNavMeshAgent;
+    protected Squad mySquad;
+    protected Transform myTargetTransform;
+    protected NavMeshAgent myNavMeshAgent;
     Renderer[] myRenderers;
 
     [SerializeField] Material HighLightMaterial = null;
@@ -26,7 +26,7 @@ public class SquadUnit : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         myNavMeshAgent.enabled = true;
     }

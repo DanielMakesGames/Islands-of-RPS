@@ -46,7 +46,7 @@ public class Squad : MonoBehaviour
     [SerializeField] GameObject SquadUnitGameObject = null;
     [SerializeField] Transform[] SquadPositions = null;
 
-    List<SquadUnit> squadUnits;
+    protected List<SquadUnit> squadUnits;
     SquadManager mySquadManager;
 
     protected virtual void Awake()

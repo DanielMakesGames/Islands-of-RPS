@@ -8,6 +8,11 @@ public class SquadUnit : MonoBehaviour
     protected Squad mySquad;
     protected Transform myTargetTransform;
     protected NavMeshAgent myNavMeshAgent;
+    public NavMeshAgent NavMeshAgent
+    {
+        get { return myNavMeshAgent; }
+    }
+
     protected Collider myCollider;
     public Collider UnitCollider
     {
@@ -52,9 +57,31 @@ public class SquadUnit : MonoBehaviour
         mySquad.OnAnimateSquadDeselected += OnAnimateSquadDeselected;
     }
 
-    void OnUpdateNavMeshAgents()
+    void OnUpdateNavMeshAgents(Vector3 targetPosition)
     {
-        myNavMeshAgent.SetDestination(myTargetTransform.position);
+        //myNavMeshAgent.SetDestination(myTargetTransform.position);
+        Vector3 navMeshTargetPosition = targetPosition - myTargetTransform.localPosition;
+
+        NavMeshPath path = new NavMeshPath();
+        myNavMeshAgent.CalculatePath(navMeshTargetPosition, path);
+        myNavMeshAgent.path = path;
+        myNavMeshAgent.isStopped = true;
+
+        if(path.status != NavMeshPathStatus.PathComplete)
+        {
+            //(if we can't find a complete path, halt navigation)
+        }
+
+        Vector3[] pathCorners = new Vector3[16];
+        int cornersCount = path.GetCornersNonAlloc(pathCorners);
+        if(cornersCount > 1)
+        {
+            //(move towards the next point)
+        }
+        else
+        {
+            //(stop navigation)
+        }
     }
 
     void OnAnimateSquadSelected()
@@ -81,13 +108,17 @@ public class SquadUnit : MonoBehaviour
     public void Move(Vector3 velocity)
     {
         this.velocity = velocity;
+        velocity.y = 0f;
 
         if (velocity.sqrMagnitude > 0f)
         {
             transform.forward = velocity;
         }
 
-        velocity.y = 0f;
-        myNavMeshAgent.Move(velocity * Time.deltaTime);
+        if (!myNavMeshAgent.isOnOffMeshLink)
+        {
+            myNavMeshAgent.Move(velocity * Time.deltaTime);
+        }
+        //myNavMeshAgent.path.corners
     }
 }

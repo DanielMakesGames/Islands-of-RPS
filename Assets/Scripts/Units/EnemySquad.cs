@@ -37,7 +37,6 @@ public class EnemySquad : Squad
         currentNode = landingNode;
         MoveToTarget(landingNode);
         AnimateSquadPath();
-        UpdateNavMeshAgents();
     }
 
     protected override void SpawnSquadUnits()

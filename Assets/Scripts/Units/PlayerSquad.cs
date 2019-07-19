@@ -132,9 +132,10 @@ public class PlayerSquad : Squad
                     if (path.Count > 0)
                     {
                         mySquadState = Squad.SquadState.Moving;
-                        targetNode = PathfindingNode;
 
-                        StartCoroutine(MoveToTargetCoroutine());
+                        targetNode = PathfindingNode;
+                        MoveToTarget(targetNode);
+
                         OnSquadDeselected?.Invoke(this);
                         AnimateSquadDeselected();
                     }

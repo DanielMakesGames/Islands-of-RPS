@@ -8,7 +8,9 @@ public class Squad : MonoBehaviour
     public event SquadAnimationAction OnAnimateSquadPath;
     public event SquadAnimationAction OnAnimateSquadSelected;
     public event SquadAnimationAction OnAnimateSquadDeselected;
-    public event SquadAnimationAction OnUpdateNavMeshAgents;
+
+    public delegate void SquadMovementAction(Vector3 targetPosition);
+    public event SquadMovementAction OnUpdateNavMeshAgents;
 
     public enum SquadState
     {
@@ -34,7 +36,6 @@ public class Squad : MonoBehaviour
 
     const float rayDistance = 1f;
     const float rayOffset = 0.5f;
-    const float movementSpeed = 2f;
     protected LayerMask nodeLayerMask;
 
     public Node PathfindingNode;
@@ -63,6 +64,8 @@ public class Squad : MonoBehaviour
     float squareNeighborRadius;
     float avoidanceRadius;
     float squareAvoidanceRadius;
+
+    Vector3 nodePositionOffset = Vector3.up * 5f;
 
     protected virtual void Awake()
     {
@@ -152,7 +155,12 @@ public class Squad : MonoBehaviour
         islandGrid.SetNodeDistances(currentNode);
         targetNode = destinationNode;
         path = islandGrid.GetPath(destinationNode);
+
+        OnUpdateNavMeshAgents?.Invoke(destinationNode.transform.position + nodePositionOffset);
         StartCoroutine(MoveToTargetCoroutine());
+
+        //Tell each squad unit about it's destination and let them handle
+        //the pathfinding
     }
 
     public void SetSquadManager(SquadManager squadManager)
@@ -160,27 +168,22 @@ public class Squad : MonoBehaviour
         mySquadManager = squadManager;
     }
 
-    protected IEnumerator MoveToTargetCoroutine()
+    private IEnumerator MoveToTargetCoroutine()
     {
-        Vector3 offSet = Vector3.up * 5f;
-
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {
             Vector3 startPosition = transform.position;
-            Vector3 destination = path[nodeIndex].transform.position + offSet;
+            Vector3 destination = path[nodeIndex].transform.position + nodePositionOffset;
             float timer = 0f;
 
             while (timer < 1f)
             {
-                timer += Time.deltaTime * movementSpeed;
+                timer += Time.deltaTime * MaxSpeed * 0.2f;
                 transform.position = Vector3.Lerp(startPosition, destination, timer);
                 OnAnimateSquadPath?.Invoke();
 
-                OnUpdateNavMeshAgents?.Invoke();
                 yield return null;
             }
-
-            OnUpdateNavMeshAgents?.Invoke();
 
             if (path.Count > 0)
             {
@@ -194,7 +197,6 @@ public class Squad : MonoBehaviour
             }
         }
 
-        transform.position = path[0].transform.position + offSet;
         mySquadState = SquadState.Ready;
         path.Clear();
 
@@ -261,8 +263,8 @@ public class Squad : MonoBehaviour
         OnAnimateSquadDeselected?.Invoke();
     }
 
-    protected void UpdateNavMeshAgents()
+    protected void UpdateNavMeshAgents(Vector3 targetPosition)
     {
-        OnUpdateNavMeshAgents?.Invoke();
+        OnUpdateNavMeshAgents?.Invoke(targetPosition);
     }
 }

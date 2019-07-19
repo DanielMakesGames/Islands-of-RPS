@@ -170,9 +170,6 @@ public class Squad : MonoBehaviour
 
         OnUpdateNavMeshAgents?.Invoke(destinationNode.transform.position + nodePositionOffset);
         StartCoroutine(MoveToTargetCoroutine());
-
-        //Tell each squad unit about it's destination and let them handle
-        //the pathfinding
     }
 
     public void SetSquadManager(SquadManager squadManager)
@@ -272,7 +269,10 @@ public class Squad : MonoBehaviour
 
     void Die()
     {
-        mySquadManager.RemoveSquad(this);
+        if (mySquadManager != null)
+        {
+            mySquadManager.RemoveSquad(this);
+        }
         Destroy(gameObject);
     }
 

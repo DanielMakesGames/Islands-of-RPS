@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class SquadUnit : MonoBehaviour
 {
+    public delegate void AnimationAction();
+    public event AnimationAction OnAnimateIdle;
+    public event AnimationAction OnAnimateMovement;
+    public event AnimationAction OnAnimateAttack;
+    public event AnimationAction OnAnimateDeath;
+
     protected Squad mySquad;
     public Squad CommandingSquad
     {
@@ -24,14 +30,29 @@ public class SquadUnit : MonoBehaviour
     }
 
     protected Transform myTargetTransform;
-
-    [SerializeField] Material highLightMaterial = null;
+    [SerializeField] Material highlightMaterial = null;
     Renderer[] myRenderers;
     Material[] defaultMaterials = null;
-
     Vector3 velocity;
 
+    public enum DamageType
+    {
+        Rock,
+        Paper,
+        Scissors
+    }
+    [SerializeField] protected DamageType damageType;
+
     [SerializeField] float health = 100f;
+    [SerializeField] protected float attackDamage = 50f;
+    [SerializeField] protected float attackTime = 1f;
+
+    [Range(0f, 1f)]
+    [SerializeField] float rockDefense = 0f;
+    [Range(0f, 1f)]
+    [SerializeField] float paperDefense = 0f;
+    [Range(0f, 1f)]
+    [SerializeField] float scissorDefense = 0f;
 
     private void Awake()
     {
@@ -56,20 +77,8 @@ public class SquadUnit : MonoBehaviour
         mySquad = squad;
         myTargetTransform = targetTrasnform;
 
-        mySquad.OnUpdateNavMeshAgents += OnUpdateNavMeshAgents;
         mySquad.OnAnimateSquadSelected += OnAnimateSquadSelected;
         mySquad.OnAnimateSquadDeselected += OnAnimateSquadDeselected;
-    }
-
-    void OnUpdateNavMeshAgents(Vector3 targetPosition)
-    {
-        //myNavMeshAgent.SetDestination(myTargetTransform.position);
-        Vector3 navMeshTargetPosition = targetPosition - myTargetTransform.localPosition;
-
-        NavMeshPath path = new NavMeshPath();
-        myNavMeshAgent.CalculatePath(navMeshTargetPosition, path);
-        myNavMeshAgent.path = path;
-        myNavMeshAgent.isStopped = true;
     }
 
     private void Update()
@@ -87,7 +96,7 @@ public class SquadUnit : MonoBehaviour
     {
         for (int i = 0; i < myRenderers.Length; ++i)
         {
-            myRenderers[i].material = highLightMaterial;
+            myRenderers[i].material = highlightMaterial;
         }
     }
 
@@ -112,6 +121,11 @@ public class SquadUnit : MonoBehaviour
         if (velocity.sqrMagnitude > 0f)
         {
             transform.forward = velocity;
+            OnAnimateMovement?.Invoke();
+        }
+        else
+        {
+            OnAnimateIdle?.Invoke();
         }
 
         if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
@@ -125,9 +139,21 @@ public class SquadUnit : MonoBehaviour
         StartCoroutine(AttackAnimation(targetSquadUnit));
     }
 
-    public void ReceiveDamage(float damage)
+    public void ReceiveDamage(float damage, DamageType opponentDamageType)
     {
-        health -= damage;
+        switch (damageType)
+        {
+            case DamageType.Rock:
+                health -= damage * (1f - rockDefense);
+                break;
+            case DamageType.Paper:
+                health -= damage * (1f - paperDefense);
+                break;
+            case DamageType.Scissors:
+                health -= damage * (1f - scissorDefense);
+                break;
+        }
+
         if (health <= 0f)
         {
             Die();
@@ -136,18 +162,19 @@ public class SquadUnit : MonoBehaviour
 
     void Die()
     {
-        mySquad.OnUpdateNavMeshAgents -= OnUpdateNavMeshAgents;
         mySquad.OnAnimateSquadSelected -= OnAnimateSquadSelected;
         mySquad.OnAnimateSquadDeselected -= OnAnimateSquadDeselected;
 
-        Destroy(gameObject);
+        OnAnimateDeath?.Invoke();
+        Destroy(gameObject, 1f);
     }
 
-    IEnumerator AttackAnimation(SquadUnit targetSquadUnit)
+    protected virtual IEnumerator AttackAnimation(SquadUnit targetSquadUnit)
     {
         myNavMeshAgent.enabled = false;
-        targetSquadUnit.ReceiveDamage(50f);
-        yield return new WaitForSeconds(0.5f);
+        OnAnimateAttack?.Invoke();
+        targetSquadUnit.ReceiveDamage(attackDamage, damageType);
+        yield return new WaitForSeconds(attackTime);
         myNavMeshAgent.enabled = true;
     }
 }

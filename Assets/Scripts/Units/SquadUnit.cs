@@ -6,6 +6,10 @@ using UnityEngine.AI;
 public class SquadUnit : MonoBehaviour
 {
     protected Squad mySquad;
+    public Squad CommandingSquad
+    {
+        get { return mySquad; }
+    }
     protected Transform myTargetTransform;
     protected NavMeshAgent myNavMeshAgent;
     public NavMeshAgent NavMeshAgent
@@ -66,21 +70,16 @@ public class SquadUnit : MonoBehaviour
         myNavMeshAgent.CalculatePath(navMeshTargetPosition, path);
         myNavMeshAgent.path = path;
         myNavMeshAgent.isStopped = true;
+    }
 
-        if(path.status != NavMeshPathStatus.PathComplete)
+    private void Update()
+    {
+        if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
         {
-            //(if we can't find a complete path, halt navigation)
-        }
-
-        Vector3[] pathCorners = new Vector3[16];
-        int cornersCount = path.GetCornersNonAlloc(pathCorners);
-        if(cornersCount > 1)
-        {
-            //(move towards the next point)
-        }
-        else
-        {
-            //(stop navigation)
+            NavMeshPath path = new NavMeshPath();
+            myNavMeshAgent.CalculatePath(myTargetTransform.position, path);
+            myNavMeshAgent.path = path;
+            myNavMeshAgent.isStopped = true;
         }
     }
 
@@ -115,10 +114,9 @@ public class SquadUnit : MonoBehaviour
             transform.forward = velocity;
         }
 
-        if (!myNavMeshAgent.isOnOffMeshLink)
+        if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
         {
             myNavMeshAgent.Move(velocity * Time.deltaTime);
         }
-        //myNavMeshAgent.path.corners
     }
 }

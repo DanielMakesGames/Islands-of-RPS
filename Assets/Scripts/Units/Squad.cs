@@ -64,6 +64,10 @@ public class Squad : MonoBehaviour
     float squareNeighborRadius;
     float avoidanceRadius;
     float squareAvoidanceRadius;
+    public float SquareAvoidanceRadius
+    {
+        get { return squareAvoidanceRadius; }
+    }
 
     Vector3 nodePositionOffset = Vector3.up * 5f;
 
@@ -197,6 +201,7 @@ public class Squad : MonoBehaviour
             }
         }
 
+        transform.position = targetNode.transform.position + nodePositionOffset;
         mySquadState = SquadState.Ready;
         path.Clear();
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 22776362259784763}
   - component: {fileID: 9145021365107632222}
   m_Layer: 0
-  m_Name: Scissor Squad
+  m_Name: Player Scissor Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,6 +82,13 @@ MonoBehaviour:
   - {fileID: 8497633087754645916}
   - {fileID: 8674083985276171180}
   - {fileID: 965815406390777581}
+  CompositeUnitBehaviour: {fileID: 11400000, guid: f3a8926fdadcd4eb785ede4181305952,
+    type: 2}
+  DriveFactor: 20
+  MaxSpeed: 20
+  NeighborRadius: 4
+  AvoidanceRadiusMultiplier: 0.5
+  AttackRadiusMultiplier: 0.1
 --- !u!1 &313261256562194127
 GameObject:
   m_ObjectHideFlags: 0

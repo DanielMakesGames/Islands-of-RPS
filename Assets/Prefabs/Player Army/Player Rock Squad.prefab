@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 7004585124197212768}
   - component: {fileID: 9085529353673457862}
   m_Layer: 0
-  m_Name: Rock Squad
+  m_Name: Player Rock Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,6 +386,13 @@ MonoBehaviour:
   - {fileID: 1479445331090290631}
   - {fileID: 1802894060525843959}
   - {fileID: 7783029445299933366}
+  CompositeUnitBehaviour: {fileID: 11400000, guid: c7c759055318246819ecaa63584c4868,
+    type: 2}
+  DriveFactor: 10
+  MaxSpeed: 10
+  NeighborRadius: 20
+  AvoidanceRadiusMultiplier: 0.5
+  AttackRadiusMultiplier: 1
 --- !u!1 &7295073309183422612
 GameObject:
   m_ObjectHideFlags: 0

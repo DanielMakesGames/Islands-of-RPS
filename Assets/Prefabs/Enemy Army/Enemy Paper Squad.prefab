@@ -266,7 +266,7 @@ MonoBehaviour:
     type: 2}
   DriveFactor: 50
   MaxSpeed: 50
-  NeighborRadius: 4
+  NeighborRadius: 2
   AvoidanceRadiusMultiplier: 0.5
   AttackRadiusMultiplier: 0.1
 --- !u!1 &4574578323444136804

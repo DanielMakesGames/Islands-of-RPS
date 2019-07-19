@@ -386,6 +386,13 @@ MonoBehaviour:
   - {fileID: 3443852705934329415}
   - {fileID: 2469701999118582903}
   - {fileID: 6287568727244726582}
+  CompositeUnitBehaviour: {fileID: 11400000, guid: 795390369411b49529839f059b17aa7a,
+    type: 2}
+  DriveFactor: 20
+  MaxSpeed: 20
+  NeighborRadius: 4
+  AvoidanceRadiusMultiplier: 0.5
+  AttackRadiusMultiplier: 0.1
 --- !u!1 &6808951140114972948
 GameObject:
   m_ObjectHideFlags: 0

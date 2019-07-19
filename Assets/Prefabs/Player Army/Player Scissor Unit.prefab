@@ -89,10 +89,10 @@ GameObject:
   - component: {fileID: 2230019601939922815}
   - component: {fileID: 548685777}
   - component: {fileID: 548685780}
-  - component: {fileID: 4817120188071716422}
   - component: {fileID: 2685064742958915537}
+  - component: {fileID: 4817120188071716422}
   m_Layer: 10
-  m_Name: Scissor Unit
+  m_Name: Player Scissor Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,19 +154,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4817120188071716422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5582344058372878384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7f537284f64485d8dda8f30a13207e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HighLightMaterial: {fileID: 2100000, guid: 02c31544b88b940a68ef6ea28f2f245e, type: 2}
 --- !u!136 &2685064742958915537
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -181,6 +168,26 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &4817120188071716422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582344058372878384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7f537284f64485d8dda8f30a13207e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 2100000, guid: 02c31544b88b940a68ef6ea28f2f245e, type: 2}
+  damageType: 0
+  health: 100
+  attackDamage: 100
+  attackTime: 1
+  rockDefense: 0
+  paperDefense: 0.95
+  scissorDefense: 0.5
 --- !u!1 &6539510370994271550
 GameObject:
   m_ObjectHideFlags: 0

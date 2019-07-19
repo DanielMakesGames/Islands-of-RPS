@@ -10,7 +10,7 @@ public class SquadUnit : MonoBehaviour
     {
         get { return mySquad; }
     }
-    protected Transform myTargetTransform;
+
     protected NavMeshAgent myNavMeshAgent;
     public NavMeshAgent NavMeshAgent
     {
@@ -23,23 +23,21 @@ public class SquadUnit : MonoBehaviour
         get { return myCollider; }
     }
 
-    Renderer[] myRenderers;
+    protected Transform myTargetTransform;
 
-    [SerializeField] Material HighLightMaterial = null;
+    [SerializeField] Material highLightMaterial = null;
+    Renderer[] myRenderers;
     Material[] defaultMaterials = null;
 
-    LayerMask unitLayerMask;
     Vector3 velocity;
 
-    [SerializeField] float Health = 100f;
+    [SerializeField] float health = 100f;
 
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         myRenderers = GetComponentsInChildren<Renderer>();
         myCollider = GetComponentInChildren<Collider>();
-        unitLayerMask = LayerMask.GetMask(
-            new string[] { "Player Unit", "Enemy Unit" });
 
         defaultMaterials = new Material[myRenderers.Length];
         for (int i = 0; i < myRenderers.Length; ++i)
@@ -89,7 +87,7 @@ public class SquadUnit : MonoBehaviour
     {
         for (int i = 0; i < myRenderers.Length; ++i)
         {
-            myRenderers[i].material = HighLightMaterial;
+            myRenderers[i].material = highLightMaterial;
         }
     }
 
@@ -129,8 +127,8 @@ public class SquadUnit : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        Health -= damage;
-        if (Health <= 0f)
+        health -= damage;
+        if (health <= 0f)
         {
             Die();
         }

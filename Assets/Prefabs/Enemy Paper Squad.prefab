@@ -266,8 +266,9 @@ MonoBehaviour:
     type: 2}
   DriveFactor: 50
   MaxSpeed: 50
-  NeighborRadius: 1.5
+  NeighborRadius: 4
   AvoidanceRadiusMultiplier: 0.5
+  AttackRadiusMultiplier: 0.1
 --- !u!1 &4574578323444136804
 GameObject:
   m_ObjectHideFlags: 0

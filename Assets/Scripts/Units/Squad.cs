@@ -59,6 +59,8 @@ public class Squad : MonoBehaviour
     public float NeighborRadius = 1.5f;
     [Range(0f, 1f)]
     public float AvoidanceRadiusMultiplier = 0.5f;
+    [Range(0f, 1f)]
+    public float AttackRadiusMultiplier = 0.5f;
 
     float squareMaxSpeed;
     float squareNeighborRadius;
@@ -67,6 +69,11 @@ public class Squad : MonoBehaviour
     public float SquareAvoidanceRadius
     {
         get { return squareAvoidanceRadius; }
+    }
+    float squareAttackRadius;
+    public float SquareAttackRadius
+    {
+        get { return squareAttackRadius; }
     }
 
     Vector3 nodePositionOffset = Vector3.up * 5f;
@@ -81,6 +88,7 @@ public class Squad : MonoBehaviour
         squareNeighborRadius = NeighborRadius * NeighborRadius;
         avoidanceRadius = NeighborRadius * AvoidanceRadiusMultiplier;
         squareAvoidanceRadius = squareNeighborRadius * AvoidanceRadiusMultiplier * AvoidanceRadiusMultiplier;
+        squareAttackRadius = squareNeighborRadius * AttackRadiusMultiplier;
     }
 
     private void Start()
@@ -215,8 +223,12 @@ public class Squad : MonoBehaviour
     {
         for (int i = 0; i < squadUnits.Count; ++i)
         {
-            if (squadUnits[i].gameObject.activeInHierarchy)
+            if (squadUnits[i] && squadUnits[i].gameObject.activeInHierarchy)
             {
+                if (squadUnits[i].NavMeshAgent.enabled == false)
+                {
+                    break;
+                }
                 List<Transform> context = GetNearbyObjects(squadUnits[i]);
 
                 Vector3 move = Vector3.zero;
@@ -232,6 +244,11 @@ public class Squad : MonoBehaviour
             else
             {
                 squadUnits.Remove(squadUnits[i]);
+
+                if (squadUnits.Count <= 0)
+                {
+                    Die();
+                }
             }
         }
     }
@@ -251,6 +268,12 @@ public class Squad : MonoBehaviour
         }
 
         return context;
+    }
+
+    void Die()
+    {
+        mySquadManager.RemoveSquad(this);
+        Destroy(gameObject);
     }
 
     protected void AnimateSquadPath()

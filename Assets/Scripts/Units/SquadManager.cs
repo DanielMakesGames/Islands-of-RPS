@@ -10,4 +10,9 @@ public class SquadManager : MonoBehaviour
     {
         mySquads = new List<Squad>();
     }
+
+    public void RemoveSquad(Squad squad)
+    {
+        mySquads.Remove(squad);
+    }
 }

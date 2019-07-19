@@ -31,6 +31,8 @@ public class SquadUnit : MonoBehaviour
     LayerMask unitLayerMask;
     Vector3 velocity;
 
+    [SerializeField] float Health = 100f;
+
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
@@ -118,5 +120,36 @@ public class SquadUnit : MonoBehaviour
         {
             myNavMeshAgent.Move(velocity * Time.deltaTime);
         }
+    }
+
+    public void Attack(SquadUnit targetSquadUnit)
+    {
+        StartCoroutine(AttackAnimation(targetSquadUnit));
+    }
+
+    public void ReceiveDamage(float damage)
+    {
+        Health -= damage;
+        if (Health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        mySquad.OnUpdateNavMeshAgents -= OnUpdateNavMeshAgents;
+        mySquad.OnAnimateSquadSelected -= OnAnimateSquadSelected;
+        mySquad.OnAnimateSquadDeselected -= OnAnimateSquadDeselected;
+
+        Destroy(gameObject);
+    }
+
+    IEnumerator AttackAnimation(SquadUnit targetSquadUnit)
+    {
+        myNavMeshAgent.enabled = false;
+        targetSquadUnit.ReceiveDamage(50f);
+        yield return new WaitForSeconds(0.5f);
+        myNavMeshAgent.enabled = true;
     }
 }

@@ -141,7 +141,7 @@ public class SquadUnit : MonoBehaviour
 
     public void ReceiveDamage(float damage, DamageType opponentDamageType)
     {
-        switch (damageType)
+        switch (opponentDamageType)
         {
             case DamageType.Rock:
                 health -= damage * (1f - rockDefense);

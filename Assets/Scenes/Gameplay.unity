@@ -405,7 +405,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189934135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54415757aaddf4b8a9cd7122fd120cc6, type: 3}
   m_Name: 
@@ -447,7 +447,7 @@ MonoBehaviour:
   _nightVision: 0
   _nightVisionColor: {r: 0.5, g: 1, b: 0.5, a: 0.5}
   _outline: 0
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0.8}
+  _outlineColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0.8}
   _thermalVision: 0
   _lensDirt: 0
   _lensDirtThreshold: 0.5
@@ -664,12 +664,12 @@ PrefabInstance:
     - target: {fileID: 5130734713914320946, guid: 3462aed815406411d80b83cbf7db441f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001651858
+      value: 0.00000001651861
       objectReference: {fileID: 0}
     - target: {fileID: 5130734713914320946, guid: 3462aed815406411d80b83cbf7db441f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000048161306
+      value: -0.0000000048162385
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3462aed815406411d80b83cbf7db441f, type: 3}

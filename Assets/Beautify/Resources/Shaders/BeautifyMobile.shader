@@ -76,7 +76,7 @@ Subshader {
 #pragma multi_compile __ BEAUTIFY_DALTONIZE BEAUTIFY_LUT 
 #pragma multi_compile __ BEAUTIFY_DEPTH_OF_FIELD BEAUTIFY_DEPTH_OF_FIELD_TRANSPARENT
 #pragma multi_compile __ BEAUTIFY_OUTLINE
-#pragma multi_compile __ BEAUTIFY_DIRT
+// Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_DIRT
 #pragma multi_compile __ BEAUTIFY_BLOOM
 #pragma multi_compile __ BEAUTIFY_EYE_ADAPTATION
 // Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_PURKINJE

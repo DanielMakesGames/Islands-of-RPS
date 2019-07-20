@@ -3,7 +3,7 @@
 // Note that changes to this file will be lost when you update Beautify! Remember to revert this file to your preferences after updating.
 
 // Uncomment this one to support Orthographic Camera
-//#define BEAUTIFY_ORTHO
+#define BEAUTIFY_ORTHO
 
 // Comment out this one to disable sharpen
 #define BEAUTIFY_ENABLE_CORE_EFFECT

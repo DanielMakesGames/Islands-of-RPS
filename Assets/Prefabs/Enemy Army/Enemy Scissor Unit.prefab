@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2688760010609916120}
   - component: {fileID: 5384117799903453}
   - component: {fileID: 7971480709246896911}
+  - component: {fileID: 8817602724688482153}
   m_Layer: 11
   m_Name: Enemy Scissor Unit
   m_TagString: Untagged
@@ -110,6 +111,25 @@ MonoBehaviour:
   rockDefense: 0
   paperDefense: 0.95
   scissorDefense: 0.5
+--- !u!95 &8817602724688482153
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505280269499911996}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96a9de099bce64a9fa7efa09b452902f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7794905896678351109
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +141,8 @@ GameObject:
   - component: {fileID: 5536378693156489257}
   - component: {fileID: 7106412252419239131}
   - component: {fileID: 7790853213064766620}
+  - component: {fileID: 8472990153942461982}
+  - component: {fileID: 5470374825488115756}
   m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
@@ -135,7 +157,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7794905896678351109}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
@@ -188,6 +210,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &8472990153942461982
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794905896678351109}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d75aead89a31e44d7af2187e755910ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5470374825488115756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794905896678351109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf7b2835d684480a9bf1f1163890b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9192241508739254834
 GameObject:
   m_ObjectHideFlags: 0

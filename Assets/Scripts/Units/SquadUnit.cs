@@ -118,7 +118,7 @@ public class SquadUnit : MonoBehaviour
         this.velocity = velocity;
         velocity.y = 0f;
 
-        if (velocity.sqrMagnitude > 0f)
+        if (velocity.sqrMagnitude > 1f)
         {
             transform.forward = velocity;
             OnAnimateMovement?.Invoke();

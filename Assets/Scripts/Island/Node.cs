@@ -58,10 +58,18 @@ public class Node : MonoBehaviour
             rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
-            northNode = hitNode;
-            Neighbours.Add(northNode);
 
-            SetUpNavMeshLinks(northNavMeshLinks, hitNode);
+            if (hitNode.IsWalkable)
+            {
+                northNode = hitNode;
+                Neighbours.Add(northNode);
+
+                SetUpNavMeshLinks(northNavMeshLinks, hitNode);
+            }
+            else
+            {
+                DisableNavMeshLinks(northNavMeshLinks);
+            }
         }
         else
         {
@@ -72,10 +80,17 @@ public class Node : MonoBehaviour
             rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
-            eastNode = hitNode;
-            Neighbours.Add(eastNode);
+            if (hitNode.IsWalkable)
+            {
+                eastNode = hitNode;
+                Neighbours.Add(eastNode);
 
-            SetUpNavMeshLinks(eastNavMeshLinks, hitNode);
+                SetUpNavMeshLinks(eastNavMeshLinks, hitNode);
+            }
+            else
+            {
+                DisableNavMeshLinks(eastNavMeshLinks);
+            }
         }
         else
         {
@@ -86,10 +101,17 @@ public class Node : MonoBehaviour
             rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
-            southNode = hitNode;
-            Neighbours.Add(southNode);
+            if (hitNode.IsWalkable)
+            {
+                southNode = hitNode;
+                Neighbours.Add(southNode);
 
-            SetUpNavMeshLinks(southNavMeshLinks, hitNode);
+                SetUpNavMeshLinks(southNavMeshLinks, hitNode);
+            }
+            else
+            {
+                DisableNavMeshLinks(eastNavMeshLinks);
+            }
         }
         else
         {
@@ -100,10 +122,17 @@ public class Node : MonoBehaviour
             rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
-            westNode = hitNode;
-            Neighbours.Add(westNode);
+            if (hitNode.IsWalkable)
+            {
+                westNode = hitNode;
+                Neighbours.Add(westNode);
 
-            SetUpNavMeshLinks(westNavMeshLinks, hitNode);
+                SetUpNavMeshLinks(westNavMeshLinks, hitNode);
+            }
+            else
+            {
+                DisableNavMeshLinks(eastNavMeshLinks);
+            }
         }
         else
         {

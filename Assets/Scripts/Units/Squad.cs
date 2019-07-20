@@ -122,7 +122,7 @@ public class Squad : MonoBehaviour
 
             if (currentNode.currentSquad != null)
             {
-                if (PreviousNode != null && currentNode.currentSquad.PreviousNode.currentSquad == null)
+                if (currentNode.currentSquad.PreviousNode != null && currentNode.currentSquad.PreviousNode.currentSquad == null)
                 {
                     currentNode.currentSquad.MoveToTarget(currentNode.currentSquad.PreviousNode);
                 }
@@ -150,7 +150,8 @@ public class Squad : MonoBehaviour
                         }
                         else
                         {
-                            currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[0]);
+                            currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[
+                                Random.Range(0, currentNode.Neighbours.Count)]);
                         }
                     }
                 }
@@ -170,6 +171,19 @@ public class Squad : MonoBehaviour
 
         OnUpdateNavMeshAgents?.Invoke(destinationNode.transform.position + nodePositionOffset);
         StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    public void MoveFromTownCenter(Node destinationNode)
+    {
+        currentNode.visited = 0;
+        currentNode.currentSquad = null;
+
+        transform.position = destinationNode.transform.position + nodePositionOffset;
+        mySquadState = SquadState.Ready;
+        path.Clear();
+
+        SetCurrentNode();
+        targetNode = null;
     }
 
     public void SetSquadManager(SquadManager squadManager)

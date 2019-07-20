@@ -11,8 +11,8 @@ public class TownCenter : MonoBehaviour
     [SerializeField] GameObject PaperSquad = null;
     [SerializeField] GameObject ScissorSquad = null;
 
-    Node currentNode;
-    Node nextNode;
+    [SerializeField] Node frontLeftNode;
+    [SerializeField] Node frontRightNode;
 
     LayerMask nodeLayerMask;
     const float rayDistance = 1f;
@@ -37,11 +37,6 @@ public class TownCenter : MonoBehaviour
         ScissorSquadButton.OnPressed -= SpawnScissorSquad;
     }
 
-    private void Start()
-    {
-        SetCurrentNode();
-    }
-
     void SpawnRockSquad()
     {
         GameObject clone = Instantiate(RockSquad);
@@ -49,7 +44,7 @@ public class TownCenter : MonoBehaviour
         clone.transform.rotation = transform.rotation;
 
         Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
         OnSpawnNewSquad?.Invoke(squadClone);
     }
@@ -61,7 +56,7 @@ public class TownCenter : MonoBehaviour
         clone.transform.rotation = transform.rotation;
 
         Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
         OnSpawnNewSquad?.Invoke(squadClone);
     }
@@ -73,42 +68,33 @@ public class TownCenter : MonoBehaviour
         clone.transform.rotation = transform.rotation;
 
         Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, nextNode));
+        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
         OnSpawnNewSquad?.Invoke(squadClone);
-    }
-
-    void SetCurrentNode()
-    {
-        if (Physics.Raycast(transform.position + transform.up * rayOffset, -transform.up, out RaycastHit raycastHit,
-            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
-        {
-            Node hitNode = raycastHit.transform.GetComponent<Node>();
-            currentNode = hitNode;
-        }
-
-        nextNode = currentNode.NorthNode;
-        if (transform.forward == Vector3.forward)
-        {
-            nextNode = currentNode.NorthNode;
-        }
-        else if (transform.forward == Vector3.right)
-        {
-            nextNode = currentNode.EastNode;
-        }
-        else if (transform.forward == -Vector3.forward)
-        {
-            nextNode = currentNode.SouthNode;
-        }
-        else if (transform.forward == -Vector3.right)
-        {
-            nextNode = currentNode.WestNode;
-        }
     }
 
     IEnumerator MoveSquadToTarget(Squad squad, Node target)
     {
         yield return null;
-        squad.MoveToTarget(target);
+
+        if (frontLeftNode.currentSquad == null)
+        {
+            squad.MoveFromTownCenter(frontLeftNode);
+        }
+        else if (frontRightNode.currentSquad == null)
+        {
+            squad.MoveFromTownCenter(frontRightNode);
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                squad.MoveFromTownCenter(frontLeftNode);
+            }
+            else
+            {
+                squad.MoveFromTownCenter(frontRightNode);
+            }
+        }
     }
 }

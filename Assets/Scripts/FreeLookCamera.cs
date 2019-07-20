@@ -17,8 +17,8 @@ public class FreeLookCamera : MonoBehaviour
     Vector3 touchDelta0;
     Vector3 touchDelta1;
 
-    [SerializeField] readonly float MinOrthoSize = 80f;
-    [SerializeField] readonly float MaxOrthoSize = 120f;
+    [SerializeField] readonly float MinOrthoSize = 40f;
+    [SerializeField] readonly float MaxOrthoSize = 100f;
 
     const float ZoomAnimationSpeed = 2f;
 

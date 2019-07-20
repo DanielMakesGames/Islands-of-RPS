@@ -144,15 +144,9 @@ public class Squad : MonoBehaviour
                     }
                     if (!didMove)
                     {
-                        if (currentNode.currentSquad.PreviousNode != null)
-                        {
-                            currentNode.currentSquad.MoveToTarget(currentNode.currentSquad.PreviousNode);
-                        }
-                        else
-                        {
-                            currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[
-                                Random.Range(0, currentNode.Neighbours.Count)]);
-                        }
+
+                        currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[
+                            Random.Range(0, currentNode.Neighbours.Count)]);
                     }
                 }
             }

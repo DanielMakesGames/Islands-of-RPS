@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
     public static event TouchRaycastAction OnUITouchEnd;
 
     public const int InactiveTouch = -1;
-    const float raycastLength = 100f;
+    const float raycastLength = 300f;
 
     Camera mainCamera;
     int uiLayer;

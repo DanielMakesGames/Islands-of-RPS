@@ -126,11 +126,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3150578931264199294}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7742155991627318054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +151,10 @@ MonoBehaviour:
     type: 3}
   frontLeftNode: {fileID: 618696130679824470}
   frontRightNode: {fileID: 6433874164544944052}
+  Neighbors:
+  - {fileID: 618696130679824470}
+  - {fileID: 2932080173928791937}
+  - {fileID: 6433874164544944052}
 --- !u!1 &4294187779801761231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,11 +1710,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
-        type: 3}
-      propertyPath: IsWalkable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9137755361572857887, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -1725,6 +1724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
+        type: 3}
+      propertyPath: IsWalkable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9, type: 3}
@@ -2128,11 +2132,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
-        type: 3}
-      propertyPath: IsWalkable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9137755361572857887, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -2152,6 +2151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
+        type: 3}
+      propertyPath: IsWalkable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9, type: 3}
@@ -2228,11 +2232,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
-        type: 3}
-      propertyPath: IsWalkable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9137755361572857887, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -2247,6 +2246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
+        type: 3}
+      propertyPath: IsWalkable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9, type: 3}
@@ -2751,6 +2755,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9101761780826308227}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2932080173928791937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6268768238778007810, guid: 5fe194ffbceba49a5a66a7cdb3bb20d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 9101761780826308227}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5550a5a7139345b9a1aab99d7e7e3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9133511452797831826
 PrefabInstance:
   m_ObjectHideFlags: 0

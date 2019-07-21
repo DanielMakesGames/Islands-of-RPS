@@ -114,7 +114,7 @@ public class IslandGrid : MonoBehaviour
         }
         else
         {
-            Debug.Log("Path not available.");
+            Debug.Log("Path not available: " + targetNode.gameObject.name);
             return path;
         }
 
@@ -301,7 +301,7 @@ public class IslandGrid : MonoBehaviour
         }
     }
 
-    Node FindClosest(Transform targetLocation, List<Node> tNodes)
+    public Node FindClosest(Transform targetLocation, List<Node> tNodes)
     {
         float currentDistance = islandNodes.Length * 100f;
         int indexNumber = 0;

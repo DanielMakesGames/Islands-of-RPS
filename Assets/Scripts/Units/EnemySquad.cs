@@ -12,6 +12,7 @@ public class EnemySquad : Squad
     {
         base.Awake();
 
+        mySquadState = SquadState.OnTransport;
         myEnemyTransport = GetComponentInParent<EnemyTransport>();
         myEnemyTransport.OnEnemyTransportLanded += OnEnemyTransportLanded;
     }
@@ -94,7 +95,7 @@ public class EnemySquad : Squad
     public override void MoveToTarget(Node destinationNode)
     {
         islandGrid.ResetEnemyNodeValues();
-        currentNode.PlayerVisited = 0;
+        currentNode.EnemyVisited = 0;
         currentNode.CurrentEnemySquad = null;
         islandGrid.SetEnemyNodeDistances(currentNode);
         targetNode = destinationNode;

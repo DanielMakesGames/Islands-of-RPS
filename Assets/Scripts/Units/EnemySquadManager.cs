@@ -12,8 +12,11 @@ public class EnemySquadManager : SquadManager
     [Range(1f, 20f)]
     public float NeighborRadius = 10f;
 
+    TownCenter myTownCenter;
+
     private void Start()
     {
+        myTownCenter = FindObjectOfType<TownCenter>();
         if (currentEnemyWaveIndex < EnemyWaves.Length)
         {
             InstantiateEnemyWave(currentEnemyWaveIndex);
@@ -62,11 +65,13 @@ public class EnemySquadManager : SquadManager
                 List<Transform> context = GetNearbyObjects(mySquads[i]);
 
                 Vector3 move = Vector3.zero;
-                move = CompositeSquadBehaviour.CalculateMove(mySquads[i], context, this);
+                //move = CompositeSquadBehaviour.CalculateMove(mySquads[i], context, this);
 
                 if (move == Vector3.zero)
                 {
-                    //mySquads[i].MoveToTarget();
+                    mySquads[i].MoveToTarget(
+                        mySquads[i].IslandGrid.FindClosest(
+                            mySquads[i].transform, myTownCenter.Neighbors));
                 }
             }
             else

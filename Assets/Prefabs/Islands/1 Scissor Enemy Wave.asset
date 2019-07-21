@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202d56c23d3784f5ab81a891c0dbe9fa, type: 3}
+  m_Name: 1 Scissor Enemy Wave
+  m_EditorClassIdentifier: 
+  EnemyBoats:
+  - {fileID: 2927051461184567735, guid: e89f99f5fb47442a6be681e8764b851a, type: 3}
+  SpawnLocations:
+  - {x: 0, y: 0, z: -60}
+  Directions:
+  - {x: 0, y: 0, z: 1}
+  SpawnTimes:
+  - 0

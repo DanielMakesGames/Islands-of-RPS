@@ -14,6 +14,8 @@ public class TownCenter : MonoBehaviour
     [SerializeField] Node frontLeftNode = null;
     [SerializeField] Node frontRightNode = null;
 
+    public List<Node> Neighbors;
+
     LayerMask nodeLayerMask;
     const float rayDistance = 1f;
     const float rayOffset = 0.5f;

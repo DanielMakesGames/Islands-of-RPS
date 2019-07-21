@@ -47,6 +47,11 @@ public class Squad : MonoBehaviour
     public Node PreviousNode;
 
     protected IslandGrid islandGrid;
+    public IslandGrid IslandGrid
+    {
+        get { return islandGrid; }
+    }
+
     public List<Node> path = new List<Node>();
 
     [SerializeField] GameObject SquadUnitGameObject = null;

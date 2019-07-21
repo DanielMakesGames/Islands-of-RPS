@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064016629454621640}
   - component: {fileID: 5385211067018369479}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy Rock Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

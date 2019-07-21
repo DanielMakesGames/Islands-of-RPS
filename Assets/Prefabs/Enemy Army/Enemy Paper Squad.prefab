@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284098862275881361}
   - component: {fileID: 2005184800626246925}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy Paper Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

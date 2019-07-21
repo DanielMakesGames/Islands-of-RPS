@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6518476075902063585}
   - component: {fileID: 4236873191424442302}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy Scissor Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

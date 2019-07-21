@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 22776362259784762}
   - component: {fileID: 22776362259784763}
   - component: {fileID: 9145021365107632222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Scissor Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

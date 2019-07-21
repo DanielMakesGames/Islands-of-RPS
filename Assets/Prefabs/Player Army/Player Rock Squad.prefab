@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 7004585124197212769}
   - component: {fileID: 7004585124197212768}
   - component: {fileID: 9085529353673457862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Rock Squad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,8 +11,8 @@ public class TownCenter : MonoBehaviour
     [SerializeField] GameObject PaperSquad = null;
     [SerializeField] GameObject ScissorSquad = null;
 
-    [SerializeField] Node frontLeftNode;
-    [SerializeField] Node frontRightNode;
+    [SerializeField] Node frontLeftNode = null;
+    [SerializeField] Node frontRightNode = null;
 
     LayerMask nodeLayerMask;
     const float rayDistance = 1f;

@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1790626129345135848}
   - component: {fileID: 1790626129345135853}
   - component: {fileID: 4439089984287268072}
-  - component: {fileID: 6485268898633655679}
+  - component: {fileID: 8192513157267283546}
   m_Layer: 10
   m_Name: Player Rock Unit
   m_TagString: Untagged
@@ -279,7 +279,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6485268898633655679
+--- !u!114 &8192513157267283546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6170473145686946569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7f537284f64485d8dda8f30a13207e, type: 3}
+  m_Script: {fileID: 11500000, guid: 72a9ea71bbd8a41a7adeb645fe7002bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: 02c31544b88b940a68ef6ea28f2f245e, type: 2}

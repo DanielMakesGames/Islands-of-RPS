@@ -172,9 +172,14 @@ public class SquadUnit : MonoBehaviour
     protected virtual IEnumerator AttackAnimation(SquadUnit targetSquadUnit)
     {
         myNavMeshAgent.enabled = false;
-        OnAnimateAttack?.Invoke();
+        AnimateAttack();
         targetSquadUnit.ReceiveDamage(attackDamage, damageType);
         yield return new WaitForSeconds(attackTime);
         myNavMeshAgent.enabled = true;
+    }
+
+    protected void AnimateAttack()
+    {
+        OnAnimateAttack?.Invoke();
     }
 }

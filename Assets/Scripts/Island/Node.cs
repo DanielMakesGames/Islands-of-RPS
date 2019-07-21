@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class Node : MonoBehaviour
 {
-    public int visited = -1;
+    public int PlayerVisited = -1;
+    public int EnemyVisited = -1;
 
     Node northNode;
     public Node NorthNode
@@ -36,7 +37,8 @@ public class Node : MonoBehaviour
     [SerializeField] NavMeshLink[] westNavMeshLinks = null;
 
     public bool IsWalkable = true;
-    public Squad currentSquad;
+    public Squad CurrentPlayerSquad;
+    public Squad CurrentEnemySquad;
 
     public List<Node> Neighbours = new List<Node>();
     const float rayDistance = 10f;

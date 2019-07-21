@@ -77,11 +77,11 @@ public class TownCenter : MonoBehaviour
     {
         yield return null;
 
-        if (frontLeftNode.currentSquad == null)
+        if (frontLeftNode.CurrentPlayerSquad == null)
         {
             squad.MoveFromTownCenter(frontLeftNode);
         }
-        else if (frontRightNode.currentSquad == null)
+        else if (frontRightNode.CurrentPlayerSquad == null)
         {
             squad.MoveFromTownCenter(frontRightNode);
         }

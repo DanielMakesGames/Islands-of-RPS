@@ -18,9 +18,14 @@ public class Squad : MonoBehaviour
         OnTapped,
         Selected,
         OnTappedSelected,
-        Moving
+        Moving,
+        OnTransport
     }
     protected SquadState mySquadState = SquadState.Ready;
+    public SquadState CurrentSquadState
+    {
+        get { return mySquadState; }
+    }
 
     protected Node currentNode;
     public Node CurrentNode
@@ -120,24 +125,24 @@ public class Squad : MonoBehaviour
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             currentNode = hitNode;
 
-            if (currentNode.currentSquad != null)
+            if (currentNode.CurrentPlayerSquad != null)
             {
-                if (currentNode.currentSquad.PreviousNode != null && currentNode.currentSquad.PreviousNode.currentSquad == null)
+                if (currentNode.CurrentPlayerSquad.PreviousNode != null && currentNode.CurrentPlayerSquad.PreviousNode.CurrentPlayerSquad == null)
                 {
-                    currentNode.currentSquad.MoveToTarget(currentNode.currentSquad.PreviousNode);
+                    currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.CurrentPlayerSquad.PreviousNode);
                 }
-                else if (PreviousNode != null && PreviousNode.currentSquad == null)
+                else if (PreviousNode != null && PreviousNode.CurrentPlayerSquad == null)
                 {
-                    currentNode.currentSquad.MoveToTarget(PreviousNode);
+                    currentNode.CurrentPlayerSquad.MoveToTarget(PreviousNode);
                 }
                 else
                 {
                     bool didMove = false;
                     for (int i = 0; i < currentNode.Neighbours.Count; ++i)
                     {
-                        if (currentNode.Neighbours[i].currentSquad == null)
+                        if (currentNode.Neighbours[i].CurrentPlayerSquad == null)
                         {
-                            currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[i]);
+                            currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[i]);
                             didMove = true;
                             break;
                         }
@@ -145,23 +150,23 @@ public class Squad : MonoBehaviour
                     if (!didMove)
                     {
 
-                        currentNode.currentSquad.MoveToTarget(currentNode.Neighbours[
+                        currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[
                             Random.Range(0, currentNode.Neighbours.Count)]);
                     }
                 }
             }
-            currentNode.currentSquad = this;
+            currentNode.CurrentPlayerSquad = this;
         }
     }
 
     public void MoveToTarget(Node destinationNode)
     {
-        islandGrid.ResetNodeValues();
-        currentNode.visited = 0;
-        currentNode.currentSquad = null;
-        islandGrid.SetNodeDistances(currentNode);
+        islandGrid.ResetPlayerNodeValues();
+        currentNode.PlayerVisited = 0;
+        currentNode.CurrentPlayerSquad = null;
+        islandGrid.SetPlayerNodeDistances(currentNode);
         targetNode = destinationNode;
-        path = islandGrid.GetPath(destinationNode);
+        path = islandGrid.GetPlayerPath(destinationNode);
 
         OnUpdateNavMeshAgents?.Invoke(destinationNode.transform.position + nodePositionOffset);
         StartCoroutine(MoveToTargetCoroutine());
@@ -169,8 +174,8 @@ public class Squad : MonoBehaviour
 
     public void MoveFromTownCenter(Node destinationNode)
     {
-        currentNode.visited = 0;
-        currentNode.currentSquad = null;
+        currentNode.PlayerVisited = 0;
+        currentNode.CurrentPlayerSquad = null;
 
         transform.position = destinationNode.transform.position + nodePositionOffset;
         mySquadState = SquadState.Ready;

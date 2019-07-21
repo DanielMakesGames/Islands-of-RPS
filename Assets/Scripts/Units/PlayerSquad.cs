@@ -83,12 +83,14 @@ public class PlayerSquad : Squad
                         if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Node"))
                         {
                             PathfindingNode = hitInfo.transform.GetComponent<Node>();
-                            path = islandGrid.GetPath(PathfindingNode);
-                        }
-                        if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Squad"))
-                        {
-                            PathfindingNode = hitInfo.transform.GetComponent<Squad>().CurrentNode;
-                            path = islandGrid.GetPath(PathfindingNode);
+                            if (PathfindingNode.IsWalkable)
+                            {
+                                path = islandGrid.GetPlayerPath(PathfindingNode);
+                            }
+                            else
+                            {
+                                path.Clear();
+                            }
                         }
                     }
                     else
@@ -119,9 +121,9 @@ public class PlayerSquad : Squad
                         if (hitInfo.transform == transform)
                         {
                             mySquadState = Squad.SquadState.Selected;
-                            islandGrid.ResetNodeValues();
-                            currentNode.visited = 0;
-                            islandGrid.SetNodeDistances(currentNode);
+                            islandGrid.ResetPlayerNodeValues();
+                            currentNode.PlayerVisited = 0;
+                            islandGrid.SetPlayerNodeDistances(currentNode);
 
                             OnSquadSelected?.Invoke(this);
                             AnimateSquadSelected();

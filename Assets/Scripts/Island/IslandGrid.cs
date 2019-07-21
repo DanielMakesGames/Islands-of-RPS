@@ -19,34 +19,52 @@ public class IslandGrid : MonoBehaviour
         islandNodes = GetComponentsInChildren<Node>();
     }
 
-    public void SetNodeDistances(Node startingNode)
+    public void SetPlayerNodeDistances(Node startingNode)
     {
-        ResetNodeValues();
-        startingNode.visited = 0;
+        ResetPlayerNodeValues();
+        startingNode.PlayerVisited = 0;
         int[] testArray = new int[islandNodes.Length];
 
         for (int step = 1; step < testArray.Length; ++step)
         {
             for (int i = 0; i < islandNodes.Length; ++i)
             {
-                if (islandNodes[i].visited == step - 1)
+                if (islandNodes[i].PlayerVisited == step - 1)
                 {
-                    TestFourDirections(islandNodes[i], step);
+                    TestFourPlayerDirections(islandNodes[i], step);
                 }
             }
         }
     }
 
-    public List<Node> GetPath(Node targetNode)
+    public void SetEnemyNodeDistances(Node startingNode)
+    {
+        ResetEnemyNodeValues();
+        startingNode.EnemyVisited = 0;
+        int[] testArray = new int[islandNodes.Length];
+
+        for (int step = 1; step < testArray.Length; ++step)
+        {
+            for (int i = 0; i < islandNodes.Length; ++i)
+            {
+                if (islandNodes[i].EnemyVisited == step - 1)
+                {
+                    TestFourEnemyDirections(islandNodes[i], step);
+                }
+            }
+        }
+    }
+
+    public List<Node> GetPlayerPath(Node targetNode)
     {
         int step;
         List<Node> path = new List<Node>();
         List<Node> tempList = new List<Node>();
 
-        if (targetNode.visited != -1)
+        if (targetNode.PlayerVisited != -1)
         {
             path.Add(targetNode);
-            step = targetNode.visited - 1;
+            step = targetNode.PlayerVisited - 1;
         }
         else
         {
@@ -56,19 +74,19 @@ public class IslandGrid : MonoBehaviour
 
         for (int i = step; step > -1; --step)
         {
-            if (TestDirection(targetNode, step, NodeDirection.North))
+            if (TestPlayerDirection(targetNode, step, NodeDirection.North))
             {
                 tempList.Add(targetNode.NorthNode);
             }
-            if (TestDirection(targetNode, step, NodeDirection.East))
+            if (TestPlayerDirection(targetNode, step, NodeDirection.East))
             {
                 tempList.Add(targetNode.EastNode);
             }
-            if (TestDirection(targetNode, step, NodeDirection.South))
+            if (TestPlayerDirection(targetNode, step, NodeDirection.South))
             {
                 tempList.Add(targetNode.SouthNode);
             }
-            if (TestDirection(targetNode, step, NodeDirection.West))
+            if (TestPlayerDirection(targetNode, step, NodeDirection.West))
             {
                 tempList.Add(targetNode.WestNode);
             }
@@ -83,32 +101,98 @@ public class IslandGrid : MonoBehaviour
         return path;
     }
 
-    void TestFourDirections(Node tNode, int step)
+    public List<Node> GetEnemyPath(Node targetNode)
     {
-        if (TestDirection(tNode, -1, NodeDirection.North))
+        int step;
+        List<Node> path = new List<Node>();
+        List<Node> tempList = new List<Node>();
+
+        if (targetNode.EnemyVisited != -1)
         {
-            SetVisited(tNode.NorthNode, step);
+            path.Add(targetNode);
+            step = targetNode.EnemyVisited - 1;
         }
-        if (TestDirection(tNode, -1, NodeDirection.East))
+        else
         {
-            SetVisited(tNode.EastNode, step);
+            Debug.Log("Path not available.");
+            return path;
         }
-        if (TestDirection(tNode, -1, NodeDirection.South))
+
+        for (int i = step; step > -1; --step)
         {
-            SetVisited(tNode.SouthNode, step);
+            if (TestEnemyDirection(targetNode, step, NodeDirection.North))
+            {
+                tempList.Add(targetNode.NorthNode);
+            }
+            if (TestEnemyDirection(targetNode, step, NodeDirection.East))
+            {
+                tempList.Add(targetNode.EastNode);
+            }
+            if (TestEnemyDirection(targetNode, step, NodeDirection.South))
+            {
+                tempList.Add(targetNode.SouthNode);
+            }
+            if (TestEnemyDirection(targetNode, step, NodeDirection.West))
+            {
+                tempList.Add(targetNode.WestNode);
+            }
+
+            Node closestNode = FindClosest(targetNode.transform, tempList);
+            path.Add(closestNode);
+            targetNode = closestNode;
+            tempList.Clear();
         }
-        if (TestDirection(tNode, -1, NodeDirection.West))
+
+        path.Reverse();
+        return path;
+    }
+
+    void TestFourPlayerDirections(Node tNode, int step)
+    {
+        if (TestPlayerDirection(tNode, -1, NodeDirection.North))
         {
-            SetVisited(tNode.WestNode, step);
+            SetPlayerVisited(tNode.NorthNode, step);
+        }
+        if (TestPlayerDirection(tNode, -1, NodeDirection.East))
+        {
+            SetPlayerVisited(tNode.EastNode, step);
+        }
+        if (TestPlayerDirection(tNode, -1, NodeDirection.South))
+        {
+            SetPlayerVisited(tNode.SouthNode, step);
+        }
+        if (TestPlayerDirection(tNode, -1, NodeDirection.West))
+        {
+            SetPlayerVisited(tNode.WestNode, step);
         }
     }
 
-    bool TestDirection(Node tNode, int step, NodeDirection direction)
+    void TestFourEnemyDirections(Node tNode, int step)
+    {
+        if (TestEnemyDirection(tNode, -1, NodeDirection.North))
+        {
+            SetEnemyVisited(tNode.NorthNode, step);
+        }
+        if (TestEnemyDirection(tNode, -1, NodeDirection.East))
+        {
+            SetEnemyVisited(tNode.EastNode, step);
+        }
+        if (TestEnemyDirection(tNode, -1, NodeDirection.South))
+        {
+            SetEnemyVisited(tNode.SouthNode, step);
+        }
+        if (TestEnemyDirection(tNode, -1, NodeDirection.West))
+        {
+            SetEnemyVisited(tNode.WestNode, step);
+        }
+    }
+
+    bool TestPlayerDirection(Node tNode, int step, NodeDirection direction)
     {
         switch (direction)
         {
             case NodeDirection.North:
-                if (tNode.NorthNode != null && tNode.NorthNode.visited == step)
+                if (tNode.NorthNode != null && tNode.NorthNode.PlayerVisited == step)
                 {
                     return true;
                 }
@@ -117,7 +201,7 @@ public class IslandGrid : MonoBehaviour
                     return false;
                 }
             case NodeDirection.East:
-                if (tNode.EastNode != null && tNode.EastNode.visited == step)
+                if (tNode.EastNode != null && tNode.EastNode.PlayerVisited == step)
                 {
                     return true;
                 }
@@ -126,7 +210,7 @@ public class IslandGrid : MonoBehaviour
                     return false;
                 }
             case NodeDirection.South:
-                if (tNode.SouthNode != null && tNode.SouthNode.visited == step)
+                if (tNode.SouthNode != null && tNode.SouthNode.PlayerVisited == step)
                 {
                     return true;
                 }
@@ -135,7 +219,7 @@ public class IslandGrid : MonoBehaviour
                     return false;
                 }
             case NodeDirection.West:
-                if (tNode.WestNode != null && tNode.WestNode.visited == step)
+                if (tNode.WestNode != null && tNode.WestNode.PlayerVisited == step)
                 {
                     return true;
                 }
@@ -147,9 +231,74 @@ public class IslandGrid : MonoBehaviour
         return false;
     }
 
-    void SetVisited(Node tNode, int step)
+    bool TestEnemyDirection(Node tNode, int step, NodeDirection direction)
     {
-        tNode.visited = step;
+        switch (direction)
+        {
+            case NodeDirection.North:
+                if (tNode.NorthNode != null && tNode.NorthNode.EnemyVisited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case NodeDirection.East:
+                if (tNode.EastNode != null && tNode.EastNode.EnemyVisited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case NodeDirection.South:
+                if (tNode.SouthNode != null && tNode.SouthNode.EnemyVisited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case NodeDirection.West:
+                if (tNode.WestNode != null && tNode.WestNode.EnemyVisited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+        return false;
+    }
+
+    void SetPlayerVisited(Node tNode, int step)
+    {
+        tNode.PlayerVisited = step;
+    }
+
+    void SetEnemyVisited(Node tNode, int step)
+    {
+        tNode.PlayerVisited = step;
+    }
+
+    public void ResetPlayerNodeValues()
+    {
+        for (int i = 0; i < islandNodes.Length; ++i)
+        {
+            islandNodes[i].PlayerVisited = -1;
+        }
+    }
+
+    public void ResetEnemyNodeValues()
+    {
+        for (int i = 0; i < islandNodes.Length; ++i)
+        {
+            islandNodes[i].EnemyVisited = -1;
+        }
     }
 
     Node FindClosest(Transform targetLocation, List<Node> tNodes)
@@ -166,13 +315,5 @@ public class IslandGrid : MonoBehaviour
             }
         }
         return tNodes[indexNumber];
-    }
-
-    public void ResetNodeValues()
-    {
-        for (int i = 0; i < islandNodes.Length; ++i)
-        {
-            islandNodes[i].visited = -1;
-        }
     }
 }

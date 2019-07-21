@@ -189,4 +189,73 @@ public class PlayerSquad : Squad
     void Squad_OnSquadDeselected(Squad squad)
     {
     }
+
+    protected override void SetCurrentNode()
+    {
+        if (Physics.Raycast(transform.position + transform.up * rayOffset, -transform.up, out RaycastHit raycastHit,
+            rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            Node hitNode = raycastHit.transform.GetComponent<Node>();
+            currentNode = hitNode;
+
+            if (currentNode.CurrentPlayerSquad != null)
+            {
+                if (currentNode.CurrentPlayerSquad.PreviousNode != null && currentNode.CurrentPlayerSquad.PreviousNode.CurrentPlayerSquad == null)
+                {
+                    currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.CurrentPlayerSquad.PreviousNode);
+                }
+                else if (PreviousNode != null && PreviousNode.CurrentPlayerSquad == null)
+                {
+                    currentNode.CurrentPlayerSquad.MoveToTarget(PreviousNode);
+                }
+                else
+                {
+                    bool didMove = false;
+                    for (int i = 0; i < currentNode.Neighbours.Count; ++i)
+                    {
+                        if (currentNode.Neighbours[i].CurrentPlayerSquad == null)
+                        {
+                            currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[i]);
+                            didMove = true;
+                            break;
+                        }
+                    }
+                    if (!didMove)
+                    {
+
+                        currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[
+                            Random.Range(0, currentNode.Neighbours.Count)]);
+                    }
+                }
+            }
+            currentNode.CurrentPlayerSquad = this;
+        }
+    }
+
+    public override void MoveToTarget(Node destinationNode)
+    {
+        islandGrid.ResetPlayerNodeValues();
+        currentNode.PlayerVisited = 0;
+        currentNode.CurrentPlayerSquad = null;
+        islandGrid.SetPlayerNodeDistances(currentNode);
+        targetNode = destinationNode;
+        path = islandGrid.GetPlayerPath(destinationNode);
+
+        UpdateNavMeshAgents(destinationNode.transform.position + nodePositionOffset);
+        StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    public override void MoveFromTownCenter(Node destinationNode)
+    {
+        currentNode.PlayerVisited = 0;
+        currentNode.CurrentPlayerSquad = null;
+
+        transform.position = destinationNode.transform.position + nodePositionOffset;
+        mySquadState = SquadState.Ready;
+        path.Clear();
+
+        SetCurrentNode();
+        targetNode = null;
+    }
+
 }

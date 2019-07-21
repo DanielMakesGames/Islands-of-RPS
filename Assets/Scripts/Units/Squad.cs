@@ -39,8 +39,8 @@ public class Squad : MonoBehaviour
         get { return targetNode; }
     }
 
-    const float rayDistance = 1f;
-    const float rayOffset = 0.5f;
+    protected const float rayDistance = 1f;
+    protected const float rayOffset = 0.5f;
     protected LayerMask nodeLayerMask;
 
     public Node PathfindingNode;
@@ -81,7 +81,7 @@ public class Squad : MonoBehaviour
         get { return squareAttackRadius; }
     }
 
-    Vector3 nodePositionOffset = Vector3.up * 5f;
+    protected Vector3 nodePositionOffset = Vector3.up * 5f;
 
     protected virtual void Awake()
     {
@@ -99,7 +99,6 @@ public class Squad : MonoBehaviour
     private void Start()
     {
         SetCurrentNode();
-
         SpawnSquadUnits();
     }
 
@@ -117,67 +116,19 @@ public class Squad : MonoBehaviour
         }
     }
 
-    void SetCurrentNode()
+    protected virtual void SetCurrentNode()
     {
         if (Physics.Raycast(transform.position + transform.up * rayOffset, -transform.up, out RaycastHit raycastHit,
             rayDistance, nodeLayerMask, QueryTriggerInteraction.Ignore))
         {
             Node hitNode = raycastHit.transform.GetComponent<Node>();
             currentNode = hitNode;
-
-            if (currentNode.CurrentPlayerSquad != null)
-            {
-                if (currentNode.CurrentPlayerSquad.PreviousNode != null && currentNode.CurrentPlayerSquad.PreviousNode.CurrentPlayerSquad == null)
-                {
-                    currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.CurrentPlayerSquad.PreviousNode);
-                }
-                else if (PreviousNode != null && PreviousNode.CurrentPlayerSquad == null)
-                {
-                    currentNode.CurrentPlayerSquad.MoveToTarget(PreviousNode);
-                }
-                else
-                {
-                    bool didMove = false;
-                    for (int i = 0; i < currentNode.Neighbours.Count; ++i)
-                    {
-                        if (currentNode.Neighbours[i].CurrentPlayerSquad == null)
-                        {
-                            currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[i]);
-                            didMove = true;
-                            break;
-                        }
-                    }
-                    if (!didMove)
-                    {
-
-                        currentNode.CurrentPlayerSquad.MoveToTarget(currentNode.Neighbours[
-                            Random.Range(0, currentNode.Neighbours.Count)]);
-                    }
-                }
-            }
-            currentNode.CurrentPlayerSquad = this;
         }
     }
 
-    public void MoveToTarget(Node destinationNode)
+    public virtual void MoveToTarget(Node destinationNode)
     {
-        islandGrid.ResetPlayerNodeValues();
-        currentNode.PlayerVisited = 0;
-        currentNode.CurrentPlayerSquad = null;
-        islandGrid.SetPlayerNodeDistances(currentNode);
-        targetNode = destinationNode;
-        path = islandGrid.GetPlayerPath(destinationNode);
-
-        OnUpdateNavMeshAgents?.Invoke(destinationNode.transform.position + nodePositionOffset);
-        StartCoroutine(MoveToTargetCoroutine());
-    }
-
-    public void MoveFromTownCenter(Node destinationNode)
-    {
-        currentNode.PlayerVisited = 0;
-        currentNode.CurrentPlayerSquad = null;
-
-        transform.position = destinationNode.transform.position + nodePositionOffset;
+        transform.position = targetNode.transform.position + nodePositionOffset;
         mySquadState = SquadState.Ready;
         path.Clear();
 
@@ -185,12 +136,16 @@ public class Squad : MonoBehaviour
         targetNode = null;
     }
 
+    public virtual void MoveFromTownCenter(Node destinationNode)
+    {
+    }
+
     public void SetSquadManager(SquadManager squadManager)
     {
         mySquadManager = squadManager;
     }
 
-    private IEnumerator MoveToTargetCoroutine()
+    protected IEnumerator MoveToTargetCoroutine()
     {
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {

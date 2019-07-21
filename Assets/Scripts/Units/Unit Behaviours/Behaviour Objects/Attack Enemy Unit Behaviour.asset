@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 656ed3ba7c12b4786b0a0ff5e19d987b, type: 3}
-  m_Name: Attack Player Behaviour
+  m_Name: Attack Enemy Unit Behaviour
   m_EditorClassIdentifier: 
-  filter: {fileID: 11400000, guid: 434e9738acd9f48ee96591d6b4af351d, type: 2}
+  filter: {fileID: 11400000, guid: d48cf4e6ba91d443197bd824292d8cae, type: 2}

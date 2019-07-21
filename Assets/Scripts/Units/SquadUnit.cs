@@ -139,6 +139,11 @@ public class SquadUnit : MonoBehaviour
         StartCoroutine(AttackAnimation(targetSquadUnit));
     }
 
+    public void Attack(TownCenter targetTownCenter)
+    {
+        StartCoroutine(AttackAnimation(targetTownCenter));
+    }
+
     public void ReceiveDamage(float damage, DamageType opponentDamageType)
     {
         switch (opponentDamageType)
@@ -174,6 +179,15 @@ public class SquadUnit : MonoBehaviour
         myNavMeshAgent.enabled = false;
         AnimateAttack();
         targetSquadUnit.ReceiveDamage(attackDamage, damageType);
+        yield return new WaitForSeconds(attackTime);
+        myNavMeshAgent.enabled = true;
+    }
+
+    protected virtual IEnumerator AttackAnimation(TownCenter targetTownCenter)
+    {
+        myNavMeshAgent.enabled = false;
+        AnimateAttack();
+        targetTownCenter.ReceiveDamage(attackDamage, damageType);
         yield return new WaitForSeconds(attackTime);
         myNavMeshAgent.enabled = true;
     }

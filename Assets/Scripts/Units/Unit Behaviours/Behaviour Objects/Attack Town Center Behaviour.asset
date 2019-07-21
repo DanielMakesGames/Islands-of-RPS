@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656ed3ba7c12b4786b0a0ff5e19d987b, type: 3}
-  m_Name: Attack Enemy Behaviour
+  m_Script: {fileID: 11500000, guid: 712b08088dfd4476da707947204b447b, type: 3}
+  m_Name: Attack Town Center Behaviour
   m_EditorClassIdentifier: 
-  filter: {fileID: 11400000, guid: d48cf4e6ba91d443197bd824292d8cae, type: 2}
+  filter: {fileID: 11400000, guid: 39fde9025aa4346c0af06415299ecca9, type: 2}

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Squad Unit/Behaviour/Attack")]
-public class AttackBehaviour : FilteredUnitBehaviour
+[CreateAssetMenu(menuName = "Squad Unit/Behaviour/Attack Unit")]
+public class AttackUnitBehaviour : FilteredUnitBehaviour
 {
     public override Vector3 CalculateMove(SquadUnit squadUnit, List<Transform> context, Squad squad)
     {

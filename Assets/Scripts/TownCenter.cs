@@ -20,6 +20,16 @@ public class TownCenter : MonoBehaviour
     const float rayDistance = 1f;
     const float rayOffset = 0.5f;
 
+    float health = 100f;
+
+    [Range(0f, 1f)]
+    [SerializeField] float rockDefense = 0f;
+    [Range(0f, 1f)]
+    [SerializeField] float paperDefense = 0f;
+    [Range(0f, 1f)]
+    [SerializeField] float scissorDefense = 0f;
+
+
     private void Awake()
     {
         nodeLayerMask = LayerMask.GetMask("Node");
@@ -61,6 +71,27 @@ public class TownCenter : MonoBehaviour
         StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
         OnSpawnNewSquad?.Invoke(squadClone);
+    }
+
+    public void ReceiveDamage(float damage, SquadUnit.DamageType damageType)
+    {
+        switch (damageType)
+        {
+            case SquadUnit.DamageType.Rock:
+                health -= damage * (1f - rockDefense);
+                break;
+            case SquadUnit.DamageType.Paper:
+                health -= damage * (1f - paperDefense);
+                break;
+            case SquadUnit.DamageType.Scissors:
+                health -= damage * (1f - scissorDefense);
+                break;
+        }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void SpawnScissorSquad()

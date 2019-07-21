@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Squad Unit/Behaviour/Cohesion")]
+[CreateAssetMenu(menuName = "Squad/Behaviour/Cohesion")]
 public class CohesionSquadBehaviour : FilteredSquadBehaviour
 {
     public override Vector3 CalculateMove(Squad squad, List<Transform> context, SquadManager squadManager)

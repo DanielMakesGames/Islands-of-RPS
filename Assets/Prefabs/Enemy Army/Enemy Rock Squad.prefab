@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064016629454621640}
   - component: {fileID: 5385211067018369479}
+  - component: {fileID: -8252079698261087588}
   m_Layer: 12
   m_Name: Enemy Rock Squad
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
   NeighborRadius: 20
   AvoidanceRadiusMultiplier: 0.5
   AttackRadiusMultiplier: 1
+--- !u!65 &-8252079698261087588
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064016629454621643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &2903692379417924928
 GameObject:
   m_ObjectHideFlags: 0

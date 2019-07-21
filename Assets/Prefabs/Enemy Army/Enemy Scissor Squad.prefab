@@ -328,6 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6518476075902063585}
   - component: {fileID: 4236873191424442302}
+  - component: {fileID: 4424749282103350229}
   m_Layer: 12
   m_Name: Enemy Scissor Squad
   m_TagString: Untagged
@@ -393,6 +394,19 @@ MonoBehaviour:
   NeighborRadius: 4
   AvoidanceRadiusMultiplier: 0.5
   AttackRadiusMultiplier: 0.1
+--- !u!65 &4424749282103350229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518476075902063586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &6808951140114972948
 GameObject:
   m_ObjectHideFlags: 0

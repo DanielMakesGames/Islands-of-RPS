@@ -83,11 +83,18 @@ public class Squad : MonoBehaviour
 
     protected Vector3 nodePositionOffset = Vector3.up * 5f;
 
+    Collider myCollider;
+    public Collider SquadCollider
+    {
+        get { return myCollider; }
+    }
+
     protected virtual void Awake()
     {
         islandGrid = FindObjectOfType<IslandGrid>();
         squadUnits = new List<SquadUnit>();
         nodeLayerMask = LayerMask.GetMask("Node");
+        myCollider = GetComponent<Collider>();
 
         squareMaxSpeed = MaxSpeed * MaxSpeed;
         squareNeighborRadius = NeighborRadius * NeighborRadius;

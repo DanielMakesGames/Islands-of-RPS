@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284098862275881361}
   - component: {fileID: 2005184800626246925}
+  - component: {fileID: 6263783061434727442}
   m_Layer: 12
   m_Name: Enemy Paper Squad
   m_TagString: Untagged
@@ -269,6 +270,19 @@ MonoBehaviour:
   NeighborRadius: 2
   AvoidanceRadiusMultiplier: 0.5
   AttackRadiusMultiplier: 0.1
+--- !u!65 &6263783061434727442
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4284098862275881362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &4574578323444136804
 GameObject:
   m_ObjectHideFlags: 0

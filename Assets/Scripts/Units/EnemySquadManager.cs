@@ -7,6 +7,7 @@ public class EnemySquadManager : SquadManager
     [SerializeField] EnemyWave[] EnemyWaves = null;
 
     int currentEnemyWaveIndex = 0;
+    public float NeighborRadius = 1.5f;
 
     private void Start()
     {
@@ -45,6 +46,48 @@ public class EnemySquadManager : SquadManager
         }
     }
 
-    // when Squad lands on island, use nav mesh link to hop on the island
-    // Squad has independent AI to to attack player
+    private void Update()
+    {
+        for (int i = 0; i < mySquads.Count; ++i)
+        {
+            if (mySquads[i] && mySquads[i].gameObject.activeInHierarchy)
+            {
+                if (mySquads[i].CurrentSquadState == Squad.SquadState.OnTransport)
+                {
+                    break;
+                }
+                List<Transform> context = GetNearbyObjects(mySquads[i]);
+
+                Node move = null; //move to nearest node to attack town center
+                //move = CompositeUnitBehaviour.CalculateMove(squadUnits[i], context, this);
+
+                if (move != null)
+                {
+                    mySquads[i].MoveToTarget(move);
+                }
+            }
+            else
+            {
+                mySquads.Remove(mySquads[i]);
+            }
+        }
+    }
+
+    List<Transform> GetNearbyObjects(Squad squad)
+    {
+        List<Transform> context = new List<Transform>();
+        Collider[] contextColliders = Physics.OverlapSphere(
+            squad.transform.position + Vector3.up, NeighborRadius,
+            Camera.main.cullingMask, QueryTriggerInteraction.Collide);
+
+        for (int i = 0; i < contextColliders.Length; ++i)
+        {
+            if (contextColliders[i] != squad.SquadCollider)
+            {
+                context.Add(contextColliders[i].transform);
+            }
+        }
+
+        return context;
+    }
 }

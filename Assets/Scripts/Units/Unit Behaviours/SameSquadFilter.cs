@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Squad Unit/Filter/Same Squad")]
-public class SameSquadFilter : ContextFilter
+public class SameSquadFilter : ContextUnitFilter
 {
     public override List<Transform> Filter(SquadUnit squadUnit, List<Transform> original)
     {

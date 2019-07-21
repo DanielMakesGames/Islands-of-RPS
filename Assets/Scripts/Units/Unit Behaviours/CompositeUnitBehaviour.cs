@@ -8,7 +8,7 @@ public class CompositeUnitBehaviour : UnitBehaviour
     public UnitBehaviour[] Behaviours;
     public float[] Weights;
 
-    public override Vector3 CalculateMove(SquadUnit squadUnit, List<Transform> context, Squad squadManager)
+    public override Vector3 CalculateMove(SquadUnit squadUnit, List<Transform> context, Squad squad)
     {
         if (Weights.Length != Behaviours.Length)
         {
@@ -20,7 +20,7 @@ public class CompositeUnitBehaviour : UnitBehaviour
 
         for (int i = 0; i < Behaviours.Length; ++i)
         {
-            Vector3 partialMove = Behaviours[i].CalculateMove(squadUnit, context, squadManager) * Weights[i];
+            Vector3 partialMove = Behaviours[i].CalculateMove(squadUnit, context, squad) * Weights[i];
 
             if (partialMove != Vector3.zero)
             {

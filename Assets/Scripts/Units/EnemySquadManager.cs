@@ -7,7 +7,10 @@ public class EnemySquadManager : SquadManager
     [SerializeField] EnemyWave[] EnemyWaves = null;
 
     int currentEnemyWaveIndex = 0;
-    public float NeighborRadius = 1.5f;
+
+    public SquadBehaviour CompositeSquadBehaviour;
+    [Range(1f, 20f)]
+    public float NeighborRadius = 10f;
 
     private void Start()
     {
@@ -58,12 +61,12 @@ public class EnemySquadManager : SquadManager
                 }
                 List<Transform> context = GetNearbyObjects(mySquads[i]);
 
-                Node move = null; //move to nearest node to attack town center
-                //move = CompositeUnitBehaviour.CalculateMove(squadUnits[i], context, this);
+                Vector3 move = Vector3.zero;
+                move = CompositeSquadBehaviour.CalculateMove(mySquads[i], context, this);
 
-                if (move != null)
+                if (move == Vector3.zero)
                 {
-                    mySquads[i].MoveToTarget(move);
+                    //mySquads[i].MoveToTarget();
                 }
             }
             else

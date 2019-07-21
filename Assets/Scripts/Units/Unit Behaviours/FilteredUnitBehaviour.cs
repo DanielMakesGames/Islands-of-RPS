@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class FilteredUnitBehaviour : UnitBehaviour
 {
-    public ContextFilter filter;
+    public ContextUnitFilter filter;
 }

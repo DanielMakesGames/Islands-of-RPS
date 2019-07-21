@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Squad Unit/Filter/LayerMask")]
-public class LayerMaskFilter : ContextFilter
+public class LayerMaskFilter : ContextUnitFilter
 {
     public LayerMask mask;
 

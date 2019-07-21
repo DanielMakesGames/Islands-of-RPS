@@ -112,7 +112,7 @@ public class Node : MonoBehaviour
             }
             else
             {
-                DisableNavMeshLinks(eastNavMeshLinks);
+                DisableNavMeshLinks(southNavMeshLinks);
             }
         }
         else
@@ -133,7 +133,7 @@ public class Node : MonoBehaviour
             }
             else
             {
-                DisableNavMeshLinks(eastNavMeshLinks);
+                DisableNavMeshLinks(westNavMeshLinks);
             }
         }
         else

@@ -58,7 +58,8 @@ public class EnemySquadManager : SquadManager
         {
             if (mySquads[i] && mySquads[i].gameObject.activeInHierarchy)
             {
-                if (mySquads[i].CurrentSquadState == Squad.SquadState.OnTransport)
+                if (mySquads[i].CurrentSquadState == Squad.SquadState.OnTransport ||
+                    mySquads[i].CurrentSquadState == Squad.SquadState.Moving)
                 {
                     break;
                 }

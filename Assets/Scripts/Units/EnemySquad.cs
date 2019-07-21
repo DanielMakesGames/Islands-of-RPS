@@ -27,19 +27,6 @@ public class EnemySquad : Squad
 
     }
 
-    void OnEnemyTransportLanded(Node landingNode)
-    {
-        transform.parent = null;
-        for (int i = 0; i < squadUnits.Count; ++i)
-        {
-            squadUnits[i].transform.parent = null;
-            squadUnits[i].EnableNavMeshAgent();
-        }
-        currentNode = landingNode;
-        MoveToTarget(landingNode);
-        AnimateSquadPath();
-    }
-
     protected override void SpawnSquadUnits()
     {
         base.SpawnSquadUnits();
@@ -92,8 +79,23 @@ public class EnemySquad : Squad
         }
     }
 
+    void OnEnemyTransportLanded(Node landingNode)
+    {
+        transform.parent = null;
+        for (int i = 0; i < squadUnits.Count; ++i)
+        {
+            squadUnits[i].transform.parent = null;
+            squadUnits[i].EnableNavMeshAgent();
+        }
+        currentNode = landingNode;
+        MoveToTarget(landingNode);
+        AnimateSquadPath();
+    }
+
     public override void MoveToTarget(Node destinationNode)
     {
+        mySquadState = Squad.SquadState.Moving;
+
         islandGrid.ResetEnemyNodeValues();
         currentNode.EnemyVisited = 0;
         currentNode.CurrentEnemySquad = null;
@@ -102,6 +104,7 @@ public class EnemySquad : Squad
         path = islandGrid.GetEnemyPath(destinationNode);
 
         UpdateNavMeshAgents(destinationNode.transform.position + nodePositionOffset);
+        StopAllCoroutines();
         StartCoroutine(MoveToTargetCoroutine());
     }
 }

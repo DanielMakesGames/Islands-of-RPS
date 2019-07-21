@@ -133,8 +133,6 @@ public class PlayerSquad : Squad
                 case Squad.SquadState.Selected:
                     if (path.Count > 0)
                     {
-                        mySquadState = Squad.SquadState.Moving;
-
                         targetNode = PathfindingNode;
                         MoveToTarget(targetNode);
 
@@ -242,6 +240,7 @@ public class PlayerSquad : Squad
         path = islandGrid.GetPlayerPath(destinationNode);
 
         UpdateNavMeshAgents(destinationNode.transform.position + nodePositionOffset);
+        StopAllCoroutines();
         StartCoroutine(MoveToTargetCoroutine());
     }
 

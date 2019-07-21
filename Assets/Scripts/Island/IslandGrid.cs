@@ -282,7 +282,7 @@ public class IslandGrid : MonoBehaviour
 
     void SetEnemyVisited(Node tNode, int step)
     {
-        tNode.PlayerVisited = step;
+        tNode.EnemyVisited = step;
     }
 
     public void ResetPlayerNodeValues()

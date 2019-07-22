@@ -9,24 +9,33 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] GameObject[] Islands = null;
 
+    GameObject currentIsland = null;
+
     private void OnEnable()
     {
         PlayButton.OnPressed += PlayButtonOnPressed;
+        ReturnToTitleButton.OnPressed += ReturnToTitleButtonOnPressed;
     }
 
     private void OnDisable()
     {
         PlayButton.OnPressed -= PlayButtonOnPressed;
+        ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnPressed;
     }
 
     void PlayButtonOnPressed()
     {
-        GameObject island = Instantiate(Islands[0]);
-        island.transform.parent = transform;
-        island.transform.localPosition = Vector3.zero;
-        island.transform.localRotation = Quaternion.identity;
+        currentIsland = Instantiate(Islands[0]);
+        currentIsland.transform.parent = transform;
+        currentIsland.transform.localPosition = Vector3.zero;
+        currentIsland.transform.localRotation = Quaternion.identity;
 
         OnGameplayStart?.Invoke();
+    }
+
+    void ReturnToTitleButtonOnPressed()
+    {
+        Destroy(currentIsland);
     }
 
 }

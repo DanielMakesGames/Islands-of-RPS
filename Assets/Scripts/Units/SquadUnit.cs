@@ -69,6 +69,16 @@ public class SquadUnit : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        ReturnToTitleButton.OnPressed += ReturnToTitleButtonOnButtonPress;
+    }
+
+    private void OnDisable()
+    {
+        ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnButtonPress;
+    }
+
     protected virtual void Start()
     {
         EnableNavMeshAgent();
@@ -200,5 +210,10 @@ public class SquadUnit : MonoBehaviour
     protected void AnimateAttack()
     {
         OnAnimateAttack?.Invoke();
+    }
+
+    void ReturnToTitleButtonOnButtonPress()
+    {
+        Destroy(gameObject);
     }
 }

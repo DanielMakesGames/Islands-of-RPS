@@ -19,6 +19,16 @@ public class EnemyTransport : MonoBehaviour
         nodeLayerMask = LayerMask.GetMask("Node");
     }
 
+    private void OnEnable()
+    {
+        ReturnToTitleButton.OnPressed += ReturnToTitleButtonOnButtonPress;
+    }
+
+    private void OnDisable()
+    {
+        ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnButtonPress;
+    }
+
     private void Start()
     {
         if (FindDestinationNode())
@@ -55,5 +65,10 @@ public class EnemyTransport : MonoBehaviour
         }
 
         OnEnemyTransportLanded?.Invoke(landingNode);
+    }
+
+    void ReturnToTitleButtonOnButtonPress()
+    {
+        Destroy(gameObject);
     }
 }

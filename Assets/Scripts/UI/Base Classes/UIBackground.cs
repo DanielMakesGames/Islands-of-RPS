@@ -27,11 +27,13 @@ public class UIBackground : MonoBehaviour
     private void OnEnable()
     {
         PlayButton.OnPressed += FadeOut;
+        ReturnToTitleButton.OnPressed += FadeIn;
     }
 
     private void OnDisable()
     {
         PlayButton.OnPressed -= FadeOut;
+        ReturnToTitleButton.OnPressed -= FadeIn;
     }
 
     protected void FadeIn()

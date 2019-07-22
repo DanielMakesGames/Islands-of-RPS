@@ -108,6 +108,16 @@ public class Squad : MonoBehaviour
         squareAttackRadius = squareNeighborRadius * AttackRadiusMultiplier;
     }
 
+    private void OnEnable()
+    {
+        ReturnToTitleButton.OnPressed += ReturnToTitleButtonOnButtonPress;
+    }
+
+    private void OnDisable()
+    {
+        ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnButtonPress;
+    }
+
     private void Start()
     {
         SetCurrentNode();
@@ -273,5 +283,10 @@ public class Squad : MonoBehaviour
     protected void UpdateNavMeshAgents(Vector3 targetPosition)
     {
         OnUpdateNavMeshAgents?.Invoke(targetPosition);
+    }
+
+    void ReturnToTitleButtonOnButtonPress()
+    {
+        Destroy(gameObject);
     }
 }

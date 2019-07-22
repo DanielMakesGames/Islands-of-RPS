@@ -157,13 +157,13 @@ public class Items : MonoBehaviour
 
     void MomentumDeceleration()
     {
-        momentum += (0f - momentum) * 4f * Time.deltaTime;
+        momentum += (0f - momentum) * 20f * Time.deltaTime;
         if (localPosition.x < minX + 2f || localPosition.x > maxX - 2f)
         {
             momentum = 0f;   
         }
 
-        if (Mathf.Abs(momentum) > 0.05f)
+        if (Mathf.Abs(momentum) > 1f)
         {
             localPosition.x += momentum;
         }

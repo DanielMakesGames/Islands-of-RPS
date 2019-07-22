@@ -82,10 +82,7 @@ public class ItemSelectPivot : MonoBehaviour
             if (currentState == ItemState.NotSelected)
             {
                 currentState = ItemState.Selected;
-                if (OnItemSelect != null)
-                {
-                    OnItemSelect();
-                }
+                OnItemSelect?.Invoke();
             }
         }
         else
@@ -94,10 +91,7 @@ public class ItemSelectPivot : MonoBehaviour
             {
                 currentState = ItemState.NotSelected;
                 stateWhenPressed = currentState;
-                if (OnItemDeselect != null)
-                {
-                    OnItemDeselect();
-                }
+                OnItemDeselect?.Invoke();
             }
         }
 
@@ -128,10 +122,7 @@ public class ItemSelectPivot : MonoBehaviour
             itemSelectPivotPressCoroutine = StartCoroutine( ItemSelectPivotPressCoroutine() );
         }
 
-        if (OnItemPressed != null)
-        {
-            OnItemPressed();
-        }
+        OnItemPressed?.Invoke();
     }
 
     public void ItemSelectPivotRelease()
@@ -150,10 +141,7 @@ public class ItemSelectPivot : MonoBehaviour
             }
             isPressed = false;
 
-            if (OnItemReleased != null)
-            {
-                OnItemReleased();
-            }
+            OnItemReleased?.Invoke();
         }
     }
 
@@ -170,10 +158,7 @@ public class ItemSelectPivot : MonoBehaviour
         }
         if (stateWhenPressed == ItemState.NotSelected && currentState == ItemState.NotSelected)
         {
-            if (OnItemSelectTapped != null)
-            {
-                OnItemSelectTapped(this);
-            }
+            OnItemSelectTapped.Invoke(this);
         }
     }
 

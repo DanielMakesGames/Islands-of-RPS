@@ -54,6 +54,8 @@ public class SquadUnit : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float scissorDefense = 0f;
 
+    const float minimumSqrSpeed = 20f;
+
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
@@ -115,22 +117,25 @@ public class SquadUnit : MonoBehaviour
 
     public void Move(Vector3 velocity)
     {
-        this.velocity = velocity;
-        velocity.y = 0f;
+        if (myNavMeshAgent.enabled)
+        {
+            this.velocity = velocity;
+            velocity.y = 0f;
 
-        if (velocity.sqrMagnitude > 1f)
-        {
-            transform.forward = velocity;
-            OnAnimateMovement?.Invoke();
-        }
-        else
-        {
-            OnAnimateIdle?.Invoke();
-        }
+            if (velocity.sqrMagnitude > minimumSqrSpeed)
+            {
+                transform.forward = velocity;
+                OnAnimateMovement?.Invoke();
+            }
+            else
+            {
+                OnAnimateIdle?.Invoke();
+            }
 
-        if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
-        {
-            myNavMeshAgent.Move(velocity * Time.deltaTime);
+            if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
+            {
+                myNavMeshAgent.Move(velocity * Time.deltaTime);
+            }
         }
     }
 

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameplayScreen : UIScreen
+public class TitleScreen : UIScreen
 {
     private void OnEnable()
     {
-        PlayButton.OnPressed += EnableScreen;
+        isScreenEnabled = true;
+        PlayButton.OnPressed += DisableScreen;
     }
 
     private void OnDisable()
     {
-        PlayButton.OnPressed -= EnableScreen;
+        PlayButton.OnPressed -= DisableScreen;
     }
 }

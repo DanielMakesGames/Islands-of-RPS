@@ -13,6 +13,8 @@ public class TownCenterButton : MoreButtonsButton
         RockSquadButton.OnPressed += DisableMoreButtons;
         PaperSquadButton.OnPressed += DisableMoreButtons;
         ScissorSquadButton.OnPressed += DisableMoreButtons;
+
+        DisableMoreButtons();
     }
 
     protected override void OnDisable()

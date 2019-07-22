@@ -23,7 +23,17 @@ public class UIBackground : MonoBehaviour
         myImage.enabled = true;
         myCollider.enabled = true;
     }
-            
+
+    private void OnEnable()
+    {
+        PlayButton.OnPressed += FadeOut;
+    }
+
+    private void OnDisable()
+    {
+        PlayButton.OnPressed -= FadeOut;
+    }
+
     protected void FadeIn()
     {
         ++fadeIns;

@@ -21,6 +21,10 @@ public class TownCenter : MonoBehaviour
     const float rayOffset = 0.5f;
 
     float health = 100f;
+    public float Heatlh
+    {
+        get { return health; }
+    }
 
     [Range(0f, 1f)]
     [SerializeField] float rockDefense = 0f;
@@ -28,7 +32,6 @@ public class TownCenter : MonoBehaviour
     [SerializeField] float paperDefense = 0f;
     [Range(0f, 1f)]
     [SerializeField] float scissorDefense = 0f;
-
 
     private void Awake()
     {

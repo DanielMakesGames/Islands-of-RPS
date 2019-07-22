@@ -812,9 +812,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  rockDefense: 0.95
-  paperDefense: 0.85
-  scissorDefense: 0.75
+  rockDefense: 0.96
+  paperDefense: 0.93
+  scissorDefense: 0.9
 --- !u!1 &9001217796709955001
 GameObject:
   m_ObjectHideFlags: 0

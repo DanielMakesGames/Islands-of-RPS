@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TownCenter : MonoBehaviour
 {
+    public delegate void TownCenterAction();
+    public static event TownCenterAction OnTownCenterDestroyed;
+
     public delegate void SpawnSquadAction(Squad newSquad);
     public static event SpawnSquadAction OnSpawnNewSquad;
 
@@ -93,7 +96,7 @@ public class TownCenter : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            TownCenterDestroyed();
         }
     }
 
@@ -132,5 +135,11 @@ public class TownCenter : MonoBehaviour
                 squad.MoveFromTownCenter(frontRightNode);
             }
         }
+    }
+
+    void TownCenterDestroyed()
+    {
+        OnTownCenterDestroyed?.Invoke();
+        Destroy(gameObject);
     }
 }

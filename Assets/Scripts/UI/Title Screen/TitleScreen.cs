@@ -14,10 +14,12 @@ public class TitleScreen : UIScreen
     {
         isScreenEnabled = true;
         PlayButton.OnPressed += DisableScreen;
+        ReturnToTitleButton.OnPressed += EnableScreen;
     }
 
     private void OnDisable()
     {
         PlayButton.OnPressed -= DisableScreen;
+        ReturnToTitleButton.OnPressed -= EnableScreen;
     }
 }

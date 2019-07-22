@@ -14,7 +14,17 @@ public class EnemySquadManager : SquadManager
 
     TownCenter myTownCenter;
 
-    private void Start()
+    private void OnEnable()
+    {
+        GameplayManager.OnGameplayStart += StartGame;
+    }
+
+    private void OnDisable()
+    {
+        GameplayManager.OnGameplayStart -= StartGame;
+    }
+
+    private void StartGame()
     {
         myTownCenter = FindObjectOfType<TownCenter>();
         if (currentEnemyWaveIndex < EnemyWaves.Length)

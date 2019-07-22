@@ -46,7 +46,10 @@ public class AgentLinkMover : MonoBehaviour
                             break;
                     }
                 }
-                agent.CompleteOffMeshLink();
+                if (agent.isOnOffMeshLink && agent.isActiveAndEnabled)
+                {
+                    agent.CompleteOffMeshLink();
+                }
             }
             yield return null;
         }
@@ -76,6 +79,8 @@ public class AgentLinkMover : MonoBehaviour
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
+
+        agent.transform.position = endPos;
     }
 
     IEnumerator Curve(NavMeshAgent agent, float duration)

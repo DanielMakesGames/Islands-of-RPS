@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2688760010609916120}
   - component: {fileID: 5384117799903453}
   - component: {fileID: 7971480709246896911}
-  - component: {fileID: 8817602724688482153}
   m_Layer: 11
   m_Name: Enemy Scissor Unit
   m_TagString: Untagged
@@ -111,25 +110,6 @@ MonoBehaviour:
   rockDefense: 0
   paperDefense: 0.95
   scissorDefense: 0.5
---- !u!95 &8817602724688482153
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7505280269499911996}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7794905896678351109
 GameObject:
   m_ObjectHideFlags: 0

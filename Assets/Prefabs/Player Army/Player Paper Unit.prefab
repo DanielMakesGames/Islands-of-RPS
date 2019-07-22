@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7173481921917843065}
   - component: {fileID: 9043171763963580119}
   - component: {fileID: 9043171763963580114}
-  - component: {fileID: 4586376942960291648}
   - component: {fileID: 6358107295425877719}
+  - component: {fileID: 4586376942960291648}
   m_Layer: 10
   m_Name: Player Paper Unit
   m_TagString: Untagged
@@ -76,6 +76,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6358107295425877719
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460933396807809334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &4586376942960291648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,20 +110,6 @@ MonoBehaviour:
   rockDefense: 0.95
   paperDefense: 0.5
   scissorDefense: 0
---- !u!136 &6358107295425877719
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3460933396807809334}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3747761974257506063
 GameObject:
   m_ObjectHideFlags: 0

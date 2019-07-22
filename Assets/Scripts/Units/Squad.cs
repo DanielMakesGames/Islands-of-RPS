@@ -202,21 +202,20 @@ public class Squad : MonoBehaviour
         {
             if (squadUnits[i] && squadUnits[i].gameObject.activeInHierarchy)
             {
-                if (squadUnits[i].NavMeshAgent.enabled == false)
+                if (squadUnits[i].NavMeshAgent.enabled)
                 {
-                    break;
-                }
-                List<Transform> context = GetNearbyObjects(squadUnits[i]);
+                    List<Transform> context = GetNearbyObjects(squadUnits[i]);
 
-                Vector3 move = Vector3.zero;
-                move = CompositeUnitBehaviour.CalculateMove(squadUnits[i], context, this);
-                move *= DriveFactor;
+                    Vector3 move = Vector3.zero;
+                    move = CompositeUnitBehaviour.CalculateMove(squadUnits[i], context, this);
+                    move *= DriveFactor;
 
-                if (move.sqrMagnitude > squareMaxSpeed)
-                {
-                    move = move.normalized * MaxSpeed;
+                    if (move.sqrMagnitude > squareMaxSpeed)
+                    {
+                        move = move.normalized * MaxSpeed;
+                    }
+                    squadUnits[i].Move(move);
                 }
-                squadUnits[i].Move(move);
             }
             else
             {

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TitleScreen : UIScreen
 {
+    [SerializeField] Material grayscaleMaterial = null;
+    public Material GrayscaleMaterial
+    {
+        get { return grayscaleMaterial; }
+    }
+
     private void OnEnable()
     {
         isScreenEnabled = true;

@@ -15,7 +15,7 @@ public class Items : MonoBehaviour
     protected bool isTransitioning = false;
     protected float targetPosition = 0f;
     const float transitionSpeed = 6f;
-    float distanceBetweenItems = 3f;
+    float distanceBetweenItems = 400f;
 
     protected const float categoriesPercentage = 0.7f;
     protected int numberOfOverlays = 0;
@@ -53,10 +53,7 @@ public class Items : MonoBehaviour
         minX = -minX - distanceBetweenItems;
         maxX = -maxX + distanceBetweenItems;
 
-        if (OnCalculateMinMaxDistance != null)
-        {
-            OnCalculateMinMaxDistance( distanceBetweenItems );
-        }
+        OnCalculateMinMaxDistance?.Invoke(distanceBetweenItems);
     }
 
     protected virtual void OnEnable()
@@ -121,8 +118,8 @@ public class Items : MonoBehaviour
     {
         if (isTouchActive)
         {
-            localPosition.x += touchDelta.x / Screen.width * movementSpeed;
-            momentum = touchDelta.x / Screen.width * movementSpeed;
+            localPosition.x += touchDelta.x;
+            momentum = touchDelta.x;
             localPosition.x = Mathf.Clamp(localPosition.x, minX, maxX);
             transform.localPosition = localPosition;
         }

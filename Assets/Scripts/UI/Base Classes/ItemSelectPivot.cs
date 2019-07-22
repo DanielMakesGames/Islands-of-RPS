@@ -75,7 +75,8 @@ public class ItemSelectPivot : MonoBehaviour
 
     void Update() 
     {
-        distanceFromCenter = myUIScreen.transform.position.x - transform.position.x;
+        Vector3 worldToLocal = myUIScreen.transform.worldToLocalMatrix * transform.position;
+        distanceFromCenter = worldToLocal.x;
         if (Mathf.Abs(distanceFromCenter) < distanceBetweenItems)
         {
             if (currentState == ItemState.NotSelected)

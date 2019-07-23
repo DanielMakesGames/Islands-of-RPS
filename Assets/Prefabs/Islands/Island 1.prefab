@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyWaves:
-  - {fileID: 11400000, guid: 41fb5d017b2e64e67a533c79c1f4ee6a, type: 2}
+  - {fileID: 11400000, guid: 63e8eb9cc29704ab687a6a33e554aed9, type: 2}
   CompositeSquadBehaviour: {fileID: 11400000, guid: 919532bb1e92b4d369f5142b75f96863,
     type: 2}
   NeighborRadius: 1.5

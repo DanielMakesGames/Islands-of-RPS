@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9234ee6d8784316a519ae09080dadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSourcePool: {fileID: 0}
+  audioSourcePool: {fileID: 1768151033}
   rockProjectilePool: {fileID: 1381031319}
 --- !u!1 &1162977533
 GameObject:

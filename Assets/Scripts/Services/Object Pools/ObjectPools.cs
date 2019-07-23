@@ -5,11 +5,12 @@ public class ObjectPools : MonoBehaviour
 {
     public static ObjectPools CurrentObjectPool;
 
-    /*[SerializeField] ObjectPooler audioSourcePool = null;
+    [SerializeField] ObjectPooler audioSourcePool = null;
     public ObjectPooler AudioSourcePool
     {
         get { return audioSourcePool; }
-    }*/
+    }
+
     [SerializeField] ObjectPooler rockProjectilePool = null;
     public ObjectPooler RockProjectilePool
     {

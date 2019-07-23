@@ -9,6 +9,7 @@ public class SaveData : MonoBehaviour
     const string DataInitializedKey = "IsDataInitialized";
     public const string IslandKey = "Island";
     public const string IsIslandUnlockedKey = "IsIslandUnlocked";
+    public const string IsSoundEffectsOnKey = "SoundEffectsOn";
 
     void Awake()
     {

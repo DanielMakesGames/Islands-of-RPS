@@ -702,18 +702,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!114 &6154223948898883440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7877438038983789265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d56342f0f4d4d5fb4b36dd4e772f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7256325954132473724
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +830,18 @@ MonoBehaviour:
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!114 &6154223948898883440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877438038983789265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d56342f0f4d4d5fb4b36dd4e772f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8151528000224269581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b5a8be638cf4067abd41089f745f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TownCenterExplosion: {fileID: 7450554804867116548, guid: 86f3a458a2e5c4c369d8647b4d9167e7,
+    type: 3}
   RockSquad: {fileID: 7004585124197212770, guid: 7d6b870684721493b8d660fdee86295d,
     type: 3}
   PaperSquad: {fileID: 3566052677869959914, guid: be34cbb4f108442c49fccf2e076788a0,

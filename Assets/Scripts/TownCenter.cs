@@ -10,6 +10,8 @@ public class TownCenter : MonoBehaviour
     public delegate void SpawnSquadAction(Squad newSquad);
     public static event SpawnSquadAction OnSpawnNewSquad;
 
+    [SerializeField] GameObject TownCenterExplosion;
+
     [SerializeField] GameObject RockSquad = null;
     [SerializeField] GameObject PaperSquad = null;
     [SerializeField] GameObject ScissorSquad = null;
@@ -139,6 +141,8 @@ public class TownCenter : MonoBehaviour
 
     void TownCenterDestroyed()
     {
+        GameObject clone = Instantiate(TownCenterExplosion);
+        clone.transform.position = transform.position;
         OnTownCenterDestroyed?.Invoke();
         Destroy(gameObject);
     }

@@ -256,7 +256,7 @@ public class Squad : MonoBehaviour
         return context;
     }
 
-    void Die()
+    protected virtual void Die()
     {
         if (mySquadManager != null)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySquad : Squad
 {
     public delegate void EnemySquadAction();
+    public static event EnemySquadAction OnEnemySquadDestroyed;
 
     EnemyTransport myEnemyTransport;
 
@@ -106,5 +107,11 @@ public class EnemySquad : Squad
         UpdateNavMeshAgents(destinationNode.transform.position + nodePositionOffset);
         StopAllCoroutines();
         StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    protected override void Die()
+    {
+        OnEnemySquadDestroyed?.Invoke();
+        base.Die();
     }
 }

@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EnemySquadManager : SquadManager
 {
+    public delegate void EnemySquadManagerAction();
+    public static event EnemySquadManagerAction OnAllEnemiesDefeated;
+
     [SerializeField] EnemyWave[] EnemyWaves = null;
 
     int currentEnemyWaveIndex = 0;
+    int numberOfEnemySquads = 0;
+    int currentEnemySquadDestroyed = 0;
 
     public SquadBehaviour CompositeSquadBehaviour;
     [Range(1f, 20f)]
@@ -17,11 +22,15 @@ public class EnemySquadManager : SquadManager
     private void OnEnable()
     {
         GameplayManager.OnGameplayStart += StartGame;
+
+        EnemySquad.OnEnemySquadDestroyed += OnEnemySquadDestroyed;
     }
 
     private void OnDisable()
     {
         GameplayManager.OnGameplayStart -= StartGame;
+
+        EnemySquad.OnEnemySquadDestroyed -= OnEnemySquadDestroyed;
     }
 
     private void StartGame()
@@ -37,6 +46,7 @@ public class EnemySquadManager : SquadManager
     {
         for (int i = 0; i < EnemyWaves[enemyWaveIndex].EnemyBoats.Length; ++i)
         {
+            ++numberOfEnemySquads;
             StartCoroutine(InstantiateEnemyBoat(
                 EnemyWaves[enemyWaveIndex].EnemyBoats[i],
                 EnemyWaves[enemyWaveIndex].SpawnLocations[i],
@@ -109,4 +119,14 @@ public class EnemySquadManager : SquadManager
 
         return context;
     }
+
+    void OnEnemySquadDestroyed()
+    {
+        ++currentEnemySquadDestroyed;
+        if (currentEnemySquadDestroyed == numberOfEnemySquads)
+        {
+            OnAllEnemiesDefeated?.Invoke();
+        }
+    }
+
 }

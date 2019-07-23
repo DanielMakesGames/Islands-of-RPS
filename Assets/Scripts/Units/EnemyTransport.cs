@@ -47,7 +47,7 @@ public class EnemyTransport : MonoBehaviour
         }
         else
         {
-            Debug.Log("Transport unable to find island");
+            Debug.Log("Transport unable to find island: " + gameObject.name);
             return false;
         }
     }

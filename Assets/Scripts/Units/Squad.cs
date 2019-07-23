@@ -65,7 +65,7 @@ public class Squad : MonoBehaviour
     public float DriveFactor = 10f;
     [Range(1f, 100f)]
     public float MaxSpeed = 5f;
-    [Range(1f, 20f)]
+    [Range(1f, 30f)]
     public float NeighborRadius = 1.5f;
     [Range(0f, 1f)]
     public float AvoidanceRadiusMultiplier = 0.5f;

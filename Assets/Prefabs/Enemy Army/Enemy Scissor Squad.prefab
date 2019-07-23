@@ -220,10 +220,10 @@ MonoBehaviour:
   - {fileID: 6287568727244726582}
   CompositeUnitBehaviour: {fileID: 11400000, guid: 795390369411b49529839f059b17aa7a,
     type: 2}
-  DriveFactor: 20
-  MaxSpeed: 20
-  NeighborRadius: 4
-  AvoidanceRadiusMultiplier: 0.5
+  DriveFactor: 15
+  MaxSpeed: 15
+  NeighborRadius: 10
+  AvoidanceRadiusMultiplier: 0.1
   AttackRadiusMultiplier: 0.1
 --- !u!65 &4424749282103350229
 BoxCollider:

@@ -21,6 +21,7 @@ public class FreeLookCamera : MonoBehaviour
     [SerializeField] readonly float MaxOrthoSize = 100f;
 
     const float ZoomAnimationSpeed = 2f;
+    float currentOrthoZoom = 0f;
 
     private void Awake()
     {
@@ -112,14 +113,31 @@ public class FreeLookCamera : MonoBehaviour
     void OnEnterStrategyMode()
     {
         StopAllCoroutines();
-        StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize - 10f));
-       
+
+        if (Mathf.Abs(currentOrthoZoom) < Mathf.Epsilon)
+        {
+            currentOrthoZoom = myCinemachineFreeLook.m_Lens.OrthographicSize;
+            StartCoroutine(ZoomLensAnimation(currentOrthoZoom - 10f));
+        }
+        else
+        {
+            StartCoroutine(ZoomLensAnimation(currentOrthoZoom));
+        }
     }
 
     void OnExitStrategyMode()
     {
         StopAllCoroutines();
-        StartCoroutine(ZoomLensAnimation(myCinemachineFreeLook.m_Lens.OrthographicSize + 10f));
+
+        if (Mathf.Abs(currentOrthoZoom) < Mathf.Epsilon)
+        {
+            currentOrthoZoom = myCinemachineFreeLook.m_Lens.OrthographicSize;
+            StartCoroutine(ZoomLensAnimation(currentOrthoZoom + 10f));
+        }
+        else
+        {
+            StartCoroutine(ZoomLensAnimation(currentOrthoZoom));
+        }
     }
 
     IEnumerator ZoomLensAnimation(float destinationOrthoSize)
@@ -136,5 +154,6 @@ public class FreeLookCamera : MonoBehaviour
 
             yield return null;
         }
+        currentOrthoZoom = 0f;
     }
 }

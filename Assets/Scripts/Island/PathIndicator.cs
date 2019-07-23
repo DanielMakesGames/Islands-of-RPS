@@ -6,13 +6,16 @@ public class PathIndicator : MonoBehaviour
 {
     Squad mySquad;
     LineRenderer myLineRenderer;
+    ParticleSystem myTargetNodeIndicator;
     Vector3 lineOffset;
 
     private void Awake()
     {
         mySquad = GetComponentInParent<Squad>();
         myLineRenderer = GetComponentInChildren<LineRenderer>();
+        myTargetNodeIndicator = GetComponentInChildren<ParticleSystem>();
         myLineRenderer.gameObject.SetActive(false);
+        myTargetNodeIndicator.gameObject.SetActive(false);
 
         lineOffset = new Vector3(0, 6f, 0);
     }
@@ -43,11 +46,14 @@ public class PathIndicator : MonoBehaviour
             myLineRenderer.SetPositions(pos);
 
             myLineRenderer.gameObject.SetActive(true);
+
+            myTargetNodeIndicator.transform.position = pos[pos.Length - 1];
+            myTargetNodeIndicator.gameObject.SetActive(true);
         }
         else
         {
             myLineRenderer.gameObject.SetActive(false);
+            myTargetNodeIndicator.gameObject.SetActive(false);
         }
-
     }
 }

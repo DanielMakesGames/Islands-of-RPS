@@ -9,6 +9,7 @@ public class PlayerSquad : Squad
     public static event SquadSelectedAction OnSquadDeselected;
 
     int myFingerId = InputManager.InactiveTouch;
+    Vector3 startingTap;
 
     void OnEnable()
     {
@@ -35,6 +36,7 @@ public class PlayerSquad : Squad
         if (myFingerId == InputManager.InactiveTouch)
         {
             myFingerId = fingerId;
+            startingTap = tapPosition;
 
             switch (mySquadState)
             {
@@ -91,6 +93,19 @@ public class PlayerSquad : Squad
                             {
                                 path.Clear();
                             }
+                        }
+                        else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad"))
+                        {
+                            if (Vector3.SqrMagnitude(tapPosition - startingTap) > 100f)
+                            {
+                                PathfindingNode = hitInfo.transform.GetComponent<PlayerSquad>().CurrentNode;
+                                path = islandGrid.GetPlayerPath(PathfindingNode);
+                            }
+                        }
+                        else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Enemy Squad"))
+                        {
+                            PathfindingNode = hitInfo.transform.GetComponent<EnemySquad>().CurrentNode;
+                            path = islandGrid.GetPlayerPath(PathfindingNode);
                         }
                     }
                     else
@@ -174,7 +189,17 @@ public class PlayerSquad : Squad
                     break;
                 case Squad.SquadState.Selected:
                 case Squad.SquadState.OnTappedSelected:
-                    mySquadState = Squad.SquadState.Ready;
+                    if (path.Count > 0)
+                    {
+                        targetNode = PathfindingNode;
+                        MoveToTarget(targetNode);
+                    }
+                    else
+                    {
+                        mySquadState = Squad.SquadState.Ready;
+                    }
+
+                    myFingerId = InputManager.InactiveTouch;
                     OnSquadDeselected?.Invoke(this);
                     AnimateSquadDeselected();
                     break;
@@ -232,6 +257,8 @@ public class PlayerSquad : Squad
 
     public override void MoveToTarget(Node destinationNode)
     {
+        mySquadState = Squad.SquadState.Moving;
+
         islandGrid.ResetPlayerNodeValues();
         currentNode.PlayerVisited = 0;
         currentNode.CurrentPlayerSquad = null;

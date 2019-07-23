@@ -369,8 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioSourceDontDestroy: {fileID: 6832282003507153407, guid: debe257a956564e8dae4f3ced9adc87c,
     type: 3}
-  ButtonInAudioClip: {fileID: 0}
-  ButtonOutAudioClip: {fileID: 0}
+  ButtonInAudioClip: {fileID: 8300000, guid: 78028d4f23c144df8a2151e20b9f6973, type: 3}
+  ButtonOutAudioClip: {fileID: 8300000, guid: f237cb205269c4a309f39be4c12c1d2a, type: 3}
 --- !u!1 &1087025807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,7 +3864,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714175615726}
-  m_LocalRotation: {x: 0.3404252, y: 0.00000005642889, z: -0.000000020430047, w: 0.9402717}
+  m_LocalRotation: {x: 0.34042525, y: -0.0000000065748345, z: 0.00000000238044, w: 0.9402717}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

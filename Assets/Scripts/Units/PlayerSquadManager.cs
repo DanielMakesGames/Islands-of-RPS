@@ -41,6 +41,7 @@ public class PlayerSquadManager : SquadManager
             }
             else
             {
+                StopAllCoroutines();
                 activeSquad = squad;
             }
         }
@@ -52,9 +53,15 @@ public class PlayerSquadManager : SquadManager
         {
             if (activeSquad == squad)
             {
-                activeSquad = null;
-                OnExitStrategyMode?.Invoke();
+                StartCoroutine(ExitStrategyMode());
             }
         }
+    }
+
+    IEnumerator ExitStrategyMode()
+    {
+        yield return null;
+        activeSquad = null;
+        OnExitStrategyMode?.Invoke();
     }
 }

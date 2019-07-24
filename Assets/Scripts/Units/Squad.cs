@@ -95,7 +95,7 @@ public class Squad : MonoBehaviour
     }
 
     const float sqrReadyDistance = 26f;
-    const float movementWeight = 20f;
+    protected const float movementWeight = 20f;
 
     protected virtual void Awake()
     {
@@ -217,10 +217,13 @@ public class Squad : MonoBehaviour
             bool areUnitsReady = true;
             for (int i = 0; i < squadUnits.Count; ++i)
             {
-                if (Vector3.SqrMagnitude(transform.position - squadUnits[i].transform.position) > sqrReadyDistance)
+                if (squadUnits[i] && squadUnits[i].gameObject.activeInHierarchy)
                 {
-                    areUnitsReady = false;
-                    break;
+                    if (Vector3.SqrMagnitude(transform.position - squadUnits[i].transform.position) > sqrReadyDistance)
+                    {
+                        areUnitsReady = false;
+                        break;
+                    }
                 }
             }
 

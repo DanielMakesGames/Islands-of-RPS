@@ -88,13 +88,25 @@ public class EnemySquad : Squad
             squadUnits[i].transform.parent = null;
             squadUnits[i].EnableNavMeshAgent();
         }
-        currentNode = landingNode;
-        MoveToTarget(landingNode);
+
+        CompositeUnitBehaviour.Weights[0] = movementWeight;
+        targetNode = landingNode;
+        transform.position = targetNode.transform.position + nodePositionOffset;
+        mySquadState = SquadState.Ready;
+
+        path.Clear();
+        SetCurrentNode();
+        targetNode = null;
+
         AnimateSquadPath();
     }
 
     public override void MoveToTarget(Node destinationNode)
     {
+        if (currentNode == destinationNode)
+        {
+            return;
+        }
         mySquadState = Squad.SquadState.Moving;
 
         islandGrid.ResetEnemyNodeValues();

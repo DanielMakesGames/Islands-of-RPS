@@ -257,6 +257,10 @@ public class PlayerSquad : Squad
 
     public override void MoveToTarget(Node destinationNode)
     {
+        if (currentNode == destinationNode)
+        {
+            return;
+        }
         mySquadState = Squad.SquadState.Moving;
 
         islandGrid.ResetPlayerNodeValues();

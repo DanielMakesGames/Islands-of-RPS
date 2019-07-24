@@ -38,7 +38,7 @@ public class RockProjectile : MonoBehaviour
     {
         if (other.gameObject.layer == opponentLayer)
         {
-            other.GetComponent<SquadUnit>().ReceiveDamage(damage, damageType);
+            other.GetComponent<SquadUnit>().ReceiveDamage(transform, damage, damageType);
         }
     }
 

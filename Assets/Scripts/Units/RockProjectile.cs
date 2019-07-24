@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RockProjectile : MonoBehaviour
 {
-    Transform destinationTransform;
     int opponentLayer;
     int townCenterLayer;
 
@@ -20,12 +19,14 @@ public class RockProjectile : MonoBehaviour
         float damage, SquadUnit.DamageType damageType)
     {
         transform.position = start;
-        destinationTransform = end;
-        opponentLayer = destinationTransform.gameObject.layer;
+        opponentLayer = end.gameObject.layer;
         this.damage = damage;
         this.damageType = damageType;
 
-        StartCoroutine(Parabola(start, destinationTransform.position, 20f, 1f));
+        float distance = Vector3.Distance(start, end.position);
+        float time = distance / 15f;
+
+        StartCoroutine(Parabola(start, end.position, distance, time));
     }
 
     IEnumerator Parabola(Vector3 start, Vector3 end, float height, float duration)
@@ -38,6 +39,8 @@ public class RockProjectile : MonoBehaviour
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
+
+        PlayRockSmokeEffect();
         gameObject.SetActive(false);
     }
 
@@ -50,7 +53,20 @@ public class RockProjectile : MonoBehaviour
         else if (other && other.gameObject.layer == opponentLayer)
         {
             other.GetComponent<SquadUnit>().ReceiveDamage(transform, damage, damageType);
-        }
 
+            StopAllCoroutines();
+            PlayRockSmokeEffect();
+            gameObject.SetActive(false);
+        }
+    }
+
+    void PlayRockSmokeEffect()
+    {
+        GameObject obj = ObjectPools.CurrentObjectPool.RockSmokePool.GetPooledObject();
+        if (obj != null)
+        {
+            obj.transform.position = transform.position;
+            obj.SetActive(true);
+        }
     }
 }

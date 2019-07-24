@@ -29,6 +29,12 @@ public class ObjectPools : MonoBehaviour
         get { return playerBloodPool; }
     }
 
+    [SerializeField] ObjectPooler rockSmokePool = null;
+    public ObjectPooler RockSmokePool
+    {
+        get { return rockSmokePool; }
+    }
+
     void Awake()
     {
         if (CurrentObjectPool == null)

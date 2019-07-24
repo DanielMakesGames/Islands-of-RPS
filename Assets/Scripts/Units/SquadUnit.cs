@@ -10,6 +10,7 @@ public class SquadUnit : MonoBehaviour
     public event AnimationAction OnAnimateMovement;
     public event AnimationAction OnAnimateAttack;
     public event AnimationAction OnAnimateDeath;
+    public event AnimationAction OnAnimateReceiveDamage;
 
     protected Squad mySquad;
     public Squad CommandingSquad
@@ -54,7 +55,7 @@ public class SquadUnit : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float scissorDefense = 0f;
 
-    const float minimumSqrSpeed = 20f;
+    const float minimumSqrSpeed = 25f;
 
     private void Awake()
     {
@@ -159,20 +160,29 @@ public class SquadUnit : MonoBehaviour
         StartCoroutine(AttackAnimation(targetTownCenter));
     }
 
-    public void ReceiveDamage(float damage, DamageType opponentDamageType)
+    public void ReceiveDamage(Transform opponentTransform, float damage, DamageType opponentDamageType)
     {
         switch (opponentDamageType)
         {
             case DamageType.Rock:
                 health -= damage * (1f - rockDefense);
+                //animate rock hit
+                //squish animation
                 break;
             case DamageType.Paper:
                 health -= damage * (1f - paperDefense);
+                //animate paper hit
+                //blinking animation
                 break;
             case DamageType.Scissors:
                 health -= damage * (1f - scissorDefense);
+                StartCoroutine(ScissorHitAnimation(opponentTransform));
+                //animate scissor hit
+                //knock back animation
                 break;
         }
+
+        OnAnimateReceiveDamage?.Invoke();
 
         if (health <= 0f)
         {
@@ -193,7 +203,7 @@ public class SquadUnit : MonoBehaviour
     {
         myNavMeshAgent.enabled = false;
         AnimateAttack();
-        targetSquadUnit.ReceiveDamage(attackDamage, damageType);
+        targetSquadUnit.ReceiveDamage(transform, attackDamage, damageType);
         yield return new WaitForSeconds(attackTime);
         myNavMeshAgent.enabled = true;
     }
@@ -215,5 +225,37 @@ public class SquadUnit : MonoBehaviour
     void ReturnToTitleButtonOnButtonPress()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator ScissorHitAnimation(Transform opponentTransform)
+    {
+        yield return StartCoroutine(BlinkAnimation());
+    }
+
+    IEnumerator PaperHitAnimation()
+    {
+        yield return null;
+    }
+
+    IEnumerator RockHitAnimation()
+    {
+        yield return null;
+    }
+
+    IEnumerator BlinkAnimation()
+    {
+        for (int blinks = 0; blinks < 3; ++ blinks)
+        {
+            for (int i = 0; i < myRenderers.Length; ++i)
+            {
+                myRenderers[i].enabled = false;
+            }
+            yield return null;
+            for (int i = 0; i < myRenderers.Length; ++i)
+            {
+                myRenderers[i].enabled = true;
+            }
+            yield return null;
+        }
     }
 }

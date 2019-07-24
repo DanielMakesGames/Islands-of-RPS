@@ -6,8 +6,15 @@ public class RockProjectile : MonoBehaviour
 {
     Transform destinationTransform;
     int opponentLayer;
+    int townCenterLayer;
+
     float damage;
     SquadUnit.DamageType damageType;
+
+    private void Awake()
+    {
+        townCenterLayer = LayerMask.NameToLayer("Town Center");
+    }
 
     public void SetDestination(Vector3 start, Transform end,
         float damage, SquadUnit.DamageType damageType)
@@ -36,10 +43,14 @@ public class RockProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == opponentLayer)
+        if (other && other.gameObject.layer == townCenterLayer)
+        {
+            other.GetComponent<TownCenter>().ReceiveDamage(damage, damageType);
+        }
+        else if (other && other.gameObject.layer == opponentLayer)
         {
             other.GetComponent<SquadUnit>().ReceiveDamage(transform, damage, damageType);
         }
-    }
 
+    }
 }

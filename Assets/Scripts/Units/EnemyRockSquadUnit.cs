@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockSquadUnit : SquadUnit
+public class EnemyRockSquadUnit : RockSquadUnit
 {
-    protected override IEnumerator AttackAnimation(SquadUnit targetSquadUnit)
+    protected override void Start()
+    {
+    }
+
+    protected override IEnumerator AttackAnimation(TownCenter targetSquadUnit)
     {
         myNavMeshAgent.enabled = false;
 

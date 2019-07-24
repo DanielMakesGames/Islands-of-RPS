@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7846135571161236300}
   - component: {fileID: 5894000561762910967}
   - component: {fileID: 672849698076477049}
+  - component: {fileID: 2831516308070857493}
   m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bf7b2835d684480a9bf1f1163890b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2831516308070857493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309665846993514464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd950e4a6fa7a44cc83af54ad9e7bad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5027816952054072788
@@ -239,7 +252,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2

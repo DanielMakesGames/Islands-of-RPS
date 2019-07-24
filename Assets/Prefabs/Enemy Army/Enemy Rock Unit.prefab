@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6782537539147348305}
   - component: {fileID: 6782537539147348308}
   - component: {fileID: 8891000515008700753}
-  - component: {fileID: 3984505346715769965}
+  - component: {fileID: 1677183007547361915}
   m_Layer: 11
   m_Name: Enemy Rock Unit
   m_TagString: Untagged
@@ -127,7 +127,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
@@ -167,7 +167,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3984505346715769965
+--- !u!114 &1677183007547361915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1393883518547168944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb2558edd42243deb17d3b13ab8432d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ccca6ef1100e4194b03c89b51430610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMaterial: {fileID: 2100000, guid: 02c31544b88b940a68ef6ea28f2f245e, type: 2}
@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 1688470215419192592}
   - component: {fileID: 1668200585836462142}
   - component: {fileID: 8273984437612207874}
+  - component: {fileID: 8498210181512903512}
   m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
@@ -297,6 +298,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bf7b2835d684480a9bf1f1163890b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8498210181512903512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683533249551310985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7560f19ddae463196a297e62b4411a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2089516266008274978

@@ -95,7 +95,7 @@ public class Squad : MonoBehaviour
     }
 
     const float sqrReadyDistance = 26f;
-    const float movementWeight = 10f;
+    const float movementWeight = 20f;
 
     protected virtual void Awake()
     {

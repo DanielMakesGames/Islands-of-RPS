@@ -60,7 +60,7 @@ public class Squad : MonoBehaviour
     protected List<SquadUnit> squadUnits;
     SquadManager mySquadManager;
 
-    public UnitBehaviour CompositeUnitBehaviour;
+    public CompositeUnitBehaviour CompositeUnitBehaviour;
     [Range(0f, 100f)]
     public float DriveFactor = 10f;
     [Range(1f, 100f)]
@@ -93,6 +93,9 @@ public class Squad : MonoBehaviour
     {
         get { return myCollider; }
     }
+
+    const float sqrReadyDistance = 26f;
+    const float movementWeight = 10f;
 
     protected virtual void Awake()
     {
@@ -169,6 +172,7 @@ public class Squad : MonoBehaviour
 
     protected IEnumerator MoveToTargetCoroutine()
     {
+        CompositeUnitBehaviour.Weights[0] = movementWeight;
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {
             Vector3 startPosition = transform.position;
@@ -206,6 +210,27 @@ public class Squad : MonoBehaviour
         OnAnimateSquadPath?.Invoke();
     }
 
+    void ReturnToNormalMovementWeight()
+    {
+        if (mySquadState == SquadState.Ready)
+        {
+            bool areUnitsReady = true;
+            for (int i = 0; i < squadUnits.Count; ++i)
+            {
+                if (Vector3.SqrMagnitude(transform.position - squadUnits[i].transform.position) > sqrReadyDistance)
+                {
+                    areUnitsReady = false;
+                    break;
+                }
+            }
+
+            if (areUnitsReady)
+            {
+                CompositeUnitBehaviour.Weights[0] = 1f;
+            }
+        }
+    }
+
     private void Update()
     {
         for (int i = 0; i < squadUnits.Count; ++i)
@@ -237,6 +262,7 @@ public class Squad : MonoBehaviour
                 }
             }
         }
+        ReturnToNormalMovementWeight();
     }
 
     List<Transform> GetNearbyObjects(SquadUnit squadUnit)

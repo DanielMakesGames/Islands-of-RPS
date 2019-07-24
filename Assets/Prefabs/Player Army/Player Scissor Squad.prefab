@@ -88,7 +88,7 @@ MonoBehaviour:
   MaxSpeed: 15
   NeighborRadius: 10
   AvoidanceRadiusMultiplier: 0.25
-  AttackRadiusMultiplier: 0.1
+  AttackRadiusMultiplier: 0.25
 --- !u!1 &313261256562194127
 GameObject:
   m_ObjectHideFlags: 0

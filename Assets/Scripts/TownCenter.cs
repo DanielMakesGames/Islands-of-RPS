@@ -10,7 +10,7 @@ public class TownCenter : MonoBehaviour
     public delegate void SpawnSquadAction(Squad newSquad);
     public static event SpawnSquadAction OnSpawnNewSquad;
 
-    [SerializeField] GameObject TownCenterExplosion;
+    [SerializeField] GameObject TownCenterExplosion = null;
 
     [SerializeField] GameObject RockSquad = null;
     [SerializeField] GameObject PaperSquad = null;

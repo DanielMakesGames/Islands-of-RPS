@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &610808227
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &631193433
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &894048074
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &907867051
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1466817216
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1603814601
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &1979579667
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &2094354281
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
   m_CostModifier: 5
-  m_Bidirectional: 0
+  m_Bidirectional: 1
   m_AutoUpdatePosition: 1
   m_Area: 0
 --- !u!1 &2275702535269224247

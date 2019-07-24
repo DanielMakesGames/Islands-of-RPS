@@ -224,7 +224,7 @@ MonoBehaviour:
   MaxSpeed: 15
   NeighborRadius: 10
   AvoidanceRadiusMultiplier: 0.25
-  AttackRadiusMultiplier: 0.1
+  AttackRadiusMultiplier: 0.25
 --- !u!65 &4424749282103350229
 BoxCollider:
   m_ObjectHideFlags: 0

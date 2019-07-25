@@ -15,13 +15,16 @@ public class RockSquadUnit : SquadUnit
             Vector3 end = targetSquadUnit.transform.position;
             clone.SetActive(true);
 
-            Vector3 direction = end - start;
-            direction.Normalize();
-            transform.forward = direction;
-
             RockProjectile projectile = clone.GetComponent<RockProjectile>();
             projectile.SetDestination(start, targetSquadUnit.transform,
                 attackDamage, damageType);
+
+            start.y = 0f;
+            end.y = 0f;
+
+            Vector3 direction = end - start;
+            direction.Normalize();
+            transform.forward = direction;
         }
 
         AnimateAttack();

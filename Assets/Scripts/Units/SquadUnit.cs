@@ -212,6 +212,16 @@ public class SquadUnit : MonoBehaviour
     protected virtual IEnumerator AttackAnimation(TownCenter targetTownCenter)
     {
         myNavMeshAgent.enabled = false;
+
+        Vector3 start = transform.position + Vector3.up;
+        Vector3 end = targetTownCenter.transform.position;
+        start.y = 0f;
+        end.y = 0f;
+
+        Vector3 direction = end - start;
+        direction.Normalize();
+        transform.forward = direction;
+
         AnimateAttack();
         targetTownCenter.ReceiveDamage(attackDamage, damageType);
         yield return new WaitForSeconds(attackTime);

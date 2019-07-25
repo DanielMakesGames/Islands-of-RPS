@@ -86,7 +86,7 @@ public class EnemyWaveIndicator : MonoBehaviour
         }
 
         float startPosition = (totalSquads - 1) * spacing / -2f;
-        clone.transform.parent = transform;
+        clone.transform.SetParent(transform, false);
         clone.transform.localPosition = new Vector3(
             startPosition + index * spacing, -spacing, 0f);
         clone.transform.localRotation = Quaternion.identity;

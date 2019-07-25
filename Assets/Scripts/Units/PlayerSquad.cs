@@ -284,12 +284,16 @@ public class PlayerSquad : Squad
         currentNode.PlayerVisited = 0;
         currentNode.CurrentPlayerSquad = null;
 
-        transform.position = destinationNode.transform.position + nodePositionOffset;
+        CompositeUnitBehaviour.Weights[0] = movementWeight;
+        targetNode = destinationNode;
+        transform.position = targetNode.transform.position + nodePositionOffset;
         mySquadState = SquadState.Ready;
-        path.Clear();
 
+        path.Clear();
         SetCurrentNode();
         targetNode = null;
+
+        AnimateSquadPath();
     }
 
 }

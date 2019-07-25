@@ -87,8 +87,6 @@ public class EnemySquad : Squad
         path.Clear();
         SetCurrentNode();
         targetNode = null;
-
-        AnimateSquadPath();
     }
 
     public override void MoveToTarget(Node destinationNode)

@@ -8,8 +8,12 @@ public class EnemySquadManager : SquadManager
     public static event EnemySquadManagerAction OnAllEnemiesDefeated;
 
     [SerializeField] EnemyWave[] EnemyWaves = null;
-
     int currentEnemyWaveIndex = 0;
+    public EnemyWave CurrentEnemyWave
+    {
+        get { return EnemyWaves[currentEnemyWaveIndex]; }
+    }
+
     int numberOfEnemySquads = 0;
     int currentEnemySquadDestroyed = 0;
 
@@ -21,14 +25,14 @@ public class EnemySquadManager : SquadManager
 
     private void OnEnable()
     {
-        GameplayManager.OnGameplayStart += StartGame;
+        GameplayManager.OnStartGameplay += StartGame;
 
         EnemySquad.OnEnemySquadDestroyed += OnEnemySquadDestroyed;
     }
 
     private void OnDisable()
     {
-        GameplayManager.OnGameplayStart -= StartGame;
+        GameplayManager.OnStartGameplay -= StartGame;
 
         EnemySquad.OnEnemySquadDestroyed -= OnEnemySquadDestroyed;
     }

@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6881718adcf4fb5b12a69419062002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RPSType: 1
   PathfindingNode: {fileID: 0}
   PreviousNode: {fileID: 0}
   path: []

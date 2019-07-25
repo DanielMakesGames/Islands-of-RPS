@@ -12,6 +12,14 @@ public class Squad : MonoBehaviour
     public delegate void SquadMovementAction(Vector3 targetPosition);
     public event SquadMovementAction OnUpdateNavMeshAgents;
 
+    public enum SquadType
+    {
+        Rock,
+        Paper,
+        Scissor
+    }
+    public SquadType RPSType;
+
     public enum SquadState
     {
         Ready,

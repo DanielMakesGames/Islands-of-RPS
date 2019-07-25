@@ -56,17 +56,17 @@ public class TownCenterButton : MoreButtonsButton
         RemoveIcons();
     }
 
-    void OnSpawnNewSquad(Squad newSquad, TownCenter.SquadType squadType)
+    void OnSpawnNewSquad(Squad newSquad)
     {
-        switch (squadType)
+        switch (newSquad.RPSType)
         {
-            case TownCenter.SquadType.Rock:
+            case Squad.SquadType.Rock:
                 InstantiatePlayerSquadIcon(RockSilhouette);
                 break;
-            case TownCenter.SquadType.Paper:
+            case Squad.SquadType.Paper:
                 InstantiatePlayerSquadIcon(PaperSilhouette);
                 break;
-            case TownCenter.SquadType.Scissor:
+            case Squad.SquadType.Scissor:
                 InstantiatePlayerSquadIcon(ScissorSilhouette);
                 break;
         }

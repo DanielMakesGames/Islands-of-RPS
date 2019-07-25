@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3265832461773802531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1911856980983474918}
+  - component: {fileID: 6725373487026513803}
+  m_Layer: 0
+  m_Name: Enemy Squad Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1911856980983474918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265832461773802531}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6725373487026513803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265832461773802531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d85b271599ef4dde83e760ef2ad66c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyWaves:
+  - {fileID: 11400000, guid: de77ca00aa8e94a3698db8b3cc67693c, type: 2}
+  CompositeRockSquadBehaviour: {fileID: 0}
+  CompositePaperSquadBehaviour: {fileID: 0}
+  CompositeScissorSquadBehaviour: {fileID: 11400000, guid: 919532bb1e92b4d369f5142b75f96863,
+    type: 2}
+  NeighborRadius: 20
+  AvoidanceRadiusMultiplier: 0.4
+  AttackRadiusMultiplier: 0.5

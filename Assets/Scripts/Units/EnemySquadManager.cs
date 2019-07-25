@@ -17,11 +17,35 @@ public class EnemySquadManager : SquadManager
     int numberOfEnemySquads = 0;
     int currentEnemySquadDestroyed = 0;
 
-    public SquadBehaviour CompositeSquadBehaviour;
+    public SquadBehaviour CompositeRockSquadBehaviour;
+    public SquadBehaviour CompositePaperSquadBehaviour;
+    public SquadBehaviour CompositeScissorSquadBehaviour;
+
     [Range(1f, 20f)]
     public float NeighborRadius = 10f;
+    [Range(0f, 1f)]
+    public float AvoidanceRadiusMultiplier = 0.5f;
+    [Range(0f, 1f)]
+    public float AttackRadiusMultiplier = 0.5f;
+
+    float squareNeighborRadius;
+    float avoidanceRadius;
+    float squareAvoidanceRadius;
+    public float SquareAvoidanceRadius
+    {
+        get { return squareAvoidanceRadius; }
+    }
 
     TownCenter myTownCenter;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        avoidanceRadius = NeighborRadius * AvoidanceRadiusMultiplier;
+        squareNeighborRadius = NeighborRadius * NeighborRadius;
+        squareAvoidanceRadius = squareNeighborRadius * AvoidanceRadiusMultiplier * AvoidanceRadiusMultiplier;
+    }
 
     private void OnEnable()
     {
@@ -82,25 +106,44 @@ public class EnemySquadManager : SquadManager
 
     private void Update()
     {
+        UpdateSquads();
+    }
+
+    void UpdateSquads()
+    {
         for (int i = 0; i < mySquads.Count; ++i)
         {
             if (mySquads[i] && mySquads[i].gameObject.activeInHierarchy)
             {
-                if (mySquads[i].CurrentSquadState == Squad.SquadState.OnTransport ||
-                    mySquads[i].CurrentSquadState == Squad.SquadState.Moving)
+                if (mySquads[i].CurrentSquadState == Squad.SquadState.Ready)
                 {
-                    break;
-                }
-                List<Transform> context = GetNearbyObjects(mySquads[i]);
+                    List<Transform> context = GetNearbyObjects(mySquads[i]);
 
-                Vector3 move = Vector3.zero;
-                //move = CompositeSquadBehaviour.CalculateMove(mySquads[i], context, this);
+                    Vector3 move = Vector3.zero;
 
-                if (move == Vector3.zero)
-                {
-                    mySquads[i].MoveToTarget(
-                        mySquads[i].IslandGrid.FindClosest(
-                            mySquads[i].transform, myTownCenter.Neighbors));
+                    switch (mySquads[i].RPSType)
+                    {
+                        case Squad.SquadType.Rock:
+                            move = CompositeRockSquadBehaviour.CalculateMove(mySquads[i], context, this);
+                            break;
+                        case Squad.SquadType.Paper:
+                            move = CompositePaperSquadBehaviour.CalculateMove(mySquads[i], context, this);
+                            break;
+                        case Squad.SquadType.Scissor:
+                            move = CompositeScissorSquadBehaviour.CalculateMove(mySquads[i], context, this);
+                            break;
+                    }
+
+                    if (move == Vector3.zero)
+                    {
+                        mySquads[i].MoveToTarget(
+                            mySquads[i].IslandGrid.FindClosest(
+                                mySquads[i].transform, myTownCenter.Neighbors));
+                    }
+                    else
+                    {
+                        //find the closest node to Move and move there.
+                    }
                 }
             }
             else

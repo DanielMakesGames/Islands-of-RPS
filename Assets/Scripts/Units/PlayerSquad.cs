@@ -292,8 +292,6 @@ public class PlayerSquad : Squad
         path.Clear();
         SetCurrentNode();
         targetNode = null;
-
-        AnimateSquadPath();
     }
 
 }

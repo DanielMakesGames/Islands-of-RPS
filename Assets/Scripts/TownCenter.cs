@@ -8,7 +8,7 @@ public class TownCenter : MonoBehaviour
     public static event TownCenterAction OnTownCenterDestroyed;
     public static event TownCenterAction OnMaxSquadReached;
 
-    public delegate void SpawnSquadAction(Squad newSquad);
+    public delegate void SpawnSquadAction(Squad newSquad, SquadType squadType);
     public static event SpawnSquadAction OnSpawnNewSquad;
 
     [SerializeField] GameObject TownCenterExplosion = null;
@@ -19,6 +19,13 @@ public class TownCenter : MonoBehaviour
 
     [SerializeField] Node frontLeftNode = null;
     [SerializeField] Node frontRightNode = null;
+
+    public enum SquadType
+    {
+        Rock,
+        Paper,
+        Scissor
+    }
 
     public List<Node> Neighbors;
 
@@ -82,7 +89,7 @@ public class TownCenter : MonoBehaviour
             StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
             ++currentSquadNumber;
-            OnSpawnNewSquad?.Invoke(squadClone);
+            OnSpawnNewSquad?.Invoke(squadClone, SquadType.Rock);
         }
         else
         {
@@ -102,7 +109,7 @@ public class TownCenter : MonoBehaviour
             StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
             ++currentSquadNumber;
-            OnSpawnNewSquad?.Invoke(squadClone);
+            OnSpawnNewSquad?.Invoke(squadClone, SquadType.Paper);
         }
         else
         {
@@ -122,7 +129,7 @@ public class TownCenter : MonoBehaviour
             StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
             ++currentSquadNumber;
-            OnSpawnNewSquad?.Invoke(squadClone);
+            OnSpawnNewSquad?.Invoke(squadClone, SquadType.Scissor);
         }
         else
         {

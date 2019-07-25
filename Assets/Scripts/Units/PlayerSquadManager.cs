@@ -20,11 +20,13 @@ public class PlayerSquadManager : SquadManager
 
     private void OnDisable()
     {
+        TownCenter.OnSpawnNewSquad -= OnSpawnNewPlayerSquad;
+
         PlayerSquad.OnSquadSelected -= OnSquadSelected;
         PlayerSquad.OnSquadDeselected -= OnSquadDeselected;
     }
 
-    void OnSpawnNewPlayerSquad(Squad newSquad)
+    void OnSpawnNewPlayerSquad(Squad newSquad, TownCenter.SquadType squadType)
     {
         mySquads.Add(newSquad);
         newSquad.SetSquadManager(this);

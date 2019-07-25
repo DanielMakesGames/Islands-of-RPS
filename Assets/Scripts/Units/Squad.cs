@@ -21,6 +21,7 @@ public class Squad : MonoBehaviour
         Moving,
         OnTransport
     }
+
     protected SquadState mySquadState = SquadState.Ready;
     public SquadState CurrentSquadState
     {

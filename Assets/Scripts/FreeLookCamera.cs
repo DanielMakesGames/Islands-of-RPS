@@ -5,6 +5,14 @@ using Cinemachine;
 
 public class FreeLookCamera : MonoBehaviour
 {
+    enum FreeLookCameraState
+    {
+        TransitionIn,
+        FreeLook,
+        TransitionOut
+    }
+    FreeLookCameraState myFreeLookCameraState;
+
     CinemachineFreeLook myCinemachineFreeLook;
     int myFingerId0 = InputManager.InactiveTouch;
     int myFingerId1 = InputManager.InactiveTouch;
@@ -18,14 +26,18 @@ public class FreeLookCamera : MonoBehaviour
     Vector3 touchDelta1;
 
     [SerializeField] readonly float MinOrthoSize = 40f;
-    [SerializeField] readonly float MaxOrthoSize = 100f;
+    [SerializeField] readonly float MaxOrthoSize = 120f;
 
     const float ZoomAnimationSpeed = 2f;
     float currentOrthoZoom = 0f;
 
+    float prevTouchDeltaX = 0f;
+    float xAxisMomentum = 0f;
+
     private void Awake()
     {
         myCinemachineFreeLook = GetComponent<CinemachineFreeLook>();
+        myFreeLookCameraState = FreeLookCameraState.FreeLook;
     }
 
     private void OnEnable()
@@ -34,6 +46,7 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
 
+        PlayButton.OnPressed += PlayButtonOnPressed;
         PlayerSquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
         PlayerSquadManager.OnExitStrategyMode += OnExitStrategyMode;
     }
@@ -44,19 +57,30 @@ public class FreeLookCamera : MonoBehaviour
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;
 
+        PlayButton.OnPressed -= PlayButtonOnPressed;
         PlayerSquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
         PlayerSquadManager.OnExitStrategyMode -= OnExitStrategyMode;
     }
 
+    private void LateUpdate()
+    {
+        if (myFreeLookCameraState != FreeLookCameraState.TransitionIn)
+        {
+            xAxisMomentum = Mathf.Lerp(xAxisMomentum, 0f, Time.deltaTime);
+            myCinemachineFreeLook.m_XAxis.Value += xAxisMomentum * Time.deltaTime;
+        }
+    }
+
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
     {
-        if (hitInfo.transform != null)
+        if (hitInfo.transform != null || myFreeLookCameraState == FreeLookCameraState.TransitionIn)
         {
             return;
         }
         if (myFingerId0 == InputManager.InactiveTouch)
         {
             myFingerId0 = fingerId;
+            xAxisMomentum = 0f;
         }
         else if (myFingerId1 == InputManager.InactiveTouch)
         {
@@ -70,6 +94,8 @@ public class FreeLookCamera : MonoBehaviour
         {
             myCinemachineFreeLook.m_XAxis.Value += touchDelta.x * xAxisSpeed;
             myCinemachineFreeLook.m_YAxis.Value += touchDelta.y * yAxisSpeed;
+
+            prevTouchDeltaX = touchDelta.x * xAxisSpeed;
         }
 
         if (myFingerId0 == fingerId)
@@ -78,6 +104,9 @@ public class FreeLookCamera : MonoBehaviour
             touchDelta0 = touchDelta;
             return;
         }
+
+        prevTouchDeltaX = 0f;
+
         if (myFingerId1 == fingerId)
         {
             tapPosition1 = tapPosition;
@@ -103,6 +132,7 @@ public class FreeLookCamera : MonoBehaviour
         if (myFingerId0 == fingerId)
         {
             myFingerId0 = InputManager.InactiveTouch;
+            xAxisMomentum = prevTouchDeltaX * 10f;
         }
         if (myFingerId1 == fingerId)
         {
@@ -140,6 +170,11 @@ public class FreeLookCamera : MonoBehaviour
         }
     }
 
+    void PlayButtonOnPressed()
+    {
+        StartCoroutine(TransitionInCamera());
+    }
+
     IEnumerator ZoomLensAnimation(float destinationOrthoSize)
     {
         float timer = 0f;
@@ -155,5 +190,31 @@ public class FreeLookCamera : MonoBehaviour
             yield return null;
         }
         currentOrthoZoom = 0f;
+    }
+
+    IEnumerator TransitionInCamera()
+    {
+        myFreeLookCameraState = FreeLookCameraState.TransitionIn;
+
+        float timer = 0f;
+        xAxisMomentum = -360f;
+
+        float startingOrtho = 120f;
+        float destinationOrtho = 60f;
+        myCinemachineFreeLook.m_Lens.OrthographicSize = startingOrtho;
+
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+            myCinemachineFreeLook.m_XAxis.Value += xAxisMomentum * Time.deltaTime;
+            myCinemachineFreeLook.m_Lens.OrthographicSize = Mathf.Lerp(
+                startingOrtho, destinationOrtho, timer);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        myCinemachineFreeLook.m_Lens.OrthographicSize = destinationOrtho;
+
+        myFreeLookCameraState = FreeLookCameraState.FreeLook;
     }
 }

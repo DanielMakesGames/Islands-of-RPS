@@ -6,7 +6,7 @@ public class SquadManager : MonoBehaviour
 {
     protected List<Squad> mySquads;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         mySquads = new List<Squad>();
     }

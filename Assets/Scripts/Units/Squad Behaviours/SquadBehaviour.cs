@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class SquadBehaviour : ScriptableObject
 {
     public abstract Vector3 CalculateMove(Squad squad,
-        List<Transform> context, SquadManager squadManager);
+        List<Transform> context, EnemySquadManager squadManager);
 }

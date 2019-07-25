@@ -8,7 +8,7 @@ public class CompositeSquadBehaviour : SquadBehaviour
     public SquadBehaviour[] Behaviours;
     public float[] Weights;
 
-    public override Vector3 CalculateMove(Squad squad, List<Transform> context, SquadManager squadManager)
+    public override Vector3 CalculateMove(Squad squad, List<Transform> context, EnemySquadManager squadManager)
     {
         if (Weights.Length != Behaviours.Length)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Squad/Behaviour/Cohesion")]
 public class CohesionSquadBehaviour : FilteredSquadBehaviour
 {
-    public override Vector3 CalculateMove(Squad squad, List<Transform> context, SquadManager squadManager)
+    public override Vector3 CalculateMove(Squad squad, List<Transform> context, EnemySquadManager squadManager)
     {
         List<Transform> filteredContext = (filter == null) ? context : filter.Filter(squad, context);
 

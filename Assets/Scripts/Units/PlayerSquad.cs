@@ -11,8 +11,10 @@ public class PlayerSquad : Squad
     int myFingerId = InputManager.InactiveTouch;
     Vector3 startingTap;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         InputManager.OnTouchBegin += OnTouchBegin;
         InputManager.OnTouchMove += OnTouchMove;
         InputManager.OnTouchEnd += OnTouchEnd;
@@ -21,8 +23,10 @@ public class PlayerSquad : Squad
         PlayerSquad.OnSquadDeselected += Squad_OnSquadDeselected;
     }
 
-    void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
+
         InputManager.OnTouchBegin -= OnTouchBegin;
         InputManager.OnTouchMove -= OnTouchMove;
         InputManager.OnTouchEnd -= OnTouchEnd;

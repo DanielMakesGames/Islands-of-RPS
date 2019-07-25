@@ -94,17 +94,6 @@ public class SquadUnit : MonoBehaviour
         mySquad.OnAnimateSquadDeselected += OnAnimateSquadDeselected;
     }
 
-    private void Update()
-    {
-        if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
-        {
-            NavMeshPath path = new NavMeshPath();
-            myNavMeshAgent.CalculatePath(myTargetTransform.position, path);
-            myNavMeshAgent.path = path;
-            myNavMeshAgent.isStopped = true;
-        }
-    }
-
     void OnAnimateSquadSelected()
     {
         for (int i = 0; i < myRenderers.Length; ++i)
@@ -128,8 +117,13 @@ public class SquadUnit : MonoBehaviour
 
     public void Move(Vector3 velocity)
     {
-        if (myNavMeshAgent.enabled)
+        if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
         {
+            NavMeshPath path = new NavMeshPath();
+            myNavMeshAgent.CalculatePath(myTargetTransform.position, path);
+            myNavMeshAgent.path = path;
+            myNavMeshAgent.isStopped = true;
+
             this.velocity = velocity;
             velocity.y = 0f;
 
@@ -143,10 +137,7 @@ public class SquadUnit : MonoBehaviour
                 OnAnimateIdle?.Invoke();
             }
 
-            if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
-            {
-                myNavMeshAgent.Move(velocity * Time.deltaTime);
-            }
+            myNavMeshAgent.Move(velocity * Time.deltaTime);
         }
     }
 

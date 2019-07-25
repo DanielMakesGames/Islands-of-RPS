@@ -28,6 +28,8 @@ public class EnemySquadManager : SquadManager
         GameplayManager.OnStartGameplay += StartGame;
 
         EnemySquad.OnEnemySquadDestroyed += OnEnemySquadDestroyed;
+
+        TownCenter.OnTownCenterDestroyed += DisableSquadManager;
     }
 
     private void OnDisable()
@@ -35,6 +37,8 @@ public class EnemySquadManager : SquadManager
         GameplayManager.OnStartGameplay -= StartGame;
 
         EnemySquad.OnEnemySquadDestroyed -= OnEnemySquadDestroyed;
+
+        TownCenter.OnTownCenterDestroyed -= DisableSquadManager;
     }
 
     private void StartGame()
@@ -130,7 +134,12 @@ public class EnemySquadManager : SquadManager
         if (currentEnemySquadDestroyed == numberOfEnemySquads)
         {
             OnAllEnemiesDefeated?.Invoke();
+            DisableSquadManager();
         }
     }
 
+    protected void DisableSquadManager()
+    {
+        this.enabled = false;
+    }
 }

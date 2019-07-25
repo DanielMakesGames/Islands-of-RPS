@@ -18,16 +18,6 @@ public class EnemySquad : Squad
         myEnemyTransport.OnEnemyTransportLanded += OnEnemyTransportLanded;
     }
 
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
-
     protected override void SpawnSquadUnits()
     {
         base.SpawnSquadUnits();
@@ -125,5 +115,18 @@ public class EnemySquad : Squad
     {
         OnEnemySquadDestroyed?.Invoke();
         base.Die();
+    }
+
+    protected override void DisableSquad()
+    {
+        if (transform.parent == null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            myEnemyTransport.OnEnemyTransportLanded -= OnEnemyTransportLanded;
+            this.enabled = false;
+        }
     }
 }

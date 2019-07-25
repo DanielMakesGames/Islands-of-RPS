@@ -111,13 +111,19 @@ public class Squad : MonoBehaviour
         squareAttackRadius = squareNeighborRadius * AttackRadiusMultiplier;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        TownCenter.OnTownCenterDestroyed += DisableSquad;
+        EnemySquadManager.OnAllEnemiesDefeated += DisableSquad;
+
         ReturnToTitleButton.OnPressed += ReturnToTitleButtonOnButtonPress;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
+        TownCenter.OnTownCenterDestroyed -= DisableSquad;
+        EnemySquadManager.OnAllEnemiesDefeated -= DisableSquad;
+
         ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnButtonPress;
     }
 
@@ -317,5 +323,10 @@ public class Squad : MonoBehaviour
     void ReturnToTitleButtonOnButtonPress()
     {
         Destroy(gameObject);
+    }
+
+    protected virtual void DisableSquad()
+    {
+        gameObject.SetActive(false);
     }
 }

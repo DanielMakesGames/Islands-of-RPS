@@ -6,6 +6,7 @@ public class TownCenter : MonoBehaviour
 {
     public delegate void TownCenterAction();
     public static event TownCenterAction OnTownCenterDestroyed;
+    public static event TownCenterAction OnMaxSquadReached;
 
     public delegate void SpawnSquadAction(Squad newSquad);
     public static event SpawnSquadAction OnSpawnNewSquad;
@@ -38,6 +39,18 @@ public class TownCenter : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float scissorDefense = 0f;
 
+    [SerializeField] int maximumSquadNumber = 4;
+    public int MaximumSquadNumber
+    {
+        get { return maximumSquadNumber; }
+    }
+
+    int currentSquadNumber = 0;
+    public int CurrentSquadNumber
+    {
+        get { return currentSquadNumber; }
+    }
+
     private void Awake()
     {
         nodeLayerMask = LayerMask.GetMask("Node");
@@ -59,26 +72,62 @@ public class TownCenter : MonoBehaviour
 
     void SpawnRockSquad()
     {
-        GameObject clone = Instantiate(RockSquad);
-        clone.transform.position = transform.position;
-        clone.transform.rotation = transform.rotation;
+        if (currentSquadNumber < maximumSquadNumber)
+        {
+            GameObject clone = Instantiate(RockSquad);
+            clone.transform.position = transform.position;
+            clone.transform.rotation = transform.rotation;
 
-        Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
+            Squad squadClone = clone.GetComponent<Squad>();
+            StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
-        OnSpawnNewSquad?.Invoke(squadClone);
+            ++currentSquadNumber;
+            OnSpawnNewSquad?.Invoke(squadClone);
+        }
+        else
+        {
+            OnMaxSquadReached?.Invoke();
+        }
     }
 
     void SpawnPaperSquad()
     {
-        GameObject clone = Instantiate(PaperSquad);
-        clone.transform.position = transform.position;
-        clone.transform.rotation = transform.rotation;
+        if (currentSquadNumber < maximumSquadNumber)
+        {
+            GameObject clone = Instantiate(PaperSquad);
+            clone.transform.position = transform.position;
+            clone.transform.rotation = transform.rotation;
 
-        Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
+            Squad squadClone = clone.GetComponent<Squad>();
+            StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
 
-        OnSpawnNewSquad?.Invoke(squadClone);
+            ++currentSquadNumber;
+            OnSpawnNewSquad?.Invoke(squadClone);
+        }
+        else
+        {
+            OnMaxSquadReached?.Invoke();
+        }
+    }
+
+    void SpawnScissorSquad()
+    {
+        if (currentSquadNumber < maximumSquadNumber)
+        {
+            GameObject clone = Instantiate(ScissorSquad);
+            clone.transform.position = transform.position;
+            clone.transform.rotation = transform.rotation;
+
+            Squad squadClone = clone.GetComponent<Squad>();
+            StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
+
+            ++currentSquadNumber;
+            OnSpawnNewSquad?.Invoke(squadClone);
+        }
+        else
+        {
+            OnMaxSquadReached?.Invoke();
+        }
     }
 
     public void ReceiveDamage(float damage, SquadUnit.DamageType damageType)
@@ -100,18 +149,6 @@ public class TownCenter : MonoBehaviour
         {
             TownCenterDestroyed();
         }
-    }
-
-    void SpawnScissorSquad()
-    {
-        GameObject clone = Instantiate(ScissorSquad);
-        clone.transform.position = transform.position;
-        clone.transform.rotation = transform.rotation;
-
-        Squad squadClone = clone.GetComponent<Squad>();
-        StartCoroutine(MoveSquadToTarget(squadClone, frontLeftNode));
-
-        OnSpawnNewSquad?.Invoke(squadClone);
     }
 
     IEnumerator MoveSquadToTarget(Squad squad, Node target)

@@ -10,7 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cff5a4060092498696f873bca16e0f8, type: 3}
-  m_Name: Composite Squad Behaviour
+  m_Name: Composite Scissor Squad Behaviour
   m_EditorClassIdentifier: 
-  Behaviours: []
-  Weights: []
+  Behaviours:
+  - {fileID: 11400000, guid: 373dafa117a074e96907ee8e9bcdc96a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Weights:
+  - 0
+  - 0
+  - 0
+  - 0

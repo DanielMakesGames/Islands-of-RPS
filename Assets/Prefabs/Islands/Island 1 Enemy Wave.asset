@@ -29,6 +29,6 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0}
   SpawnTimes:
   - 1
-  - 11
-  - 21
-  - 31
+  - 15
+  - 30
+  - 45

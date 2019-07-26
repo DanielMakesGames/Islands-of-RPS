@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6881718adcf4fb5b12a69419062002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RPSType: 0
   PathfindingNode: {fileID: 0}
   PreviousNode: {fileID: 0}
   path: []
@@ -264,8 +265,8 @@ MonoBehaviour:
   - {fileID: 7783029445299933366}
   CompositeUnitBehaviour: {fileID: 11400000, guid: c7c759055318246819ecaa63584c4868,
     type: 2}
-  DriveFactor: 10
-  MaxSpeed: 10
+  DriveFactor: 8
+  MaxSpeed: 8
   NeighborRadius: 30
   AvoidanceRadiusMultiplier: 0.08
   AttackRadiusMultiplier: 1

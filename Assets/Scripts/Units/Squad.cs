@@ -103,7 +103,7 @@ public class Squad : MonoBehaviour
         get { return myCollider; }
     }
 
-    const float sqrReadyDistance = 26f;
+    const float sqrReadyDistance = 27.5f;
     protected const float movementWeight = 20f;
 
     protected virtual void Awake()

@@ -20,6 +20,7 @@ public class RockProjectile : MonoBehaviour
     {
         transform.position = start;
         opponentLayer = end.gameObject.layer;
+        Debug.Log(LayerMask.LayerToName(opponentLayer));
         this.damage = damage;
         this.damageType = damageType;
 
@@ -46,13 +47,16 @@ public class RockProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other && other.gameObject.layer == townCenterLayer)
+        if (other && other.gameObject.layer == opponentLayer)
         {
-            other.GetComponent<TownCenter>().ReceiveDamage(damage, damageType);
-        }
-        else if (other && other.gameObject.layer == opponentLayer)
-        {
-            other.GetComponent<SquadUnit>().ReceiveDamage(transform, damage, damageType);
+            if (opponentLayer == townCenterLayer)
+            {
+                other.GetComponent<TownCenter>().ReceiveDamage(damage, damageType);
+            }
+            else
+            {
+                other.GetComponent<SquadUnit>().ReceiveDamage(transform, damage, damageType);
+            }
 
             StopAllCoroutines();
             PlayRockSmokeEffect();

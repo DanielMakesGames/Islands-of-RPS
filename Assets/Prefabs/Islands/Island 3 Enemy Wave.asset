@@ -19,6 +19,24 @@ MonoBehaviour:
   - {fileID: 6941197795524751051, guid: 29e5855a9d8b14723a23192a49ef4855, type: 3}
   - {fileID: 6941197795524751051, guid: 29e5855a9d8b14723a23192a49ef4855, type: 3}
   - {fileID: 6941197795524751051, guid: 29e5855a9d8b14723a23192a49ef4855, type: 3}
-  SpawnLocations: []
-  Directions: []
-  SpawnTimes: []
+  SpawnLocations:
+  - {x: -120, y: 0, z: -10}
+  - {x: 120, y: 0, z: 10}
+  - {x: 0, y: 0, z: -120}
+  - {x: 120, y: 0, z: 0}
+  - {x: -120, y: 0, z: -10}
+  - {x: 10, y: 0, z: -120}
+  Directions:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  SpawnTimes:
+  - 1
+  - 11
+  - 21
+  - 31
+  - 41
+  - 51

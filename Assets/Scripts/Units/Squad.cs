@@ -185,7 +185,7 @@ public class Squad : MonoBehaviour
         mySquadManager = squadManager;
     }
 
-    protected IEnumerator MoveToTargetCoroutine()
+    protected virtual IEnumerator MoveToTargetCoroutine()
     {
         CompositeUnitBehaviour.Weights[0] = movementWeight;
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)

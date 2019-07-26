@@ -28,6 +28,9 @@ public class EnemySquadManager : SquadManager
     [Range(0f, 1f)]
     public float AttackRadiusMultiplier = 0.5f;
 
+    [Range(0f, 10f)]
+    public float SquadDecisionMakingDelay = 1f;
+
     float squareNeighborRadius;
     float avoidanceRadius;
     float squareAvoidanceRadius;
@@ -96,11 +99,12 @@ public class EnemySquadManager : SquadManager
         clone.transform.position = spawnLocation;
         clone.transform.forward = direction;
 
-        Squad[] squads = clone.GetComponentsInChildren<Squad>();
+        EnemySquad[] squads = clone.GetComponentsInChildren<EnemySquad>();
         for (int i = 0; i < squads.Length; ++i)
         {
             mySquads.Add(squads[i]);
             squads[i].SetSquadManager(this);
+            squads[i].SetDecisionMakingDelay(SquadDecisionMakingDelay);
         }
     }
 
@@ -113,6 +117,7 @@ public class EnemySquadManager : SquadManager
     {
         for (int i = 0; i < mySquads.Count; ++i)
         {
+
             if (mySquads[i] && mySquads[i].gameObject.activeInHierarchy)
             {
                 if (mySquads[i].CurrentSquadState == Squad.SquadState.Ready)
@@ -143,6 +148,34 @@ public class EnemySquadManager : SquadManager
                     else
                     {
                         //find the closest node to Move and move there.
+                        List<Node> nearbyNodes = new List<Node>();
+                        Collider[] nodeColliders = Physics.OverlapSphere(
+                            mySquads[i].transform.position + move,
+                            5f, LayerMask.GetMask("Node"), QueryTriggerInteraction.Ignore);
+
+                        for (int j = 0; j < nodeColliders.Length; ++j)
+                        {
+                            Node nearbyNode = nodeColliders[j].GetComponent<Node>();
+                            if (nearbyNode &&
+                                nearbyNode.IsWalkable)
+                            {
+                                nearbyNodes.Add(nearbyNode);
+                            }
+                        }
+
+                        //find closest node
+                        if (nearbyNodes.Count > 0)
+                        {
+                            mySquads[i].MoveToTarget(
+                                mySquads[i].IslandGrid.FindClosest(
+                                    mySquads[i].transform, nearbyNodes));
+                        }
+                        else
+                        {
+                            mySquads[i].MoveToTarget(
+                                mySquads[i].IslandGrid.FindClosest(
+                                    mySquads[i].transform, myTownCenter.Neighbors));
+                        }
                     }
                 }
             }

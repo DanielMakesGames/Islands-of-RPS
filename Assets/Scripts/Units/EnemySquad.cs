@@ -8,6 +8,7 @@ public class EnemySquad : Squad
     public static event EnemySquadAction OnEnemySquadDestroyed;
 
     EnemyTransport myEnemyTransport;
+    float decisionMakingDelay = 0f;
 
     protected override void Awake()
     {
@@ -107,6 +108,20 @@ public class EnemySquad : Squad
         UpdateNavMeshAgents(destinationNode.transform.position + nodePositionOffset);
         StopAllCoroutines();
         StartCoroutine(MoveToTargetCoroutine());
+    }
+
+    protected override IEnumerator MoveToTargetCoroutine()
+    {
+        yield return StartCoroutine(base.MoveToTargetCoroutine());
+
+        mySquadState = SquadState.Moving;
+        yield return new WaitForSeconds(decisionMakingDelay);
+        mySquadState = SquadState.Ready;
+    }
+
+    public void SetDecisionMakingDelay(float delay)
+    {
+        decisionMakingDelay = delay;
     }
 
     protected override void Die()

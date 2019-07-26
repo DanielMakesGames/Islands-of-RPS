@@ -17,20 +17,27 @@ public class CompositeSquadBehaviour : SquadBehaviour
         }
 
         Vector3 move = Vector3.zero;
+        float currentWeight = 0f;
 
         for (int i = 0; i < Behaviours.Length; ++i)
         {
-            Vector3 partialMove = Behaviours[i].CalculateMove(squad, context, squadManager) * Weights[i];
-
+            Vector3 partialMove = Behaviours[i].CalculateMove(squad, context, squadManager);
             if (partialMove != Vector3.zero)
             {
-                if (partialMove.sqrMagnitude > Weights[i] * Weights[i])
+                if (Weights[i] > currentWeight)
                 {
-                    partialMove = partialMove.normalized * Weights[i];
+                    move = partialMove;
+                    currentWeight = Weights[i];
                 }
-
-                move += partialMove;
+                else if (Mathf.Abs(Weights[i] - currentWeight) < Mathf.Epsilon)
+                {
+                    if (partialMove.sqrMagnitude < move.sqrMagnitude)
+                    {
+                        move = partialMove;
+                    }
+                }
             }
+           
         }
 
         return move;

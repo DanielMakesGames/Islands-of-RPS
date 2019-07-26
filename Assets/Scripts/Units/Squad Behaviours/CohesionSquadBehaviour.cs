@@ -25,7 +25,6 @@ public class CohesionSquadBehaviour : FilteredSquadBehaviour
 
         //create offset from agent position
         cohesionMove -= squad.transform.position;
-        cohesionMove.y = 0f;
 
         return cohesionMove;
     }

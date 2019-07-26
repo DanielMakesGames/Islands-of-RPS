@@ -114,7 +114,8 @@ public class IslandGrid : MonoBehaviour
         }
         else
         {
-            Debug.Log("Path not available: " + targetNode.gameObject.name);
+            Debug.Log("Path not available: " + targetNode.transform.parent.name + 
+                " " + targetNode.gameObject.name);
             return path;
         }
 

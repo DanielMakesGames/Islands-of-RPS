@@ -21,7 +21,7 @@ public class SquadUnitAnimator : MonoBehaviour
         mySquadUnit.OnAnimateDeath += MySquadUnit_OnAnimateDeath;
     }
 
-    private void OnEnable()
+    private void Start()
     {
         forward = transform.parent.forward;
         transform.forward = forward;

@@ -8,7 +8,7 @@ public class EnemyTransport : MonoBehaviour
     public event EnemyTransportAction OnEnemyTransportLanded;
 
     const float movementSpeed = 5f;
-    const float rayDistance = 100f;
+    const float rayDistance = 200f;
     const float nodeScale = 10f;
     LayerMask nodeLayerMask;
 

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cff5a4060092498696f873bca16e0f8, type: 3}
-  m_Name: Composite Scissor Squad Behaviour
+  m_Name: Composite Paper Squad Behaviour
   m_EditorClassIdentifier: 
   Behaviours:
+  - {fileID: 11400000, guid: aebc8fb20ce144085a8bafd6d1798c8c, type: 2}
   - {fileID: 11400000, guid: 373dafa117a074e96907ee8e9bcdc96a, type: 2}
-  - {fileID: 11400000, guid: 91c851a17193d46d891e860cf7d38789, type: 2}
-  - {fileID: 11400000, guid: ae392da72e6f847e99901c0a9b3f767e, type: 2}
+  - {fileID: 11400000, guid: e30249c33bb5d4cd198781d376e2bbd2, type: 2}
   - {fileID: 11400000, guid: fef78ecf63e974b2693618c0bbab0c15, type: 2}
-  - {fileID: 11400000, guid: 99c06994f39c24070b7efc9770316b76, type: 2}
+  - {fileID: 11400000, guid: f8ec24ec985804bc1a466b2355548fcd, type: 2}
   Weights:
   - 25
   - 20

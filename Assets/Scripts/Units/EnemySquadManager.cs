@@ -25,8 +25,6 @@ public class EnemySquadManager : SquadManager
     public float NeighborRadius = 10f;
     [Range(0f, 1f)]
     public float AvoidanceRadiusMultiplier = 0.5f;
-    [Range(0f, 1f)]
-    public float AttackRadiusMultiplier = 0.5f;
 
     [Range(0f, 10f)]
     public float SquadDecisionMakingDelay = 1f;

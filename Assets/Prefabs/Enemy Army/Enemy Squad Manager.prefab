@@ -45,10 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - {fileID: 11400000, guid: de77ca00aa8e94a3698db8b3cc67693c, type: 2}
-  CompositeRockSquadBehaviour: {fileID: 0}
-  CompositePaperSquadBehaviour: {fileID: 0}
+  CompositeRockSquadBehaviour: {fileID: 11400000, guid: a41fe86b6f5f64846b00c95d5c0b7d5c,
+    type: 2}
+  CompositePaperSquadBehaviour: {fileID: 11400000, guid: be43087bd2cc6402292b69f137c3cf4d,
+    type: 2}
   CompositeScissorSquadBehaviour: {fileID: 11400000, guid: 919532bb1e92b4d369f5142b75f96863,
     type: 2}
   NeighborRadius: 20
   AvoidanceRadiusMultiplier: 0.4
   AttackRadiusMultiplier: 0.5
+  SquadDecisionMakingDelay: 1

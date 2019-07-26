@@ -240,7 +240,7 @@ public class SquadUnit : MonoBehaviour
 
     IEnumerator ScissorHitAnimation(Transform opponentTransform)
     {
-        yield return StartCoroutine(BlinkAnimation());
+        yield return null;
     }
 
     IEnumerator PaperHitAnimation()

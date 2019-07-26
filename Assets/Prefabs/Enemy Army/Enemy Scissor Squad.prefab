@@ -221,7 +221,7 @@ MonoBehaviour:
   - {fileID: 6287568727244726582}
   CompositeUnitBehaviour: {fileID: 11400000, guid: 795390369411b49529839f059b17aa7a,
     type: 2}
-  DriveFactor: 12
+  DriveFactor: 4
   MaxSpeed: 12
   NeighborRadius: 10
   AvoidanceRadiusMultiplier: 0.25

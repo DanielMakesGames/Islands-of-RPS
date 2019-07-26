@@ -1302,7 +1302,7 @@ Transform:
   m_GameObject: {fileID: 5232119900360838186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 8973982775524004184}
   m_RootOrder: 0
@@ -2120,7 +2120,7 @@ Transform:
   m_GameObject: {fileID: 8973982775524004191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5337541516210961313}
   - {fileID: 491386942218163583}
@@ -2139,7 +2139,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7071274645575602876
 MonoBehaviour:
@@ -2153,7 +2153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5550a5a7139345b9a1aab99d7e7e3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visited: -1
+  PlayerVisited: -1
+  EnemyVisited: -1
   northNavMeshLinks:
   - {fileID: 3134042340414314015}
   - {fileID: 2350861032082434879}
@@ -2195,7 +2196,8 @@ MonoBehaviour:
   - {fileID: 5659613053796252930}
   - {fileID: 165909436799556523}
   IsWalkable: 1
-  currentSquad: {fileID: 0}
+  CurrentPlayerSquad: {fileID: 0}
+  CurrentEnemySquad: {fileID: 0}
   Neighbours: []
 --- !u!1 &8988092325370851690
 GameObject:

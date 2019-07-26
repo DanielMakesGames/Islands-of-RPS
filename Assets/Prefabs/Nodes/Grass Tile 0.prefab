@@ -1550,7 +1550,7 @@ Transform:
   m_GameObject: {fileID: 6910044555813119104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7601606245332455038}
   - {fileID: 2719423149751148704}
@@ -1569,7 +1569,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4705878926701586275
 MonoBehaviour:
@@ -1583,7 +1583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5550a5a7139345b9a1aab99d7e7e3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visited: -1
+  PlayerVisited: -1
+  EnemyVisited: -1
   northNavMeshLinks:
   - {fileID: 581755755550745536}
   - {fileID: 284705923394248416}
@@ -1625,7 +1626,8 @@ MonoBehaviour:
   - {fileID: 7919132677531863261}
   - {fileID: 2387462921352081012}
   IsWalkable: 1
-  currentSquad: {fileID: 0}
+  CurrentPlayerSquad: {fileID: 0}
+  CurrentEnemySquad: {fileID: 0}
   Neighbours: []
 --- !u!1 &7062591632017229065
 GameObject:
@@ -1943,7 +1945,7 @@ Transform:
   m_GameObject: {fileID: 7777906171952462325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 6910044555813119111}
   m_RootOrder: 0

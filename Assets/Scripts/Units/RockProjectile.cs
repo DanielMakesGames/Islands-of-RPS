@@ -20,7 +20,6 @@ public class RockProjectile : MonoBehaviour
     {
         transform.position = start;
         opponentLayer = end.gameObject.layer;
-        Debug.Log(LayerMask.LayerToName(opponentLayer));
         this.damage = damage;
         this.damageType = damageType;
 

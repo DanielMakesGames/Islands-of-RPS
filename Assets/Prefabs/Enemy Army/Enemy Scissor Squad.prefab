@@ -224,7 +224,7 @@ MonoBehaviour:
   DriveFactor: 6
   MaxSpeed: 10
   NeighborRadius: 10
-  AvoidanceRadiusMultiplier: 0.25
+  AvoidanceRadiusMultiplier: 0.15
   AttackRadiusMultiplier: 0.25
 --- !u!65 &4424749282103350229
 BoxCollider:

@@ -280,8 +280,8 @@ MonoBehaviour:
   - {fileID: 4344428834754676798}
   CompositeUnitBehaviour: {fileID: 11400000, guid: 017ecc29da03e48b5b2a2c6692d3ce1b,
     type: 2}
-  DriveFactor: 6
-  MaxSpeed: 12
+  DriveFactor: 15
+  MaxSpeed: 15
   NeighborRadius: 15
   AvoidanceRadiusMultiplier: 0.1
   AttackRadiusMultiplier: 0.07

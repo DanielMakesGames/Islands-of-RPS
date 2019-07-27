@@ -47,7 +47,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1753,7 +1753,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1906,7 +1906,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -1957,7 +1957,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2008,7 +2008,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2059,7 +2059,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
@@ -2297,7 +2297,7 @@ MonoBehaviour:
   m_StartPoint: {x: 0, y: 0, z: -2}
   m_EndPoint: {x: 0, y: 0, z: 2}
   m_Width: 1
-  m_CostModifier: 5
+  m_CostModifier: 1
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0

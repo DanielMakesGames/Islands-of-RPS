@@ -287,7 +287,7 @@ public class Squad : MonoBehaviour
     {
         List<Transform> context = new List<Transform>();
         Collider[] contextColliders = Physics.OverlapSphere(
-            squadUnit.transform.position + Vector3.up, NeighborRadius);
+            squadUnit.PathTransform.position + Vector3.up, NeighborRadius);
 
         for (int i = 0; i < contextColliders.Length; ++i)
         {

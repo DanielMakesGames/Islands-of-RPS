@@ -20,10 +20,10 @@ public class AvoidanceBehaviour : FilteredUnitBehaviour
         int nAvoid = 0;
         for (int i = 0; i < filteredContext.Count; ++i)
         {
-            if (Vector3.SqrMagnitude(filteredContext[i].position - squadUnit.transform.position) < squad.SquareAvoidanceRadius)
+            if (Vector3.SqrMagnitude(filteredContext[i].position - squadUnit.PathTransform.position) < squad.SquareAvoidanceRadius)
             {
                 ++nAvoid;
-                avoidanceMove += (squadUnit.transform.position - filteredContext[i].position);
+                avoidanceMove += (squadUnit.PathTransform.position - filteredContext[i].position);
             }
         }
         if (nAvoid > 0)

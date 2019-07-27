@@ -31,6 +31,18 @@ public class SquadUnit : MonoBehaviour
     }
 
     protected Transform myTargetTransform;
+    public Transform TargetTransform
+    {
+        get { return myTargetTransform; }
+    }
+
+    [SerializeField] Transform myPathTransform = null;
+    public Transform PathTransform
+    {
+        get { return myPathTransform; }
+    }
+    Vector3 pathTransformPosition;
+
     [SerializeField] Material highlightMaterial = null;
     Renderer[] myRenderers;
     Material[] defaultMaterials = null;
@@ -55,13 +67,15 @@ public class SquadUnit : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float scissorDefense = 0f;
 
-    const float minimumSqrSpeed = 25f;
+    const float minimumSqrSpeed = 4f;
+    private NavMeshPath path;
 
     private void Awake()
     {
         myNavMeshAgent = GetComponent<NavMeshAgent>();
         myRenderers = GetComponentsInChildren<Renderer>();
         myCollider = GetComponentInChildren<Collider>();
+        path = new NavMeshPath();
 
         defaultMaterials = new Material[myRenderers.Length];
         for (int i = 0; i < myRenderers.Length; ++i)
@@ -83,6 +97,12 @@ public class SquadUnit : MonoBehaviour
     protected virtual void Start()
     {
         EnableNavMeshAgent();
+        Initialize();
+    }
+
+    protected void Initialize()
+    {
+        pathTransformPosition = myPathTransform.position;
     }
 
     public void InitializeSquadUnit(Squad squad, Transform targetTrasnform)
@@ -119,17 +139,10 @@ public class SquadUnit : MonoBehaviour
     {
         if (myNavMeshAgent.enabled && !myNavMeshAgent.isOnOffMeshLink)
         {
-            NavMeshPath path = new NavMeshPath();
-            myNavMeshAgent.CalculatePath(myTargetTransform.position, path);
-            myNavMeshAgent.path = path;
-            myNavMeshAgent.isStopped = true;
-
             this.velocity = velocity;
-            velocity.y = 0f;
 
-            if (velocity.sqrMagnitude > minimumSqrSpeed)
+            if (myNavMeshAgent.velocity.sqrMagnitude > minimumSqrSpeed)
             {
-                transform.forward = velocity;
                 OnAnimateMovement?.Invoke();
             }
             else
@@ -137,7 +150,16 @@ public class SquadUnit : MonoBehaviour
                 OnAnimateIdle?.Invoke();
             }
 
-            myNavMeshAgent.Move(velocity * Time.deltaTime);
+            pathTransformPosition += velocity * Time.deltaTime;
+            myPathTransform.position = pathTransformPosition;
+
+            if (Vector3.SqrMagnitude(myPathTransform.position - transform.position) > 1f)
+            {
+                if (myNavMeshAgent.CalculatePath(myPathTransform.position, path))
+                {
+                    myNavMeshAgent.SetPath(path);
+                }
+            }
         }
     }
 

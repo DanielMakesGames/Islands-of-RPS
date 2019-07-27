@@ -9,14 +9,7 @@ public class FollowPathBehaviour : UnitBehaviour
     {
         Vector3 followPathVector = Vector3.zero;
 
-        // find if squad unit has a path
-        if (squadUnit.NavMeshAgent.hasPath)
-        {
-            if (squadUnit.NavMeshAgent.path.corners.Length > 1)
-            {
-                followPathVector = squadUnit.NavMeshAgent.path.corners[1] - squadUnit.transform.position;
-            }
-        }
+        followPathVector = squadUnit.TargetTransform.position - squadUnit.PathTransform.position;
 
         return followPathVector;
     }

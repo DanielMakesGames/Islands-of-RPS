@@ -6,5 +6,6 @@ public class EnemySquadUnit : SquadUnit
 {
     protected override void Start()
     {
+        Initialize();
     }
 }

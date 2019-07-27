@@ -24,8 +24,8 @@ public class CohesionBehaviour : FilteredUnitBehaviour
         cohesionMove /= filteredContext.Count;
 
         //create offset from agent position
-        cohesionMove -= squadUnit.transform.position;
-        cohesionMove.y = 0f;
+        cohesionMove -= squadUnit.PathTransform.position;
+        //cohesionMove.y = 0f;
 
         return cohesionMove;
     }

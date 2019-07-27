@@ -12,7 +12,7 @@ public class AlignmentBehaviour : FilteredUnitBehaviour
         //if no neighbors, maintain current direction
         if (filteredContext.Count == 0)
         {
-            return squadUnit.transform.forward;
+            return squadUnit.PathTransform.forward;
         }
 
         //add all forwards together and average

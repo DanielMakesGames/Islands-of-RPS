@@ -97,12 +97,14 @@ public class SquadUnit : MonoBehaviour
     protected virtual void Start()
     {
         EnableNavMeshAgent();
-        Initialize();
+        InitializePathTransform();
     }
 
-    protected void Initialize()
+    public void InitializePathTransform()
     {
-        pathTransformPosition = myPathTransform.position;
+        PathTransform.parent = null;
+        pathTransformPosition = transform.position;
+        myPathTransform.position = pathTransformPosition;
     }
 
     public void InitializeSquadUnit(Squad squad, Transform targetTrasnform)

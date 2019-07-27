@@ -77,6 +77,7 @@ public class EnemySquad : Squad
         for (int i = 0; i < squadUnits.Count; ++i)
         {
             squadUnits[i].transform.parent = null;
+            squadUnits[i].InitializePathTransform();
             squadUnits[i].EnableNavMeshAgent();
         }
 

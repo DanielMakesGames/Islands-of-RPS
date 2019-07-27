@@ -16,7 +16,6 @@ public class UnitTargetPath : MonoBehaviour
         myLineRenderer = GetComponent<LineRenderer>();
         myNavMeshAgent = GetComponentInParent<NavMeshAgent>();
         myMeshRenderer = GetComponent<MeshRenderer>();
-        transform.parent = null;
 
         if (isDebugging)
         {

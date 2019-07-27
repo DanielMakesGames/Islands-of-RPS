@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2284596301335749779}
   - component: {fileID: 7845556664806210970}
   m_Layer: 0
-  m_Name: Destination Node Indicator
+  m_Name: Target Node Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
-  playOnAwake: 1
+  prewarm: 0
+  playOnAwake: 0
   useUnscaledTime: 1
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

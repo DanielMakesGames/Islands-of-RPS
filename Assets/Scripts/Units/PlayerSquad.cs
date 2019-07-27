@@ -67,6 +67,7 @@ public class PlayerSquad : Squad
                 case Squad.SquadState.OnTappedSelected:
                     break;
                 case Squad.SquadState.Moving:
+                case Squad.SquadState.PendingUnitsReady:
                     break;
             }
         }
@@ -119,6 +120,7 @@ public class PlayerSquad : Squad
                     AnimateSquadPath();
                     break;
                 case Squad.SquadState.Moving:
+                case Squad.SquadState.PendingUnitsReady:
                     break;
             }
         }
@@ -174,6 +176,7 @@ public class PlayerSquad : Squad
                     }
                     break;
                 case Squad.SquadState.Moving:
+                case Squad.SquadState.PendingUnitsReady:
                     break;
             }
             AnimateSquadPath();
@@ -208,6 +211,7 @@ public class PlayerSquad : Squad
                     AnimateSquadDeselected();
                     break;
                 case Squad.SquadState.Moving:
+                case Squad.SquadState.PendingUnitsReady:
                     break;
             }
         }
@@ -265,7 +269,6 @@ public class PlayerSquad : Squad
         {
             return;
         }
-        mySquadState = Squad.SquadState.Moving;
 
         islandGrid.ResetPlayerNodeValues();
         currentNode.PlayerVisited = 0;
@@ -284,10 +287,11 @@ public class PlayerSquad : Squad
         currentNode.PlayerVisited = 0;
         currentNode.CurrentPlayerSquad = null;
 
+        mySquadState = SquadState.PendingUnitsReady;
         CompositeUnitBehaviour.Weights[0] = movementWeight;
+
         targetNode = destinationNode;
         transform.position = targetNode.transform.position + nodePositionOffset;
-        mySquadState = SquadState.Ready;
 
         path.Clear();
         SetCurrentNode();

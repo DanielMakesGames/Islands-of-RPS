@@ -81,10 +81,11 @@ public class EnemySquad : Squad
             squadUnits[i].EnableNavMeshAgent();
         }
 
+        mySquadState = SquadState.PendingUnitsReady;
         CompositeUnitBehaviour.Weights[0] = movementWeight;
+
         targetNode = landingNode;
         transform.position = targetNode.transform.position + nodePositionOffset;
-        mySquadState = SquadState.Ready;
 
         path.Clear();
         SetCurrentNode();
@@ -97,7 +98,6 @@ public class EnemySquad : Squad
         {
             return;
         }
-        mySquadState = Squad.SquadState.Moving;
 
         islandGrid.ResetEnemyNodeValues();
         currentNode.EnemyVisited = 0;
@@ -111,14 +111,14 @@ public class EnemySquad : Squad
         StartCoroutine(MoveToTargetCoroutine());
     }
 
-    protected override IEnumerator MoveToTargetCoroutine()
+    /*protected override IEnumerator MoveToTargetCoroutine()
     {
         yield return StartCoroutine(base.MoveToTargetCoroutine());
 
         mySquadState = SquadState.Moving;
         yield return new WaitForSeconds(decisionMakingDelay);
         mySquadState = SquadState.Ready;
-    }
+    }*/
 
     public void SetDecisionMakingDelay(float delay)
     {

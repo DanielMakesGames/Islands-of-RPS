@@ -27,6 +27,7 @@ public class Squad : MonoBehaviour
         Selected,
         OnTappedSelected,
         Moving,
+        PendingUnitsReady,
         OnTransport
     }
 
@@ -103,7 +104,7 @@ public class Squad : MonoBehaviour
         get { return myCollider; }
     }
 
-    const float sqrReadyDistance = 27.5f;
+    const float sqrReadyDistance = 50f;
     protected const float movementWeight = 20f;
 
     protected virtual void Awake()
@@ -187,7 +188,9 @@ public class Squad : MonoBehaviour
 
     protected virtual IEnumerator MoveToTargetCoroutine()
     {
+        mySquadState = Squad.SquadState.Moving;
         CompositeUnitBehaviour.Weights[0] = movementWeight;
+
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {
             Vector3 startPosition = transform.position;
@@ -216,7 +219,7 @@ public class Squad : MonoBehaviour
         }
 
         transform.position = targetNode.transform.position + nodePositionOffset;
-        mySquadState = SquadState.Ready;
+        mySquadState = SquadState.PendingUnitsReady;
         path.Clear();
 
         SetCurrentNode();
@@ -227,7 +230,7 @@ public class Squad : MonoBehaviour
 
     void ReturnToNormalMovementWeight()
     {
-        if (mySquadState == SquadState.Ready)
+        if (mySquadState == SquadState.PendingUnitsReady)
         {
             bool areUnitsReady = true;
             for (int i = 0; i < squadUnits.Count; ++i)
@@ -245,6 +248,7 @@ public class Squad : MonoBehaviour
             if (areUnitsReady)
             {
                 CompositeUnitBehaviour.Weights[0] = 1f;
+                mySquadState = SquadState.Ready;
             }
         }
     }

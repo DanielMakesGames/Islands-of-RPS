@@ -15,22 +15,42 @@ public class PathIndicator : MonoBehaviour
         myLineRenderer = GetComponentInChildren<LineRenderer>();
         myTargetNodeIndicator = GetComponentInChildren<ParticleSystem>();
         myLineRenderer.gameObject.SetActive(false);
-        myTargetNodeIndicator.gameObject.SetActive(false);
+        myTargetNodeIndicator.gameObject.SetActive(true);
 
         lineOffset = new Vector3(0, 6f, 0);
     }
 
     private void OnEnable()
     {
-        mySquad.OnAnimateSquadPath += OnAniamteSquadPath;
+        mySquad.OnAnimateSquadPath += OnAnimateSquadPath;
     }
 
     private void OnDisable()
     {
-        mySquad.OnAnimateSquadPath -= OnAniamteSquadPath;
+        mySquad.OnAnimateSquadPath -= OnAnimateSquadPath;
     }
 
-    void OnAniamteSquadPath()
+    private void Update()
+    {
+        switch (mySquad.CurrentSquadState)
+        {
+            case Squad.SquadState.Moving:
+            case Squad.SquadState.PendingUnitsReady:
+                if (myTargetNodeIndicator.isStopped)
+                {
+                    myTargetNodeIndicator.Play();
+                }
+                break;
+            default:
+                if (myTargetNodeIndicator.isPlaying)
+                {
+                    myTargetNodeIndicator.Stop();
+                }
+                break;
+        }
+    }
+
+    void OnAnimateSquadPath()
     {
         if (mySquad.path.Count > 0)
         {
@@ -48,12 +68,10 @@ public class PathIndicator : MonoBehaviour
             myLineRenderer.gameObject.SetActive(true);
 
             myTargetNodeIndicator.transform.position = pos[pos.Length - 1];
-            myTargetNodeIndicator.gameObject.SetActive(true);
         }
         else
         {
             myLineRenderer.gameObject.SetActive(false);
-            myTargetNodeIndicator.gameObject.SetActive(false);
         }
     }
 }

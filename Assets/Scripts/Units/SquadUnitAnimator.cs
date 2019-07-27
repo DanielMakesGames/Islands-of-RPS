@@ -9,6 +9,7 @@ public class SquadUnitAnimator : MonoBehaviour
 
     Vector3 forward;
     const float speed = 4f;
+    bool isDying = false;
 
     private void Awake()
     {
@@ -29,8 +30,11 @@ public class SquadUnitAnimator : MonoBehaviour
 
     private void LateUpdate()
     {
-        forward = Vector3.RotateTowards(forward, transform.parent.forward, Time.deltaTime * speed, 0f);
-        transform.forward = forward;
+        if (!isDying)
+        {
+            forward = Vector3.RotateTowards(forward, transform.parent.forward, Time.deltaTime * speed, 0f);
+            transform.forward = forward;
+        }
     }
 
     void MySquadUnit_OnAnimateIdle()
@@ -52,6 +56,7 @@ public class SquadUnitAnimator : MonoBehaviour
 
     void MySquadUnit_OnAnimateDeath()
     {
+        isDying = true;
         myAnimator.SetTrigger("Death");
     }
 

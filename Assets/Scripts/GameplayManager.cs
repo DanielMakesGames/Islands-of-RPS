@@ -73,6 +73,12 @@ public class GameplayManager : MonoBehaviour
         currentIsland.transform.localPosition = Vector3.zero;
         currentIsland.transform.localRotation = Quaternion.identity;
 
+        StartCoroutine(IslandLoadedCoroutine());
+    }
+
+    IEnumerator IslandLoadedCoroutine()
+    {
+        yield return null;
         OnIslandLoaded?.Invoke();
     }
 

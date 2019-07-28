@@ -205,8 +205,9 @@ public class FreeLookCamera : MonoBehaviour
         float timer = 0f;
         xAxisMomentum = -360f;
 
-        float startingOrtho = 120f;
+        float startingOrtho = 160f;
         float destinationOrtho = 60f;
+        Camera.main.orthographicSize = startingOrtho;
         myCinemachineFreeLook.m_Lens.OrthographicSize = startingOrtho;
 
         while (timer < 1f)

@@ -9,6 +9,7 @@ public class GameplayManager : MonoBehaviour
     public static event GameplayManagerAction OnStartGameplay;
 
     [SerializeField] GameObject[] Islands = null;
+    [SerializeField] SkyboxColor[] SkyboxColors = null;
 
     IslandItemSelect currentIslandItemSelect = null;
     GameObject currentIsland = null;
@@ -25,6 +26,8 @@ public class GameplayManager : MonoBehaviour
 
         InputManager.OnTouchBegin += InputManager_OnTouchBegin;
         InputManager.OnTouchEnd += InputManager_OnTouchEnd;
+
+        StartCoroutine(TransitionSkyboxColor(SkyboxColors[0]));
     }
 
     private void OnDisable()
@@ -32,6 +35,9 @@ public class GameplayManager : MonoBehaviour
         PlayButton.OnPressed -= PlayButtonOnPressed;
         ReturnToTitleButton.OnPressed -= ReturnToTitleButtonOnPressed;
         IslandItemSelect.OnIslandSelected -= OnIslandSelected;
+
+        InputManager.OnTouchBegin -= InputManager_OnTouchBegin;
+        InputManager.OnTouchEnd -= InputManager_OnTouchEnd;
     }
 
     void InputManager_OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
@@ -71,6 +77,7 @@ public class GameplayManager : MonoBehaviour
             if (Islands[i].name == currentIslandItemSelect.IslandName)
             {
                 currentIsland = Instantiate(Islands[i]);
+                StartCoroutine(TransitionSkyboxColor(SkyboxColors[i]));
                 break;
             }
         }
@@ -82,8 +89,30 @@ public class GameplayManager : MonoBehaviour
         OnIslandLoaded?.Invoke();
     }
 
+    IEnumerator TransitionSkyboxColor(SkyboxColor newSkyboxColor)
+    {
+        float timer = 0f;
+        Color startingTopColor = RenderSettings.skybox.GetColor("_Color2");
+        Color startingBottomColor = RenderSettings.skybox.GetColor("_Color1");
+        float startingExponent = RenderSettings.skybox.GetFloat("_Exponent");
+
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+            RenderSettings.skybox.SetColor("_Color2",
+                Color.Lerp(startingTopColor, newSkyboxColor.TopColor, timer));
+            RenderSettings.skybox.SetColor("_Color1",
+                Color.Lerp(startingBottomColor, newSkyboxColor.BottomColor, timer));
+            RenderSettings.skybox.SetFloat("_Exponent",
+                Mathf.Lerp(startingExponent, newSkyboxColor.Exponent, timer));
+
+            yield return null;
+        }
+    }
+
     void ReturnToTitleButtonOnPressed()
     {
+        StartCoroutine(TransitionSkyboxColor(SkyboxColors[0]));
         Destroy(currentIsland);
     }
 }

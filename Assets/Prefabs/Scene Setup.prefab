@@ -3390,6 +3390,12 @@ MonoBehaviour:
   - {fileID: 8995603849179321257, guid: 837364385374a4cec88b0730a68e3ed4, type: 3}
   - {fileID: 7087683076102377621, guid: ab5818f1c25af4101a2f79bf25b20253, type: 3}
   - {fileID: 5587721954450943618, guid: 4be5569daf9c44614b54a01f6dfa8cf8, type: 3}
+  SkyboxColors:
+  - {fileID: 11400000, guid: 2b383aa270742411c86f85fc8f5c299d, type: 2}
+  - {fileID: 11400000, guid: 74ff0f4bde8fe4ea58e4f71db6b4788b, type: 2}
+  - {fileID: 11400000, guid: ee681d7c0b83a4e6f988169d8eea2898, type: 2}
+  - {fileID: 11400000, guid: 2b383aa270742411c86f85fc8f5c299d, type: 2}
+  - {fileID: 11400000, guid: 4a6725714cb074758aa952a98d1c0487, type: 2}
 --- !u!1 &5130734713373498279
 GameObject:
   m_ObjectHideFlags: 0

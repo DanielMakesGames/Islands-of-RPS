@@ -10,7 +10,7 @@ public class EnemyWaveIndicator : MonoBehaviour
 
     List<GameObject> icons;
 
-    const float spacing = 150f;
+    const float spacing = 160f;
 
     enum EnemyIcon
     {
@@ -90,7 +90,7 @@ public class EnemyWaveIndicator : MonoBehaviour
         clone.transform.localPosition = new Vector3(
             startPosition + index * spacing, -spacing, 0f);
         clone.transform.localRotation = Quaternion.identity;
-        clone.transform.localScale = Vector3.one * 20f;
+        clone.transform.localScale = Vector3.one * 30f;
 
         icons.Add(clone);
     }

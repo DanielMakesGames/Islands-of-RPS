@@ -45,6 +45,7 @@ public class PlayerSquad : Squad
             switch (mySquadState)
             {
                 case Squad.SquadState.Ready:
+                case Squad.SquadState.PendingUnitsReady:
                     if (hitInfo.transform != null)
                     {
                         if (hitInfo.transform == transform)
@@ -67,7 +68,6 @@ public class PlayerSquad : Squad
                 case Squad.SquadState.OnTappedSelected:
                     break;
                 case Squad.SquadState.Moving:
-                case Squad.SquadState.PendingUnitsReady:
                     break;
             }
         }

@@ -562,11 +562,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8279096542883826840, guid: 50d2444de50574da0bd619dfa2e0735d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3931793308617106104, guid: 50d2444de50574da0bd619dfa2e0735d,
         type: 3}
       propertyPath: Neighbors.Array.size
@@ -622,6 +617,11 @@ PrefabInstance:
       propertyPath: Neighbors.Array.data[7]
       value: 
       objectReference: {fileID: 5732139462652056119}
+    - target: {fileID: 8279096542883826840, guid: 50d2444de50574da0bd619dfa2e0735d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50d2444de50574da0bd619dfa2e0735d, type: 3}
 --- !u!4 &830064569053089704 stripped
@@ -1239,6 +1239,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6725373487026513803, guid: 1034dc27c62b547c5b62e7652f481cf8,
+        type: 3}
+      propertyPath: EnemyWaves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b9812c030989f4ef29c5513dde956c3a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1034dc27c62b547c5b62e7652f481cf8, type: 3}
 --- !u!4 &4131235665281639204 stripped

@@ -98,11 +98,12 @@ public class Squad : MonoBehaviour
 
     protected Vector3 nodePositionOffset = Vector3.up * 5f;
 
-    Collider myCollider;
+    BoxCollider myBoxCollider;
     public Collider SquadCollider
     {
-        get { return myCollider; }
+        get { return myBoxCollider; }
     }
+    Vector3 originalBoxColliderSize;
 
     const float sqrReadyDistance = 50f;
     protected const float movementWeight = 20f;
@@ -112,7 +113,8 @@ public class Squad : MonoBehaviour
         islandGrid = FindObjectOfType<IslandGrid>();
         squadUnits = new List<SquadUnit>();
         nodeLayerMask = LayerMask.GetMask("Node");
-        myCollider = GetComponent<Collider>();
+        myBoxCollider = GetComponent<BoxCollider>();
+        originalBoxColliderSize = myBoxCollider.size;
 
         squareMaxSpeed = MaxSpeed * MaxSpeed;
         squareNeighborRadius = NeighborRadius * NeighborRadius;
@@ -190,6 +192,7 @@ public class Squad : MonoBehaviour
     {
         mySquadState = Squad.SquadState.Moving;
         CompositeUnitBehaviour.Weights[0] = movementWeight;
+        myBoxCollider.size = Vector3.zero;
 
         for (int nodeIndex = 1; nodeIndex < path.Count; ++nodeIndex)
         {
@@ -220,8 +223,9 @@ public class Squad : MonoBehaviour
 
         transform.position = targetNode.transform.position + nodePositionOffset;
         mySquadState = SquadState.PendingUnitsReady;
-        path.Clear();
+        myBoxCollider.size = originalBoxColliderSize;
 
+        path.Clear();
         SetCurrentNode();
         targetNode = null;
 

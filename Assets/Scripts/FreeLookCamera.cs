@@ -17,8 +17,9 @@ public class FreeLookCamera : MonoBehaviour
     int myFingerId0 = InputManager.InactiveTouch;
     int myFingerId1 = InputManager.InactiveTouch;
 
-    const float yAxisSpeed = 0.002f;
-    const float xAxisSpeed = 0.4f;
+    const float yAxisSpeed = 0.004f;
+    const float xAxisSpeed = 0.2f;
+    const float pinchSpeed = 0.06f;
 
     Vector3 tapPosition0;
     Vector3 tapPosition1;
@@ -26,7 +27,7 @@ public class FreeLookCamera : MonoBehaviour
     Vector3 touchDelta1;
 
     [SerializeField] readonly float MinOrthoSize = 40f;
-    [SerializeField] readonly float MaxOrthoSize = 120f;
+    [SerializeField] readonly float MaxOrthoSize = 140f;
 
     const float ZoomAnimationSpeed = 2f;
     float currentOrthoZoom = 0f;
@@ -73,10 +74,15 @@ public class FreeLookCamera : MonoBehaviour
 
     void OnTouchBegin(int fingerId, Vector3 tapPosition, RaycastHit hitInfo)
     {
-        if (hitInfo.transform != null || myFreeLookCameraState == FreeLookCameraState.TransitionIn)
+        if (myFreeLookCameraState == FreeLookCameraState.TransitionIn)
         {
             return;
         }
+        if (hitInfo.transform != null && hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad"))
+        {
+            return;
+        }
+
         if (myFingerId0 == InputManager.InactiveTouch)
         {
             myFingerId0 = fingerId;
@@ -119,9 +125,9 @@ public class FreeLookCamera : MonoBehaviour
             float pinchDistance = Vector3.Distance(tapPosition0, tapPosition1);
             float prevDistance = Vector3.Distance(tapPosition0 - touchDelta0,
                 tapPosition1 - touchDelta1);
-            float pinchDistanceDelta = pinchDistance - prevDistance;
+            float pinchDistanceDelta = prevDistance - pinchDistance;
 
-            myCinemachineFreeLook.m_Lens.OrthographicSize += pinchDistanceDelta;
+            myCinemachineFreeLook.m_Lens.OrthographicSize += pinchDistanceDelta * pinchSpeed;
             myCinemachineFreeLook.m_Lens.OrthographicSize = Mathf.Clamp(
                 myCinemachineFreeLook.m_Lens.OrthographicSize, MinOrthoSize, MaxOrthoSize);
         }

@@ -21,6 +21,8 @@ public class Items : MonoBehaviour
     protected int numberOfOverlays = 0;
 
     const float movementSpeed = 8f;
+    const float momentumDeceleration = 3.5f;
+    const float momentumDeadZone = 25f;
 
     protected virtual void Awake()
     {
@@ -114,7 +116,6 @@ public class Items : MonoBehaviour
 
     void OnUITouchMove(int fingerId, Vector3 tapPosition, Vector3 touchDelta,
         RaycastHit hitInfo)
-
     {
         if (isTouchActive)
         {
@@ -157,13 +158,13 @@ public class Items : MonoBehaviour
 
     void MomentumDeceleration()
     {
-        momentum += (0f - momentum) * 20f * Time.deltaTime;
-        if (localPosition.x < minX + 2f || localPosition.x > maxX - 2f)
+        momentum += (0f - momentum) * momentumDeceleration * Time.deltaTime;
+        if (localPosition.x < minX + momentumDeadZone || localPosition.x > maxX - momentumDeadZone)
         {
             momentum = 0f;   
         }
 
-        if (Mathf.Abs(momentum) > 1f)
+        if (Mathf.Abs(momentum) > momentumDeadZone)
         {
             localPosition.x += momentum;
         }

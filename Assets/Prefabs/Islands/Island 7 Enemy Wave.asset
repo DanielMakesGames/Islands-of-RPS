@@ -12,7 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202d56c23d3784f5ab81a891c0dbe9fa, type: 3}
   m_Name: Island 7 Enemy Wave
   m_EditorClassIdentifier: 
-  EnemyBoats: []
-  SpawnLocations: []
-  Directions: []
-  SpawnTimes: []
+  EnemyBoats:
+  - {fileID: 6941197795524751051, guid: 29e5855a9d8b14723a23192a49ef4855, type: 3}
+  - {fileID: 2927051461184567735, guid: e89f99f5fb47442a6be681e8764b851a, type: 3}
+  - {fileID: 2275702535269224247, guid: f8d13d340aece475bb5dcb9202f43285, type: 3}
+  - {fileID: 6941197795524751051, guid: 29e5855a9d8b14723a23192a49ef4855, type: 3}
+  - {fileID: 2927051461184567735, guid: e89f99f5fb47442a6be681e8764b851a, type: 3}
+  - {fileID: 2275702535269224247, guid: f8d13d340aece475bb5dcb9202f43285, type: 3}
+  - {fileID: 2927051461184567735, guid: e89f99f5fb47442a6be681e8764b851a, type: 3}
+  SpawnLocations:
+  - {x: -25, y: 0, z: -120}
+  - {x: -15, y: 0, z: -120}
+  - {x: -5, y: 0, z: -120}
+  - {x: 5, y: 0, z: -120}
+  - {x: 15, y: 0, z: -120}
+  - {x: 25, y: 0, z: -120}
+  - {x: -120, y: 0, z: 5}
+  Directions:
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 0}
+  SpawnTimes:
+  - 3
+  - 4
+  - 5
+  - 23
+  - 24
+  - 25
+  - 26

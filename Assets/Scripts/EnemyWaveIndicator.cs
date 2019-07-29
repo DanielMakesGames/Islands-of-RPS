@@ -87,23 +87,26 @@ public class EnemyWaveIndicator : MonoBehaviour
                 break;
         }
 
-        if (index < columns)
+
+        int currentRow = Mathf.FloorToInt((float)index / (float)columns);
+        int totalRows = Mathf.CeilToInt((float)totalSquads / (float)columns);
+        float startPositionX = 0f;
+        if (currentRow < totalRows - 1)
         {
             totalSquads = columns;
         }
         else
         {
-            totalSquads = totalSquads - columns;
+            totalSquads = totalSquads % columns;
         }
 
-        float startPositionY = Mathf.Floor(index / 6f);
-        index = index % 6;
-        float startPositionX = (totalSquads - 1) * xSpacing / -2f;
+        index = index % columns;
+        startPositionX = (totalSquads - 1) * xSpacing / -2f;
 
         clone.transform.SetParent(transform, false);
         clone.transform.localPosition = new Vector3(
             startPositionX + index * xSpacing,
-            ySpacing * (startPositionY + 1f), 0f);
+            ySpacing * (currentRow + 1f), 0f);
         clone.transform.localRotation = Quaternion.identity;
         clone.transform.localScale = Vector3.one * 30f;
 

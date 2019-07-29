@@ -74,11 +74,12 @@ Subshader {
 	  #pragma fragmentoption ARB_precision_hint_fastest      
 // Edited by Shader Control: #pragma multi_compile __ BEAUTIFY_DALTONIZE BEAUTIFY_LUT BEAUTIFY_NIGHT_VISION BEAUTIFY_THERMAL_VISION
 #pragma multi_compile __ BEAUTIFY_DALTONIZE BEAUTIFY_LUT 
-#pragma multi_compile __ BEAUTIFY_DEPTH_OF_FIELD BEAUTIFY_DEPTH_OF_FIELD_TRANSPARENT
+// Edited by Shader Control: #pragma multi_compile __ BEAUTIFY_DEPTH_OF_FIELD BEAUTIFY_DEPTH_OF_FIELD_TRANSPARENT
+#pragma multi_compile __ BEAUTIFY_DEPTH_OF_FIELD_TRANSPARENT
 #pragma multi_compile __ BEAUTIFY_OUTLINE
 // Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_DIRT
-#pragma multi_compile __ BEAUTIFY_BLOOM
-#pragma multi_compile __ BEAUTIFY_EYE_ADAPTATION
+// Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_BLOOM
+// Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_EYE_ADAPTATION
 // Disabled by Shader Control: #pragma multi_compile __ BEAUTIFY_PURKINJE
 // Edited by Shader Control: #pragma multi_compile __ BEAUTIFY_VIGNETTING BEAUTIFY_VIGNETTING_MASK
 #pragma multi_compile __ BEAUTIFY_VIGNETTING 

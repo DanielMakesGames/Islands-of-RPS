@@ -4198,7 +4198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714031664403}
-  m_LocalRotation: {x: 0.3223141, y: -0.00000003257625, z: 0.000000011091719, w: 0.9466328}
+  m_LocalRotation: {x: 0.3223141, y: 0.00000003257625, z: -0.000000011091719, w: 0.9466328}
   m_LocalPosition: {x: 0, y: 92.5, z: -120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4328,7 +4328,7 @@ MonoBehaviour:
   _brightness: 1.05
   _daltonize: 0
   _vignetting: 1
-  _vignettingColor: {r: 0, g: 0.76862746, b: 1, a: 0.05}
+  _vignettingColor: {r: 0, g: 0, b: 0, a: 0.007843138}
   _vignettingFade: 0
   _vignettingCircularShape: 0
   _vignettingAspectRatio: 1
@@ -4342,8 +4342,8 @@ MonoBehaviour:
   _lutTexture: {fileID: 0}
   _nightVision: 0
   _nightVisionColor: {r: 0.5, g: 1, b: 0.5, a: 0.5}
-  _outline: 0
-  _outlineColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0.8}
+  _outline: 1
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0.8}
   _thermalVision: 0
   _lensDirt: 0
   _lensDirtThreshold: 0.5
@@ -4715,7 +4715,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734714436828330}
-  m_LocalRotation: {x: 0.3223141, y: -0.000000016288158, z: 0.0000000055459597, w: 0.9466328}
+  m_LocalRotation: {x: 0.3223141, y: 0.000000016288089, z: -0.000000005545759, w: 0.9466328}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

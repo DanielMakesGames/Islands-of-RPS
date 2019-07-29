@@ -98,6 +98,10 @@ public class EnemyWaveIndicator : MonoBehaviour
         else
         {
             totalSquads = totalSquads % columns;
+            if (totalSquads == 0)
+            {
+                totalSquads = columns;
+            }
         }
 
         index = index % columns;

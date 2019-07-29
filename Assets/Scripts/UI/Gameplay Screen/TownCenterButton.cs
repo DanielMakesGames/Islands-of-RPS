@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class TownCenterButton : MoreButtonsButton
 {
@@ -38,10 +37,9 @@ public class TownCenterButton : MoreButtonsButton
         TownCenter.OnSpawnNewSquad += OnSpawnNewSquad;
         TownCenter.OnMaxSquadReached += OnMaxSquadReached;
 
-        DisableMoreButtons();
+        GameplayManager.OnIslandLoaded += OnIslandLoaded;
 
-        myTownCenter = FindObjectOfType<TownCenter>();
-        StartCoroutine(UpdateTextDelayed());
+        DisableMoreButtons();
     }
 
     protected override void OnDisable()
@@ -55,7 +53,15 @@ public class TownCenterButton : MoreButtonsButton
         TownCenter.OnSpawnNewSquad -= OnSpawnNewSquad;
         TownCenter.OnMaxSquadReached -= OnMaxSquadReached;
 
+        GameplayManager.OnIslandLoaded -= OnIslandLoaded;
+
         RemoveIcons();
+    }
+
+    void OnIslandLoaded()
+    {
+        myTownCenter = FindObjectOfType<TownCenter>();
+        InitializeArmyIcons();
     }
 
     void OnSpawnNewSquad(Squad newSquad)
@@ -159,11 +165,5 @@ public class TownCenterButton : MoreButtonsButton
 
         transform.localPosition = startingLocalPosition;
         shakeCoroutine = null;
-    }
-
-    IEnumerator UpdateTextDelayed()
-    {
-        yield return null;
-        InitializeArmyIcons();
     }
 }

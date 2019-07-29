@@ -35,6 +35,8 @@ public class FreeLookCamera : MonoBehaviour
     float prevTouchDeltaX = 0f;
     float xAxisMomentum = 0f;
 
+    bool isInStrategyMode = false;
+
     private void Awake()
     {
         myCinemachineFreeLook = GetComponent<CinemachineFreeLook>();
@@ -78,7 +80,8 @@ public class FreeLookCamera : MonoBehaviour
         {
             return;
         }
-        if (hitInfo.transform != null && hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad"))
+        if (hitInfo.transform != null &&
+            (isInStrategyMode || hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad")))
         {
             return;
         }
@@ -149,7 +152,7 @@ public class FreeLookCamera : MonoBehaviour
     void OnEnterStrategyMode()
     {
         StopAllCoroutines();
-
+        isInStrategyMode = true;
         if (Mathf.Abs(currentOrthoZoom) < Mathf.Epsilon)
         {
             currentOrthoZoom = myCinemachineFreeLook.m_Lens.OrthographicSize;
@@ -164,6 +167,7 @@ public class FreeLookCamera : MonoBehaviour
     void OnExitStrategyMode()
     {
         StopAllCoroutines();
+        isInStrategyMode = false;
 
         if (Mathf.Abs(currentOrthoZoom) < Mathf.Epsilon)
         {

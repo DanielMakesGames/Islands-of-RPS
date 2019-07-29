@@ -10,7 +10,9 @@ public class EnemyWaveIndicator : MonoBehaviour
 
     List<GameObject> icons;
 
-    const float spacing = 160f;
+    const float xSpacing = 160f;
+    const float ySpacing = -160f;
+    const int columns = 6;
 
     enum EnemyIcon
     {
@@ -85,10 +87,23 @@ public class EnemyWaveIndicator : MonoBehaviour
                 break;
         }
 
-        float startPosition = (totalSquads - 1) * spacing / -2f;
+        if (index < columns)
+        {
+            totalSquads = columns;
+        }
+        else
+        {
+            totalSquads = totalSquads - columns;
+        }
+
+        float startPositionY = Mathf.Floor(index / 6f);
+        index = index % 6;
+        float startPositionX = (totalSquads - 1) * xSpacing / -2f;
+
         clone.transform.SetParent(transform, false);
         clone.transform.localPosition = new Vector3(
-            startPosition + index * spacing, -spacing, 0f);
+            startPositionX + index * xSpacing,
+            ySpacing * (startPositionY + 1f), 0f);
         clone.transform.localRotation = Quaternion.identity;
         clone.transform.localScale = Vector3.one * 30f;
 

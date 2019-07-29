@@ -5,10 +5,12 @@ using UnityEngine;
 public class NodeIndicator : MonoBehaviour
 {
     SpriteRenderer mySpriteRenderer;
+    Node myNode;
 
     private void Awake()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myNode = GetComponentInParent<Node>();
     }
 
     private void OnEnable()
@@ -25,7 +27,7 @@ public class NodeIndicator : MonoBehaviour
 
     void OnEnterStrategyMode()
     {
-        mySpriteRenderer.enabled = true;
+        mySpriteRenderer.enabled = myNode.IsWalkable;
     }
 
     void OnExitStrategyMode()

@@ -10,12 +10,18 @@ public class TimeManager : MonoBehaviour
     {
         PlayerSquadManager.OnEnterStrategyMode += OnEnterStrategyMode;
         PlayerSquadManager.OnExitStrategyMode += OnExitStrategyMode;
+
+        TownCenter.OnTownCenterDestroyed += NormalTime;
+        EnemySquadManager.OnAllEnemiesDefeated += NormalTime;
     }
 
     private void OnDisable()
     {
         PlayerSquadManager.OnEnterStrategyMode -= OnEnterStrategyMode;
         PlayerSquadManager.OnExitStrategyMode -= OnExitStrategyMode;
+
+        TownCenter.OnTownCenterDestroyed -= NormalTime;
+        EnemySquadManager.OnAllEnemiesDefeated -= NormalTime;
     }
 
     void OnEnterStrategyMode()

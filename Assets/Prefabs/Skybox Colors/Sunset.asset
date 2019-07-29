@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b548534788836436b96ad449d687b41c, type: 3}
   m_Name: Sunset
   m_EditorClassIdentifier: 
-  TopColor: {r: 1, g: 0.41960785, b: 0.9098039, a: 1}
-  BottomColor: {r: 1, g: 0.6392157, b: 0.23921569, a: 1}
-  Exponent: 1
+  topColor: {r: 1, g: 0.41960785, b: 0.9098039, a: 1}
+  bottomColor: {r: 1, g: 0.6392157, b: 0.23921569, a: 1}
+  exponent: 1

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b548534788836436b96ad449d687b41c, type: 3}
   m_Name: Candy
   m_EditorClassIdentifier: 
-  TopColor: {r: 1, g: 0.5254902, b: 0.6, a: 1}
-  BottomColor: {r: 0.5529412, g: 1, b: 0.9372549, a: 1}
-  Exponent: 0.5
+  topColor: {r: 1, g: 0.5254902, b: 0.6, a: 1}
+  bottomColor: {r: 0.5529412, g: 1, b: 0.9372549, a: 1}
+  exponent: 0.5

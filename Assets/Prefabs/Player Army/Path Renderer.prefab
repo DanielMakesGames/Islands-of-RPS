@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7354792213343664220}
   - component: {fileID: 4538633013115827797}
   m_Layer: 0
-  m_Name: Line Renderer
+  m_Name: Path Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.4
+    widthMultiplier: 0.6
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -34,6 +34,7 @@ public class PathIndicator : MonoBehaviour
     {
         switch (mySquad.CurrentSquadState)
         {
+            case Squad.SquadState.Selected:
             case Squad.SquadState.Moving:
             case Squad.SquadState.PendingUnitsReady:
                 if (myTargetNodeIndicator.isStopped)

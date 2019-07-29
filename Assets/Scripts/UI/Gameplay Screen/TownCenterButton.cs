@@ -10,12 +10,14 @@ public class TownCenterButton : MoreButtonsButton
     [SerializeField] GameObject RockSilhouette = null;
     [SerializeField] GameObject PaperSilhouette = null;
     [SerializeField] GameObject ScissorSilhouette = null;
+    [SerializeField] GameObject EmptyIcon = null;
 
-    [SerializeField] TextMeshProUGUI textMesh = null;
+    [SerializeField] GameObject Armies = null;
 
     TownCenter myTownCenter;
     Coroutine shakeCoroutine = null;
 
+    int currentArmyIndex = 0;
     List<GameObject> icons;
     const float spacing = 100f;
 
@@ -71,34 +73,46 @@ public class TownCenterButton : MoreButtonsButton
                 break;
         }
 
-        UpdateText();
     }
 
-    void UpdateText()
+    void InitializeArmyIcons()
     {
         if (myTownCenter == null)
         {
             myTownCenter = FindObjectOfType<TownCenter>();
         }
 
-        textMesh.text = "Armies\n" + myTownCenter.CurrentSquadNumber +
-            " / " + myTownCenter.MaximumSquadNumber;
+        icons = new List<GameObject>();
+        currentArmyIndex = 0;
+        if (icons.Count == 0)
+        {
+            float startPosition = (myTownCenter.MaximumSquadNumber - 1) * spacing / -2f;
+            for (int i = 0; i < myTownCenter.MaximumSquadNumber; ++i)
+            {
+                GameObject clone = Instantiate(EmptyIcon);
+                clone.transform.SetParent(Armies.transform, false);
+
+                clone.transform.localPosition = new Vector3(
+                    startPosition + i * spacing, 0f, 0f);
+
+                icons.Add(clone);
+            }
+        }
     }
 
     void InstantiatePlayerSquadIcon(GameObject squadIcon)
     {
         GameObject clone = Instantiate(squadIcon);
-        clone.transform.SetParent(transform, false);
+        clone.transform.SetParent(Armies.transform, false);
+        clone.transform.localPosition = icons[currentArmyIndex].transform.localPosition;
 
-        icons.Add(clone);
+        Destroy(icons[currentArmyIndex]);
+        icons[currentArmyIndex] = clone;
 
-        float startPosition = (icons.Count - 1) * spacing / -2f;
-        for (int i = 0; i < icons.Count; ++i)
+        ++currentArmyIndex;
+        if (currentArmyIndex >= icons.Count)
         {
-            icons[i].transform.localPosition = new Vector3(
-                startPosition + i * spacing, -150f, 0f);
-            clone.transform.localRotation = Quaternion.identity;
-            clone.transform.localScale = Vector3.one * 15f;
+            currentArmyIndex = 0;
         }
     }
 
@@ -150,6 +164,6 @@ public class TownCenterButton : MoreButtonsButton
     IEnumerator UpdateTextDelayed()
     {
         yield return null;
-        UpdateText();
+        InitializeArmyIcons();
     }
 }

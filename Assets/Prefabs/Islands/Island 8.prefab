@@ -4698,7 +4698,7 @@ PrefabInstance:
         type: 3}
       propertyPath: EnemyWaves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 63e8eb9cc29704ab687a6a33e554aed9,
+      objectReference: {fileID: 11400000, guid: 1615869e4691d46559bec0e94be74dc5,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1034dc27c62b547c5b62e7652f481cf8, type: 3}
@@ -6202,6 +6202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Neighbors.Array.data[7]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931793308617106104, guid: 50d2444de50574da0bd619dfa2e0735d,
+        type: 3}
+      propertyPath: maximumSquadNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8279096542883826840, guid: 50d2444de50574da0bd619dfa2e0735d,
         type: 3}

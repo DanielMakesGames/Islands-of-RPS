@@ -3880,12 +3880,12 @@ MonoBehaviour:
   - {fileID: 6925218759287234075, guid: 43b8a4e7d23b34e45b7d1a8e45249c8b, type: 3}
   SkyboxColors:
   - {fileID: 11400000, guid: 2b383aa270742411c86f85fc8f5c299d, type: 2}
-  - {fileID: 11400000, guid: 2b383aa270742411c86f85fc8f5c299d, type: 2}
+  - {fileID: 11400000, guid: 74ff0f4bde8fe4ea58e4f71db6b4788b, type: 2}
   - {fileID: 11400000, guid: ee681d7c0b83a4e6f988169d8eea2898, type: 2}
   - {fileID: 11400000, guid: 2b383aa270742411c86f85fc8f5c299d, type: 2}
   - {fileID: 11400000, guid: 4a6725714cb074758aa952a98d1c0487, type: 2}
   - {fileID: 11400000, guid: 74ff0f4bde8fe4ea58e4f71db6b4788b, type: 2}
-  - {fileID: 11400000, guid: 74ff0f4bde8fe4ea58e4f71db6b4788b, type: 2}
+  - {fileID: 11400000, guid: a057a8536163a4b3ea279720383ef35d, type: 2}
   - {fileID: 11400000, guid: f5f72864b84724d56addd8b20ae10f11, type: 2}
   - {fileID: 11400000, guid: 4a6725714cb074758aa952a98d1c0487, type: 2}
 --- !u!1 &5130734713373498279
@@ -4185,7 +4185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130734713914320941}
-  m_LocalRotation: {x: 0.30413792, y: 0.00000002318079, z: -0.0000000074007973, w: 0.952628}
+  m_LocalRotation: {x: 0.30413792, y: -0.000000023180752, z: 0.000000007400681, w: 0.952628}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

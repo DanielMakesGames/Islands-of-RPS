@@ -1029,8 +1029,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   rockDefense: 0.99
-  paperDefense: 0.96
-  scissorDefense: 0.93
+  paperDefense: 0.98
+  scissorDefense: 0.97
   maximumSquadNumber: 4
 --- !u!1 &9001217796709955001
 GameObject:

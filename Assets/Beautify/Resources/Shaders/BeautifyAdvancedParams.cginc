@@ -39,4 +39,4 @@
 //#define BEAUTIFY_BETTER_FASTER_LUT
 
 // Uncomment this line to enable AntiAliasing
-//#define BEAUTIFY_EDGE_AA
+#define BEAUTIFY_EDGE_AA

@@ -10350,6 +10350,11 @@ PrefabInstance:
       propertyPath: Neighbors.Array.data[7]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3931793308617106104, guid: 50d2444de50574da0bd619dfa2e0735d,
+        type: 3}
+      propertyPath: maximumSquadNumber
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8279096542883826840, guid: 50d2444de50574da0bd619dfa2e0735d,
         type: 3}
       propertyPath: m_Enabled

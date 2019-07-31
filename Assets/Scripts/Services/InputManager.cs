@@ -149,16 +149,7 @@ public class InputManager : MonoBehaviour
 
     public static Vector2 FixTouchDelta(Touch aT)
     {
-    #if UNITY_ANDROID
-        float dt = Time.deltaTime / aT.deltaTime;
-        if (float.IsNaN(dt) || float.IsInfinity(dt))
-        {
-        dt = 1.0f;
-        }
-        return aT.deltaPosition * dt;
-    #else
         return aT.deltaPosition;
-    #endif
     }
 
     static private float Angle(Vector2 pos1, Vector2 pos2)

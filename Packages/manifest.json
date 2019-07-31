@@ -4,6 +4,7 @@
     "com.unity.analytics": "3.3.2",
     "com.unity.cinemachine": "2.3.4",
     "com.unity.collab-proxy": "1.2.16",
+    "com.unity.mobile.android-logcat": "1.0.0",
     "com.unity.package-manager-ui": "2.1.2",
     "com.unity.polybrush": "1.0.0-preview.17",
     "com.unity.postprocessing": "2.1.7",

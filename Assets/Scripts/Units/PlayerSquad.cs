@@ -64,8 +64,12 @@ public class PlayerSquad : Squad
                             mySquadState = SquadState.OnTappedSelected;
                         }
                     }
+                    FindPath(tapPosition, hitInfo);
+                    AnimateSquadPath();
                     break;
                 case Squad.SquadState.OnTappedSelected:
+                    FindPath(tapPosition, hitInfo);
+                    AnimateSquadPath();
                     break;
                 case Squad.SquadState.Moving:
                     break;
@@ -85,44 +89,49 @@ public class PlayerSquad : Squad
                     break;
                 case Squad.SquadState.Selected:
                 case Squad.SquadState.OnTappedSelected:
-                    if (hitInfo.transform != null)
-                    {
-                        if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Node"))
-                        {
-                            PathfindingNode = hitInfo.transform.GetComponent<Node>();
-                            if (PathfindingNode.IsWalkable)
-                            {
-                                path = islandGrid.GetPlayerPath(PathfindingNode);
-                            }
-                            else
-                            {
-                                path.Clear();
-                            }
-                        }
-                        else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad"))
-                        {
-                            if (Vector3.SqrMagnitude(tapPosition - startingTap) > 100f)
-                            {
-                                PathfindingNode = hitInfo.transform.GetComponent<PlayerSquad>().CurrentNode;
-                                path = islandGrid.GetPlayerPath(PathfindingNode);
-                            }
-                        }
-                        else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Enemy Squad"))
-                        {
-                            PathfindingNode = hitInfo.transform.GetComponent<EnemySquad>().CurrentNode;
-                            path = islandGrid.GetPlayerPath(PathfindingNode);
-                        }
-                    }
-                    else
-                    {
-                        path.Clear();
-                    }
+                    FindPath(tapPosition, hitInfo);
                     AnimateSquadPath();
                     break;
                 case Squad.SquadState.Moving:
                 case Squad.SquadState.PendingUnitsReady:
                     break;
             }
+        }
+    }
+
+    void FindPath(Vector3 tapPosition, RaycastHit hitInfo)
+    {
+        if (hitInfo.transform != null)
+        {
+            if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Node"))
+            {
+                PathfindingNode = hitInfo.transform.GetComponent<Node>();
+                if (PathfindingNode.IsWalkable)
+                {
+                    path = islandGrid.GetPlayerPath(PathfindingNode);
+                }
+                else
+                {
+                    path.Clear();
+                }
+            }
+            else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Player Squad"))
+            {
+                if (Vector3.SqrMagnitude(tapPosition - startingTap) > 100f)
+                {
+                    PathfindingNode = hitInfo.transform.GetComponent<PlayerSquad>().CurrentNode;
+                    path = islandGrid.GetPlayerPath(PathfindingNode);
+                }
+            }
+            else if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Enemy Squad"))
+            {
+                PathfindingNode = hitInfo.transform.GetComponent<EnemySquad>().CurrentNode;
+                path = islandGrid.GetPlayerPath(PathfindingNode);
+            }
+        }
+        else
+        {
+            path.Clear();
         }
     }
 

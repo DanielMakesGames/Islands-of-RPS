@@ -91,7 +91,7 @@ public class EnemySquadManager : SquadManager
     IEnumerator InstantiateEnemyBoat(GameObject enemyBoat, Vector3 spawnLocation,
         Vector3 direction, float spawnTime)
     {
-        yield return new WaitForSeconds(spawnTime);
+        yield return new WaitForSeconds(spawnTime + 12f);
 
         GameObject clone = Instantiate(enemyBoat);
         clone.transform.position = spawnLocation;

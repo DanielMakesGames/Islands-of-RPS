@@ -4,7 +4,7 @@ IOS Testflight Link:
 https://testflight.apple.com/join/K4Ze8Kio - please make sure you are on Skies of Roshambo v0.5.1 which will be live in about 24-48 hours.
 
 Android Test Link:
-
+https://i.diawi.com/bqRPkd - Diawi link to a debug build of the game.
 
 Camera Controls:
 -Tap and swipe to rotate
